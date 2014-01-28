@@ -1,1 +1,19 @@
 <h2>CompaniesController#index</h2>
+
+<table>
+  <tr>
+    <th> Company </th>
+    <th> Branch </th>
+    <th> Client </th>
+  </tr>
+
+  <% @companies.each do |company| %>
+      <% company.clients.each do |client| %>
+        <tr>
+            <td><%= company.name %></td>
+            <td><%= company.branch %></td>
+            <td><%= client.first_name + ' ' + client.last_name  %> </td>
+        </tr>
+      <% end %>
+  <% end %>
+</table>

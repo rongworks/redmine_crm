@@ -3,30 +3,33 @@ class ClientsController < ApplicationController
 
 
   def index
-    @companies = Client.all
+    @clients = Client.all
   end
 
   def show
-    @company = Client.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   def new
-    @company = Client.new
+    @client = Client.new
   end
 
   def create
+    @client = Client.new(params[:client])
+    @client.save
+    redirect_to @client
   end
 
   def edit
-    @company = Client.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   def update
-    @company = Client.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   def destroy
-    @company = Client.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   private
