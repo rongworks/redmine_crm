@@ -1,0 +1,16 @@
+de:
+  Company: "Unternehmen"
+
+  activerecord:
+    models:
+      company:
+        one: "Unternehmen"
+        other: "Unternehmen"
+    attributes:
+      company:
+        name: "Name"
+        extra_information: "Zusatzinformation"
+        branch: "Branche"
+  helpers:
+    submit:
+      update: "Aktualisieren %{model}"
