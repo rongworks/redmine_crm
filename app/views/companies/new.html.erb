@@ -1,1 +1,29 @@
 <h2>CompaniesController#new</h2>
+
+<%= form_for @company do |builder| %>
+    <%= builder.label :name %>
+    <%= builder.text_field :name %>
+    <%= builder.label :extra_information %>
+    <%= builder.text_field :extra_information %>
+    <%= builder.label :branch %>
+    <%= builder.text_field :branch %>
+    <%= builder.label :organisation %>
+    <%= builder.text_field :organisation %>
+
+    <%= builder.label :url %>
+    <%= builder.text_field :url %>
+    <%= builder.label :zip_code %>
+    <%= builder.text_field :zip_code %>
+    <%= builder.label :province %>
+    <%= builder.text_field :province %>
+    <%= builder.label :state %>
+    <%= builder.text_field :state %>
+
+    <%= builder.label :url %>
+    <%= builder.text_field :url %>
+    <%= builder.label :mail %>
+    <%= builder.text_field :mail %>
+
+    <%= builder.submit 'Create' %>
+
+<% end %>

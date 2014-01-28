@@ -1,1 +1,24 @@
 <h2>ClientsController#new</h2>
+
+<%= form_for @client do |builder| %>
+    <%= builder.label :first_name %>
+    <%= builder.text_field :first_name %>
+    <%= builder.label :last_name %>
+    <%= builder.text_field :last_name %>
+    <%= builder.label :title %>
+    <%= builder.text_field :title %>
+    <%= builder.label :department %>
+    <%= builder.text_field :department %>
+    <%= builder.label :phone %>
+    <%= builder.text_field :phone %>
+    <%= builder.label :fax %>
+    <%= builder.text_field :fax %>
+    <%= builder.label :mail %>
+    <%= builder.text_field :mail %>
+    <%= builder.label :salutation %>
+    <%= builder.text_field :salutation %>
+    <%= builder.label :salutation_letter %>
+    <%= builder.text_field :salutation_letter %>
+
+    <%= builder.submit 'Create' %>
+<% end %>

@@ -15,6 +15,9 @@ class CompaniesController < ApplicationController
   end
 
   def create
+    @post = Post.new(params[:post])
+    @post.save
+    redirect_to @post
   end
 
   def edit
@@ -28,4 +31,10 @@ class CompaniesController < ApplicationController
   def destroy
     @company = Company.find(params[:id])
   end
+
+  private
+  def company_params
+    params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
+  end
+
 end
