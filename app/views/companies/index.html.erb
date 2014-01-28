@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th> Company </th>
-    <th> Branch </th>
-    <th> Client </th>
+    <th> <%= Company.human_attribute_name :name %> </th>
+    <th>  <%= Company.human_attribute_name :branch %> </th>
+    <th> <%= Company.human_attribute_name :client %> </th>
   </tr>
 
   <% @companies.each do |company| %>
