@@ -7,5 +7,5 @@ Redmine::Plugin.register :crm do
   author_url 'http://example.com/about'
 
   permission :companies, { :companies => [:index] }
-  menu :project_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :param => :project_id
+  menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true
 end

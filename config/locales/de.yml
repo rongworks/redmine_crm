@@ -1,6 +1,4 @@
 de:
-  Company: "Unternehmen"
-
   activerecord:
     models:
       company:
@@ -11,6 +9,11 @@ de:
         name: "Name"
         extra_information: "Zusatzinformation"
         branch: "Branche"
+        url: "Webseite"
+        state: "Bundesland"
+        province: "Ort"
+        zip_code: "PLZ"
   helpers:
     submit:
       update: "Aktualisieren %{model}"
+      create: "Erstelle %{model}"

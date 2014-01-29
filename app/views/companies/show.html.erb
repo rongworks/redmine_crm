@@ -1,1 +1,35 @@
-<h2>CompaniesController#show</h2>
+<h2><%= @company.name %> </h2>
+
+<table>
+  <tr>
+    <td><%= Company.human_attribute_name :name %></td>
+    <td><%= @company.name %> </td>
+    <td><%= Company.human_attribute_name :extra_information %></td>
+    <td><%= @company.extra_information %> </td>
+  </tr>
+  <tr>
+    <td><%= Company.human_attribute_name :branch %></td>
+    <td><%= @company.branch %> </td>
+    <td><%= Company.human_attribute_name :organisation %></td>
+    <td><%= @company.organisation %> </td>
+  </tr>
+  <tr>
+    <td><%= Company.human_attribute_name :street %></td>
+    <td><%= @company.street %> </td>
+    <td><%= Company.human_attribute_name :state %></td>
+    <td><%= @company.state %> </td>
+  </tr>
+  <tr>
+    <td><%= Company.human_attribute_name :zip_code %></td>
+    <td><%= @company.zip_code %> </td>
+    <td><%= Company.human_attribute_name :province %></td>
+    <td><%= @company.province %> </td>
+  </tr>
+  <tr>
+    <td><%= Company.human_attribute_name :url %></td>
+    <td><%= @company.url %> </td>
+    <td><%= Company.human_attribute_name :mail %></td>
+    <td><%= @company.mail %> </td>
+  </tr>
+</table>
+

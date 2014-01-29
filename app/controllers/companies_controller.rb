@@ -29,7 +29,16 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company = Company.find(params[:id])
+    Company.find(params[:id]).destroy
+    flash[:success] = "Company deleted."
+    redirect_to companies_url
+  end
+
+
+
+  def import
+    Company.import(params[:file])
+    redirect_to companies_url, notice: "Companies imported."
   end
 
   private

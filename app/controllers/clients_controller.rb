@@ -32,6 +32,11 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 
+  def import
+    Client.import(params[:file])
+    redirect_to clients_url, notice: "Clients imported."
+  end
+
   private
   def client_params
     params.required(:client).permit(:first_name, :last_name, :title, :salutation, :salutation_letter, :department, :phone, :fax, :mail, :company_id)
