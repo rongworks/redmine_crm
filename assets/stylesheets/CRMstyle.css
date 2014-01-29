@@ -1,6 +1,6 @@
-.company tr{
+tr.company{
     background: grey;
 }
-.contact tr{
+tr.contact{
     background: lightskyblue;
 }

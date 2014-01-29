@@ -1,3 +1,8 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
+<% end %>
+
+
 <h2>CRM </h2>
 <div>
 <%= link_to 'New Company',new_company_path %> | <%= link_to 'New Client',new_client_path %>
@@ -15,7 +20,7 @@
   </tr>
 
   <% @companies.each do |company| %>
-      <tr>
+      <tr class="company">
       <td><%= link_to company.name, company_path(company.id)  %></td>
       <td><%= company.branch %></td>
       <td><%= company.url %> </td>
@@ -33,7 +38,7 @@
         <td></td>
       </tr>
       <% company.clients.each do |client| %>
-        <tr>
+        <tr class="contact">
             <td></td>
             <td><%= link_to client.first_name + ' ' + client.last_name, client_path(client)  %> </td>
             <td><%= client.department %></td>
