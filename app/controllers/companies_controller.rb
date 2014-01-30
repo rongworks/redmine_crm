@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @comment = Crmcomment.new
   end
 
   def new
@@ -26,6 +27,12 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
+    if @company.update_attributes(params[:company])
+      flash[:failure] = "Company could not be saved"
+      redirect_to @company
+    else
+      render :edit
+    end
   end
 
   def destroy

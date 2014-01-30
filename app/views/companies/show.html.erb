@@ -33,3 +33,15 @@
   </tr>
 </table>
 
+<% @company.crmcomments.each do |c|%>
+  <hr>
+    <%= c.user.name + c.dtime + ': '%> <br>
+    <%= c.comment %>
+<% end %>
+
+<%= form_for @company do |f| %>
+  <%= fields_for @comment do |builder| %>
+    <%= render 'crmcomments/form', :f => builder %>
+  <% end %>
+  <%= f.submit 'New Comment' %>
+<% end %>

@@ -8,3 +8,5 @@ end
 resources :clients  do
   collection { post :import }
 end
+
+resources :crmcomments

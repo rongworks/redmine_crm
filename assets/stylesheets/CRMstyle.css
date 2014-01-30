@@ -1,6 +1,8 @@
-tr.company{
-    background: grey;
+tr.companyheader, th.companyheader{
+    border: 1px dotted darkslategrey;
+    font-weight: bold;
 }
-tr.contact{
-    background: lightskyblue;
+tr.contactheader, th.contactheader{
+    border: 1px dotted darkslategrey;
+    font-weight: bold;
 }
