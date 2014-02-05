@@ -3,7 +3,13 @@ class CompaniesController < ApplicationController
 
 
   def index
-    @companies = Company.all
+    if params[:search]
+       search = params[:search]
+       search.delete_if { |k, v| v.empty? }
+       @companies = Company.where(search)
+    else
+      @companies = Company.all
+    end
   end
 
   def show
@@ -28,9 +34,13 @@ class CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
-      flash[:failure] = "Company could not be saved"
+      if(params[:crmcomment])
+        @company.crmcomments.build(params[:crmcomment])
+      end
+      @company.save!
       redirect_to @company
     else
+      flash[:failure] = "Company could not be saved: "+@company.errors.to_s
       render :edit
     end
   end

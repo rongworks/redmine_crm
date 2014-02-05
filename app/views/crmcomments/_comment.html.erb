@@ -1,0 +1,10 @@
+
+<div id="comment-container">
+  <hr>
+  <div id="comment-header">
+    <%= c.user.name + ' (' + c.dtime.to_formatted_s(:short)  + ' ): '%>
+  </div>
+  <div id="comment-body">
+    <%= c.comment %>
+  </div>
+</div>

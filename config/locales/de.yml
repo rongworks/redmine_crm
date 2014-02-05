@@ -4,6 +4,9 @@ de:
       company:
         one: "Unternehmen"
         other: "Unternehmen"
+      client:
+              one: "Kunde"
+              other: "Kunden"
     attributes:
       company:
         name: "Name"

@@ -1,5 +1,5 @@
 <p>
-    <%= f.hidden_field :user, :value => User.current %>
+    <%= f.hidden_field :user_id, :value => User.current.id %>
     <%= f.hidden_field :dtime, :value => DateTime.now %>
     <%= f.text_area :comment, :rows => "4" %>
 </p>

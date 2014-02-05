@@ -6,3 +6,16 @@ tr.contactheader, th.contactheader{
     border: 1px dotted darkslategrey;
     font-weight: bold;
 }
+
+#comment-container{
+    width: 50%;
+}
+
+#comment-header{
+    font-weight: bold;
+    font-style: italic;
+}
+
+#comment-body{
+
+}

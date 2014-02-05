@@ -2,53 +2,45 @@
     <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
 <% end %>
 
-
+ <%= params.to_yaml %>
 <h2>CRM </h2>
 <div>
 <%= link_to 'New Company',new_company_path %> | <%= link_to 'New Client',new_client_path %>
 </div>
-
+<div>
+  <%= form_tag companies_path, :method => 'get' do%>
+    <%= label_tag :name %>
+    <%= select_tag "search[name]", options_for_select(Company.uniq.pluck(:name)), include_blank: true %> <br>
+    <%= label_tag  :branch %>
+    <%= select_tag "search[branch]", options_for_select(Company.uniq.pluck(:branch)), include_blank: true %>
+    <%= label_tag Company.human_attribute_name(:zip_code) %>
+    <%= text_field_tag "search[zip_code]" %>
+    <br>
+    <%= submit_tag  'Go'%>
+  <% end %>
+</div>
 <h3>Companies</h3>
-<table>
-  <tr class="companyheader">
-    <th> <%= Company.human_attribute_name :name %> </th>
-    <th>  <%= Company.human_attribute_name :branch %> </th>
-    <th> <%= Company.human_attribute_name :url %> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+
 
   <% @companies.each do |company| %>
-      <tr>
-      <td><%= link_to company.name, company_path(company.id)  %></td>
-      <td><%= company.branch %></td>
-      <td><%= company.url %> </td>
-      <td></td>
-      <td></td>
-      <td><%= link_to "delete", company, method: :delete,
-                      data: { confirm: "You sure?" } %></td>
-      </tr>
+      <%= render company %>
+      <% if company.clients.empty? %>
+        <p>No contacts created yet</p>
+      <% else %>
+      <table>
       <tr  class="contactheader">
-        <td></td>
-        <td><i>Kontakte</i></td>
-        <td><i><%= Client.human_attribute_name :department %></i></td>
-        <td><i><%= Client.human_attribute_name :phone %></i></td>
-        <td><i><%= Client.human_attribute_name :email %></i></td>
-        <td></td>
+        <th></th>
+        <th>Name</th>
+        <th><%= Client.human_attribute_name :department %></th>
+        <th><%= Client.human_attribute_name :phone %></th>
+        <th><%= Client.human_attribute_name :email %></th>
+        <th></th>
       </tr>
-      <% company.clients.each do |client| %>
-        <tr>
-            <td></td>
-            <td><%= link_to client.first_name + ' ' + client.last_name, client_path(client)  %> </td>
-            <td><%= client.department %></td>
-            <td><%= client.phone %></td>
-            <td><%= client.email %></td>
-            <td></td>
-        </tr>
+        <%= render company.clients %>
+      </table>
       <% end %>
+      <hr>
   <% end %>
-</table>
 
 <h3>Import CSV </h3>
 <%= form_tag import_companies_path, multipart: true do %>

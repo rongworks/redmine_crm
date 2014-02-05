@@ -1,4 +1,8 @@
-<h2><%= @company.name %> </h2>
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
+<% end %>
+
+<h2><%= '#' + @company.id.to_s + ' ' + @company.name %> </h2>
 
 <table>
   <tr>
@@ -33,15 +37,23 @@
   </tr>
 </table>
 
+<p><b><%= Client.name %></b></p>
+<%= render @company.clients || "No clients created yet" %>
+<%= link_to 'new client', new_client_path(:company_id => @company.id) %>
+
+<p><b>Kommentare</b></p>
 <% @company.crmcomments.each do |c|%>
-  <hr>
-    <%= c.user.name + c.dtime + ': '%> <br>
-    <%= c.comment %>
+ <%= render 'crmcomments/comment', :c => c %>
 <% end %>
 
+<hr>
+<p><b>Neuer Kommentar</b></p>
 <%= form_for @company do |f| %>
+
   <%= fields_for @comment do |builder| %>
     <%= render 'crmcomments/form', :f => builder %>
   <% end %>
   <%= f.submit 'New Comment' %>
 <% end %>
+
+<%= debug session %>

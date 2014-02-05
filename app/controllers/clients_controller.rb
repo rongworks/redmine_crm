@@ -1,5 +1,8 @@
 class ClientsController < ApplicationController
   unloadable
+  before_filter do |c|
+    redirect_to :home  unless User.current.admin?
+  end
 
 
   def index
