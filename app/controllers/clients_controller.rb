@@ -1,8 +1,6 @@
 class ClientsController < ApplicationController
   unloadable
-  before_filter do |c|
-    redirect_to :home  unless User.current.admin?
-  end
+  before_filter :global_access
 
 
   def index
@@ -43,5 +41,13 @@ class ClientsController < ApplicationController
   private
   def client_params
     params.required(:client).permit(:first_name, :last_name, :title, :salutation, :salutation_letter, :department, :phone, :fax, :mail, :company_id)
+  end
+
+  def find_project
+    @project = Project.find(params[:project_id])
+  end
+
+  def global_access
+    :authorize unless User.current.admin?
   end
 end

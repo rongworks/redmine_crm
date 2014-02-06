@@ -1,12 +1,14 @@
 
-  <h3><%= link_to company.name, company_path(company.id)  %> </h3>
+<div class='contextual'>
+  <%= link_to 'new client', new_client_path(:company_id => company.id), :class => 'icon icon-add' %>
+  <%= link_to "edit", edit_company_path(company.id), :class => 'icon icon-edit' %>
+  <%= link_to "delete", company, method: :delete,
+              data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
+</div>
+  <h4><%= link_to company.name, company_path(company.id)  %> </h4>
 
   <b><%= Company.human_attribute_name :branch %></b> :
   <%= company.branch %>
   <br>
   <b><%= Company.human_attribute_name :url %></b>  :
   <%= company.url %>
-  <p>
-  <%= link_to "delete", company, method: :delete,
-                  data: { confirm: "You sure?" } %>
-  </p>

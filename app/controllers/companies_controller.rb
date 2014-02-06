@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   unloadable
 
+  before_filter :global_access
 
   def index
     if params[:search]
@@ -63,4 +64,11 @@ class CompaniesController < ApplicationController
     params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
   end
 
+  def find_project
+    @project = Project.find(params[:project_id])
+  end
+
+  def global_access
+    :authorize unless User.current.admin?
+  end
 end

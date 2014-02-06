@@ -6,6 +6,14 @@ Redmine::Plugin.register :crm do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
-  permission :companies, { :companies => [:index] }
+  project_module :crm do
+    permission :view_companies, :companies => [:index, :show]
+    permission :edit_companies, :companies => [:edit, :import]
+    permission :create_companies, :companies => :new
+    permission :organize_contacts, :clients => [:new, :edit]
+    permission :view_contacts, :clients => [:index, :show]
+  end
+
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true
+  menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
 end

@@ -2,31 +2,36 @@
     <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
 <% end %>
 
+<div class='contextual'>
+  <%= link_to "delete", @company, method: :delete,
+              data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
+  <%= link_to "edit", edit_company_path(@company.id), :class => 'icon icon-edit' %>
+</div>
 <h2><%= '#' + @company.id.to_s + ' ' + @company.name %> </h2>
 
 <table>
   <tr>
-    <td><%= Company.human_attribute_name :name %></td>
+    <th><%= Company.human_attribute_name :name %></th>
     <td><%= @company.name %> </td>
-    <td><%= Company.human_attribute_name :extra_information %></td>
+    <th><%= Company.human_attribute_name :extra_information %></th>
     <td><%= @company.extra_information %> </td>
   </tr>
   <tr>
-    <td><%= Company.human_attribute_name :branch %></td>
+    <th><%= Company.human_attribute_name :branch %></th>
     <td><%= @company.branch %> </td>
-    <td><%= Company.human_attribute_name :organisation %></td>
+    <th><%= Company.human_attribute_name :organisation %></th>
     <td><%= @company.organisation %> </td>
   </tr>
   <tr>
-    <td><%= Company.human_attribute_name :street %></td>
+    <th><%= Company.human_attribute_name :street %></th>
     <td><%= @company.street %> </td>
-    <td><%= Company.human_attribute_name :state %></td>
+    <th><%= Company.human_attribute_name :state %></th>
     <td><%= @company.state %> </td>
   </tr>
   <tr>
-    <td><%= Company.human_attribute_name :zip_code %></td>
+    <th><%= Company.human_attribute_name :zip_code %></th>
     <td><%= @company.zip_code %> </td>
-    <td><%= Company.human_attribute_name :province %></td>
+    <th><%= Company.human_attribute_name :province %></th>
     <td><%= @company.province %> </td>
   </tr>
   <tr>
@@ -38,7 +43,9 @@
 </table>
 
 <p><b><%= Client.name %></b></p>
+<table>
 <%= render @company.clients || "No clients created yet" %>
+</table>
 <%= link_to 'new client', new_client_path(:company_id => @company.id) %>
 
 <p><b>Kommentare</b></p>
@@ -55,5 +62,3 @@
   <% end %>
   <%= f.submit 'New Comment' %>
 <% end %>
-
-<%= debug session %>

@@ -1,54 +1,86 @@
 <% content_for :header_tags do %>
     <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
 <% end %>
+<div class='contextual'>
+  <%= link_to 'New Company',new_company_path, :class => 'icon icon-add' %>
+  <%= link_to 'New Client',new_client_path, :class => 'icon icon-add' %>
+</div>
+<h2> CRM </h2>
 
- <%= params.to_yaml %>
-<h2>CRM </h2>
-<div>
-<%= link_to 'New Company',new_company_path %> | <%= link_to 'New Client',new_client_path %>
-</div>
-<div>
-  <%= form_tag companies_path, :method => 'get' do%>
-    <%= label_tag :name %>
-    <%= select_tag "search[name]", options_for_select(Company.uniq.pluck(:name)), include_blank: true %> <br>
-    <%= label_tag  :branch %>
-    <%= select_tag "search[branch]", options_for_select(Company.uniq.pluck(:branch)), include_blank: true %>
-    <%= label_tag Company.human_attribute_name(:zip_code) %>
-    <%= text_field_tag "search[zip_code]" %>
+<fieldset class='collapsible'>
+  <legend onclick='$("#import").toggle();'>Import CSV</legend>
+  <div id='import' style="display: none">
+    <%= form_tag import_companies_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Company Import" %>
+    <% end %>
     <br>
-    <%= submit_tag  'Go'%>
-  <% end %>
-</div>
+    <%= form_tag import_clients_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Client Import" %>
+    <% end %>
+  </div>
+</fieldset>
+<fieldset class='collapsible'>
+  <legend onclick='$("#filters").toggle();'>Filter</legend>
+  <div id='filters' style="display: none">
+
+    <%= form_tag companies_path, :method => 'get' do%>
+        <table>
+          <tr>
+            <td><%= label_tag :show_all %></td>
+            <td><%= check_box_tag "show_all" %></td>
+          </tr>
+          <tr>
+            <td><%= label_tag :name %></td>
+            <td>  <%= select_tag "search[name]", options_for_select(Company.uniq.pluck(:name)), include_blank: true %> </td>
+          </tr>
+          <tr>
+            <td><%= label_tag  :branch %></td>
+            <td><%= select_tag "search[branch]", options_for_select(Company.uniq.pluck(:branch)), include_blank: true %> </td>
+          </tr>
+          <tr>
+            <td><%= label_tag  :state %></td>
+            <td><%= select_tag "search[state]", options_for_select(Company.uniq.pluck(:state)), include_blank: true %> </td>
+          </tr>
+          <tr>
+            <td><%= label_tag Company.human_attribute_name(:zip_code) %></td>
+            <td><%= text_field_tag "search[zip_code]" %> </td>
+          </tr>
+          <tr>
+            <td><%= label_tag  :province %></td>
+            <td><%= select_tag "search[province]", options_for_select(Company.uniq.pluck(:province)), include_blank: true %> </td>
+          </tr>
+          <tr>
+            <td><%= label_tag  :organisation %></td>
+            <td><%= select_tag "search[organisation]", options_for_select(Company.uniq.pluck(:organisation)), include_blank: true %> </td>
+          </tr>
+
+        </table>
+        <%= submit_tag  :search %>
+    <% end %>
+  </div>
+</fieldset>
+
 <h3>Companies</h3>
 
 
-  <% @companies.each do |company| %>
-      <%= render company %>
-      <% if company.clients.empty? %>
+<% @companies.each do |company| %>
+    <%= render company %>
+    <% if company.clients.empty? %>
         <p>No contacts created yet</p>
-      <% else %>
-      <table>
-      <tr  class="contactheader">
-        <th></th>
-        <th>Name</th>
-        <th><%= Client.human_attribute_name :department %></th>
-        <th><%= Client.human_attribute_name :phone %></th>
-        <th><%= Client.human_attribute_name :email %></th>
-        <th></th>
-      </tr>
-        <%= render company.clients %>
-      </table>
-      <% end %>
-      <hr>
-  <% end %>
-
-<h3>Import CSV </h3>
-<%= form_tag import_companies_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Company Import" %>
-<% end %>
-<br>
-<%= form_tag import_clients_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Client Import" %>
+    <% else %>
+        <table>
+          <tr  class="contactheader">
+            <th></th>
+            <th>Name</th>
+            <th><%= Client.human_attribute_name :department %></th>
+            <th><%= Client.human_attribute_name :phone %></th>
+            <th><%= Client.human_attribute_name :email %></th>
+            <th></th>
+          </tr>
+          <%= render company.clients %>
+        </table>
+    <% end %>
+    <hr>
 <% end %>
