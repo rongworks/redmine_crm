@@ -1,0 +1,9 @@
+label{
+    font-weight: bold;
+    text-align: left;
+}
+
+th, td{
+    text-align: left;
+    padding: 5px;
+}

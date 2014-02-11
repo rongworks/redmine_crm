@@ -1,23 +1,60 @@
 de:
   activerecord:
-    models:
-      company:
-        one: "Unternehmen"
-        other: "Unternehmen"
-      client:
-              one: "Kunde"
-              other: "Kunden"
     attributes:
+      client:
+        department: Abteilung
+        email: E-mail
+        fax: Fax
+        first_name: Vorname
+        last_name: Nachname
+        phone: Telefon
+        salutation: Anrede
+        salutation_letter: Briefanrede
+        title: Titel
       company:
-        name: "Name"
-        extra_information: "Zusatzinformation"
-        branch: "Branche"
-        url: "Webseite"
-        state: "Bundesland"
-        province: "Ort"
-        zip_code: "PLZ"
+        branch: Branche
+        extra_information: Zusatzinformation
+        mail: E-mail
+        name: Name
+        organisation: Organisation
+        province: Ort
+        state: Bundesland
+        street: Straße
+        url: Web
+        zip_code: PLZ
+    models:
+      client:
+        one: Kunde
+        other: Kunden
+      company:
+        one: Unternehmen
+        other: Unternehmen
   helpers:
+    label:
+      client:
+        department: Abteilung
+        email: E-mail
+        fax: Fax
+        first_name: Vorname
+        last_name: Nachname
+        phone: Telefon
+        salutation: Anrede
+        salutation_letter: Briefanrede
+        title: Titel
+      company:
+        branch: Branche
+        extra_information: Zusatzinformation
+        mail: E-mail
+        name: Name
+        organisation: Organisation
+        province: Ort
+        state: Bundesland
+        street: Straße
+        url: Web
+        zip_code: PLZ
     submit:
-      update: "Aktualisieren %{model}"
       create: "Erstelle %{model}"
-      search: "Suchen"
+      search: Suchen
+      update: "Aktualisieren %{model}"
+  search: Suchen
+  show_all: "Alles anzeigen"

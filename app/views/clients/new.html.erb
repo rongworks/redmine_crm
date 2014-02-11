@@ -1,27 +1,58 @@
 <h2>ClientsController#new</h2>
 
-<%= form_for @client do |builder| %>
-    <%= builder.label :company %>
-    <%= collection_select :client, :company_id, Company.all, :id, :name  %>
 
+
+<fieldset>
+<%= form_for @client do |builder| %>
+  <p>
+     <%= builder.label :company %>
+     <%= collection_select :client, :company_id, Company.all, :id, :name, :include_blank => true  %>
+  </p>
+  <div style='text-align: right;float:left;margin: 10px;'>
+    <p>
     <%= builder.label :first_name %>
-    <%= builder.text_field :first_name %>
+    <%= builder.text_field :first_name %> <br>
+    </p>
+    <p>
     <%= builder.label :last_name %>
-    <%= builder.text_field :last_name %>
+    <%= builder.text_field :last_name %> <br>
+    </p>
+    <p>
     <%= builder.label :title %>
     <%= builder.text_field :title %>
+    </p>
+    <p>
     <%= builder.label :department %>
     <%= builder.text_field :department %>
+    </p>
+    <p>
+      <!-- -->
+    </p>
+  </div>
+  <div style='text-align: right;float:left;margin: 10px;'>
+    <p>
     <%= builder.label :phone %>
     <%= builder.text_field :phone %>
+    </p>
+    <p>
     <%= builder.label :fax %>
     <%= builder.text_field :fax %>
+    </p>
+    <p>
     <%= builder.label :email %>
     <%= builder.text_field :email %>
+    </p>
+    <p>
     <%= builder.label :salutation %>
     <%= builder.text_field :salutation %>
+    </p>
+    <p>
     <%= builder.label :salutation_letter %>
     <%= builder.text_field :salutation_letter %>
-
+    </p>
+  </div>
+  <div>
     <%= builder.submit 'Create' %>
+  </div>
 <% end %>
+</fieldset>
