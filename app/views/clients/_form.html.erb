@@ -1,0 +1,58 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
+<% end %>
+
+<fieldset>
+  <%= form_for @client do |builder| %>
+      <p>
+        <%= builder.label :company %>  <!-- TODO:: COLLECTION_SELECT DOESNT WORK -->
+        <%= collection_select :client, :company_id, Company.all, :id, :name, {:include_blank => true, :selected => :company_id } %>
+      </p>
+      <div class='form_align'>
+        <p>
+          <%= builder.label :first_name %>
+          <%= builder.text_field :first_name %>
+        </p>
+        <p>
+          <%= builder.label :last_name %>
+          <%= builder.text_field :last_name %>
+        </p>
+        <p>
+          <%= builder.label :title %>
+          <%= builder.text_field :title %>
+        </p>
+        <p>
+          <%= builder.label :department %>
+          <%= builder.text_field :department %>
+        </p>
+        <p>
+          <!-- -->
+        </p>
+      </div>
+      <div class='form_align'>
+        <p>
+          <%= builder.label :phone %>
+          <%= builder.text_field :phone %>
+        </p>
+        <p>
+          <%= builder.label :fax %>
+          <%= builder.text_field :fax %>
+        </p>
+        <p>
+          <%= builder.label :email %>
+          <%= builder.text_field :email %>
+        </p>
+        <p>
+          <%= builder.label :salutation %>
+          <%= builder.text_field :salutation %>
+        </p>
+        <p>
+          <%= builder.label :salutation_letter %>
+          <%= builder.text_field :salutation_letter %>
+        </p>
+      </div>
+      </fieldset>
+      <div class='form_action'>
+        <%= builder.submit %>
+      </div>
+  <% end %>

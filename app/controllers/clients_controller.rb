@@ -9,6 +9,7 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id])
+    @comment = Crmcomment.new
   end
 
   def new
@@ -26,11 +27,23 @@ class ClientsController < ApplicationController
   end
 
   def update
-    @client = Client.find(params[:id])
+    @client = Company.find(params[:id])
+    if @client.update_attributes(params[:company])
+      if(params[:crmcomment])
+        @client.crmcomments.build(params[:crmcomment])
+      end
+      @client.save!
+      redirect_to @client
+    else
+      flash[:failure] = "Client could not be saved: "+@client.errors.to_s
+      render :edit
+    end
   end
 
   def destroy
-    @client = Client.find(params[:id])
+    Client.find(params[:id]).destroy
+    flash[:success] = "Client deleted."
+    redirect_to companies_url
   end
 
   def import

@@ -1,3 +1,23 @@
-<h2>ClientsController#show</h2>
+<div class='contextual'>
+  <%= link_to t(:edit), edit_client_path(@client), :class => 'icon icon-edit' %>
+  <%= link_to t(:delete), @client, method: :delete,
+              data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
+</div>
+<h2><%= @client %> </h2>
 
+<%= render 'form' %>
 
+<p><b>Kommentare</b></p>
+<% @client.crmcomments.each do |c|%>
+    <%= render 'crmcomments/comment', :c => c %>
+<% end %>
+
+<hr>
+<p><b>Neuer Kommentar</b></p>
+<%= form_for @client do |f| %>
+
+    <%= fields_for @comment do |cc| %>
+        <%= render 'crmcomments/form', :f => cc %>
+    <% end %>
+    <%= f.submit 'New Comment' %>
+<% end %>

@@ -3,50 +3,21 @@
 <% end %>
 
 <div class='contextual'>
-  <%= link_to "delete", @company, method: :delete,
+  <%= link_to t(:delete), @company, method: :delete,
               data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
-  <%= link_to "edit", edit_company_path(@company.id), :class => 'icon icon-edit' %>
+  <%= link_to t(:edit), edit_company_path(@company.id), :class => 'icon icon-edit' %>
 </div>
 <h2><%= '#' + @company.id.to_s + ' ' + @company.name %> </h2>
 
+<%= render 'form' %>
+
+<p><b><%= t('activerecord.models.client.other') %></b> </p>
+<%= link_to t(:new, :model => t(:client)), new_client_path(:company_id => @company.id), :class => 'icon icon-add' %>
 <table>
-  <tr>
-    <th><%= Company.human_attribute_name :name %></th>
-    <td><%= @company.name %> </td>
-    <th><%= Company.human_attribute_name :extra_information %></th>
-    <td><%= @company.extra_information %> </td>
-  </tr>
-  <tr>
-    <th><%= Company.human_attribute_name :branch %></th>
-    <td><%= @company.branch %> </td>
-    <th><%= Company.human_attribute_name :organisation %></th>
-    <td><%= @company.organisation %> </td>
-  </tr>
-  <tr>
-    <th><%= Company.human_attribute_name :street %></th>
-    <td><%= @company.street %> </td>
-    <th><%= Company.human_attribute_name :state %></th>
-    <td><%= @company.state %> </td>
-  </tr>
-  <tr>
-    <th><%= Company.human_attribute_name :zip_code %></th>
-    <td><%= @company.zip_code %> </td>
-    <th><%= Company.human_attribute_name :province %></th>
-    <td><%= @company.province %> </td>
-  </tr>
-  <tr>
-    <td><%= Company.human_attribute_name :url %></td>
-    <td><%= @company.url %> </td>
-    <td><%= Company.human_attribute_name :mail %></td>
-    <td><%= @company.mail %> </td>
-  </tr>
+  <%= render 'clients/header' %>
+  <%= render @company.clients || "No clients created yet" %>
 </table>
 
-<p><b><%= Client.name %></b></p>
-<table>
-<%= render @company.clients || "No clients created yet" %>
-</table>
-<%= link_to 'new client', new_client_path(:company_id => @company.id) %>
 
 <p><b>Kommentare</b></p>
 <% @company.crmcomments.each do |c|%>

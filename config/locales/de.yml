@@ -53,8 +53,14 @@ de:
         url: Web
         zip_code: PLZ
     submit:
-      create: "Erstelle %{model}"
+      create: "%{model} erstellen"
       search: Suchen
-      update: "Aktualisieren %{model}"
+      update: "%{model} aktualisieren"
   search: Suchen
   show_all: "Alles anzeigen"
+  edit: aktualisieren
+  new:  "%{model} erstellen"
+  create: "%{model} erstellen"
+  delete: löschen
+  client: Kunde
+  company: Unternehmen

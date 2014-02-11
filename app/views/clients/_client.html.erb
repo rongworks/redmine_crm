@@ -4,5 +4,7 @@
   <td><%= client.department %></td>
   <td><%= client.phone %></td>
   <td><%= client.email %></td>
-  <td></td>
+  <td> <%= link_to t(:edit), edit_client_path(client), :class => 'icon icon-edit' %> </td>
+  <td><%= link_to t(:delete), client, method: :delete,
+              data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %> </td>
 </tr>
