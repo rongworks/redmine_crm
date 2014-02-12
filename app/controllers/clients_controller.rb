@@ -13,7 +13,7 @@ class ClientsController < ApplicationController
   end
 
   def new
-    @client = Client.new
+    @client = Client.new(:company_id => params[:company_id])
   end
 
   def create

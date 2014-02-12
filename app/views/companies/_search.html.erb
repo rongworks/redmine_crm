@@ -1,6 +1,6 @@
-<fieldset class='collapsible'>
-  <legend onclick='$("#filters").toggle();'>Filter</legend>
-  <div id='filters' style="display: none">
+<fieldset class='collapsible collapsed'>
+  <legend onclick='toggleFieldset(this);'>Filter</legend>
+  <div style="display: none;">
 
     <%= form_tag companies_path, :method => 'get' do%>
         <table>

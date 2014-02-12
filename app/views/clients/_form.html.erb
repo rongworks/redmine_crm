@@ -5,8 +5,8 @@
 <fieldset>
   <%= form_for @client do |builder| %>
       <p>
-        <%= builder.label :company %>  <!-- TODO:: COLLECTION_SELECT DOESNT WORK -->
-        <%= collection_select :client, :company_id, Company.all, :id, :name, {:include_blank => true, :selected => :company_id } %>
+        <%= builder.label :company %>
+        <%= builder.collection_select :company_id, Company.all, :id, :name, :prompt => '-- select --' %>
       </p>
       <div class='form_align'>
         <p>

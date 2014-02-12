@@ -7,9 +7,9 @@
 </div>
 <h2> CRM </h2>
 
-<fieldset class='collapsible'>
-  <legend onclick='$("#import").toggle();'>Import CSV</legend>
-  <div id='import' style="display: none">
+<fieldset class='collapsible collapsed'>
+  <legend onclick='toggleFieldset(this);'>Import CSV</legend>
+  <div style="display: none;">
     <%= form_tag import_companies_path, multipart: true do %>
         <%= file_field_tag :file %>
         <%= submit_tag "Company Import" %>
@@ -29,8 +29,9 @@
 <div style="width:70%">
 <% @companies.each do |company| %>
     <%= render company %>
-    <fieldset>
-    <legend><%= t('activerecord.models.client.other')%></legend>
+      <fieldset class='collapsible collapsed'>
+        <legend onclick='toggleFieldset(this);'><%= t('activerecord.models.client.other')%></legend>
+    <div style="display: none;">
     <% if company.clients.empty? %>
         <p>No contacts created yet</p>
     <% else %>
@@ -40,7 +41,9 @@
           <%= render company.clients %>
         </table>
     <% end %>
+    </div>
     </fieldset>
+
     <hr>
 <% end %>
 </div>
