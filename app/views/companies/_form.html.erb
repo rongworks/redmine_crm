@@ -46,7 +46,12 @@
       <%= builder.label :mail %>
       <%= builder.text_field :mail %>
     </p>
+    <p>
+      <%= builder.label :tag_list, "Tags (separated by commas)" %>
+      <%= builder.text_field :tag_list %>
+    </p>
   </div>
+
   <div class='form_action'>
     <%= builder.submit %>
   </div>

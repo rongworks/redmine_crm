@@ -5,8 +5,9 @@
   <%= link_to t(:delete), company, method: :delete,
               data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
 </div>
-<h4><%= link_to company.name, company_path(company.id)  %> </h4>
-
+<h4><%= link_to company.name, company_path(company.id)  %>
+<%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %>
+</h4>
 <p><%= company.quick_info %></p>
 
 <div>

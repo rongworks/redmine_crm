@@ -53,3 +53,17 @@ tr.contactheader, th.contactheader{
 .customertable tr:nth-child(odd){
     background-color: beige;
 }
+
+.tags{
+    background-color: lightsteelblue;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 2px 4px;
+    display: inline-block;
+    font-size: 10px;
+    margin: 0px 0px 5px 2px;
+}
+
+.tags:hover{
+    background-color: cadetblue;
+}

@@ -7,6 +7,7 @@
 </div>
 <h2> CRM </h2>
 
+<p>Tags: <%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %></p>
 <fieldset class='collapsible collapsed'>
   <legend onclick='toggleFieldset(this);'>Import CSV</legend>
   <div style="display: none;">

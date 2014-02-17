@@ -32,7 +32,10 @@
             <td><%= label_tag  t_att(:company, :organisation) %></td>
             <td><%= select_tag "search[organisation]", options_for_select(Company.uniq.pluck(:organisation)), include_blank: true %> </td>
           </tr>
-
+          <tr>
+            <td><%= label_tag  "tags" %></td>
+            <td><%= select_tag :tag, options_for_select(Company.get_all_tags), include_blank: true %> </td>
+          </tr>
         </table>
         <%= submit_tag   t 'search' %>
     <% end %>

@@ -11,6 +11,9 @@ class CompaniesController < ApplicationController
     else
       @companies = Company.all
     end
+    if params[:tag]
+      @companies =  Company.where(search).tagged_with(params[:tag])
+    end
   end
 
   def show
