@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <td><%= label_tag t_att(:company, :zip_code) %></td>
-            <td><%= text_field_tag "search[zip_code]" %> </td>
+            <td><%= select_tag "search[zip_code]", options_for_select(Company.uniq.pluck(:zip_code)), include_blank: true %> </td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :province) %></td>
