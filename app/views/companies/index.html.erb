@@ -26,24 +26,10 @@
 
 <h3><%= t('activerecord.models.company.other') %></h3>
 
-<div style="width:70%">
-<% @companies.each do |company| %>
-    <%= render company %>
-      <fieldset class='collapsible collapsed'>
-        <legend onclick='toggleFieldset(this);'><%= t('activerecord.models.client.other')%></legend>
-    <div style="display: none;">
-    <% if company.clients.empty? %>
-        <p>No contacts created yet</p>
-    <% else %>
 
-        <table class='customertable'>
-          <%= render 'clients/header' %>
-          <%= render company.clients %>
-        </table>
-    <% end %>
-    </div>
-    </fieldset>
+<% @companies.each do |company| %>
+
+    <%= render company %>
 
     <hr>
 <% end %>
-</div>

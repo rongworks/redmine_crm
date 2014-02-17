@@ -18,5 +18,11 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def quick_info
+    "#{branch}, #{zip_code} #{province},  #{url}"
+  end
 
+  def last_comment
+    crmcomments.last
+  end
 end

@@ -5,13 +5,29 @@
   <%= link_to t(:delete), company, method: :delete,
               data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
 </div>
-  <h4><%= link_to company.name, company_path(company.id)  %> </h4>
+<h4><%= link_to company.name, company_path(company.id)  %> </h4>
 
-  <p>
-  <b><%= t_att(:company, :branch) %></b> :
-  <%= company.branch %>
-  </p>
-  <p>
-  <b><%= t_att(:company, :url) %></b>  :
-  <%= company.url %>
-  </p>
+<p><%= company.quick_info %></p>
+
+<div>
+  <fieldset class='collapsible collapsed'>
+    <legend onclick='toggleFieldset(this);'><%= t('activerecord.models.client.other')%></legend>
+    <div style="display: none;">
+      <% if company.clients.empty? %>
+          <p>No contacts created yet</p>
+      <% else %>
+
+          <table class='customertable'>
+            <%= render 'clients/header' %>
+            <%= render company.clients %>
+          </table>
+      <% end %>
+    </div>
+  </fieldset>
+  <% last_comment = company.last_comment%>
+  <% if last_comment %>
+      <%= render 'crmcomments/comment', :c => last_comment, :parent => company %>
+  <% end %>
+</div>
+
+
