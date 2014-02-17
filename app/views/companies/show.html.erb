@@ -3,6 +3,7 @@
 <% end %>
 
 <div class='contextual'>
+  <%= link_to t(:new, :model => t(:client)), new_client_path(:company_id => @company.id), :class => 'icon icon-add' %>
   <%= link_to t(:delete), @company, method: :delete,
               data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
   <%= link_to t(:edit), edit_company_path(@company.id), :class => 'icon icon-edit' %>
@@ -11,25 +12,27 @@
 
 <%= render 'form' %>
 
-<p><b><%= t('activerecord.models.client.other') %></b> </p>
-<%= link_to t(:new, :model => t(:client)), new_client_path(:company_id => @company.id), :class => 'icon icon-add' %>
-<table>
+<p>
+  <b><%= t('activerecord.models.client.other') %></b>
+</p>
+<table class ='customertable'>
   <%= render 'clients/header' %>
   <%= render @company.clients || "No clients created yet" %>
 </table>
 
 
-<p><b>Kommentare</b></p>
-<% @company.crmcomments.each do |c|%>
- <%= render 'crmcomments/comment', :c => c %>
-<% end %>
+<fieldset>
 
+<legend><span id="comments_count"><%= pluralize(@comments.count, 'Crmcomment') %></span>
+</legend>
+<div id='comment-notice'></div>
+  <div id='comments'>
+<% @comments.each do |c|%>
+ <%= render 'crmcomments/comment', :c => c, :parent => @company %>
+<% end %>
+  </div>
 <hr>
 <p><b>Neuer Kommentar</b></p>
-<%= form_for @company do |f| %>
 
-  <%= fields_for @comment do |builder| %>
-    <%= render 'crmcomments/form', :f => builder %>
-  <% end %>
-  <%= f.submit 'New Comment' %>
-<% end %>
+<%= render 'crmcomments/form', {:parent => @company, :comment => @comment}  %>
+</fieldset>

@@ -9,15 +9,9 @@
 
 <p><b>Kommentare</b></p>
 <% @client.crmcomments.each do |c|%>
-    <%= render 'crmcomments/comment', :c => c %>
+    <%= render 'crmcomments/comment', :c => c, :parent => @client %>
 <% end %>
 
 <hr>
 <p><b>Neuer Kommentar</b></p>
-<%= form_for @client do |f| %>
-
-    <%= fields_for @comment do |cc| %>
-        <%= render 'crmcomments/form', :f => cc %>
-    <% end %>
-    <%= f.submit 'New Comment' %>
-<% end %>
+<%= render 'crmcomments/form', {:parent => @client, :comment => @comment}  %>

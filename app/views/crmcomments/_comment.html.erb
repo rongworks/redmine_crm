@@ -1,10 +1,12 @@
-
+<hr>
 <div id="comment-container">
-  <hr>
   <div id="comment-header">
     <%= c.user.name + ' (' + c.dtime.to_formatted_s(:short)  + ' ): '%>
   </div>
   <div id="comment-body">
     <%= c.comment %>
   </div>
+  <%= link_to t(:delete), polymorphic_path([parent,c]), method: :delete,
+              data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
+  <%= link_to t(:edit),polymorphic_path([parent,c]), :class => 'icon icon-edit' %>
 </div>

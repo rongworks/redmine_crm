@@ -1,0 +1,13 @@
+alert('huhu');
+/* Replace the count of comments */
+$("#comments_count").html("<%= pluralize(Crmcomment.count, 'Comment') %>");
+
+/* Add the new comment to the bottom of the comments list */
+$("#comments").append("<%= escape_javascript(render 'comment', :c => @comment) %>");
+
+/* Highlight the new comment */
+$("#comment_<%= @comment.id %>").effect("highlight", {}, 3000);
+
+/* Reset the comment form */
+$("#new_comment").reset();
+

@@ -1,8 +1,9 @@
 class CrmcommentsController < ApplicationController
   unloadable
+  before_filter :find_commentable
 
   def index
-    @comments = Crmcomment.all
+    @comments = @commentable.crmcomments
   end
 
   def show
@@ -14,9 +15,12 @@ class CrmcommentsController < ApplicationController
   end
 
   def create
-    @comment = Crmcomment.new(params[:crmcomment])
+    @comment = @commentable.crmcomments.build(params[:crmcomment])
     @comment.save
-    redirect_to @comment
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def edit
@@ -30,7 +34,19 @@ class CrmcommentsController < ApplicationController
   def destroy
     Crmcomment.find(params[:id]).destroy
     flash[:success] = "Comment deleted."
-    redirect_to crmcomments_url
+    redirect_to request.referer
+  end
+
+  private
+
+  def find_commentable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        @commentable =  $1.classify.constantize.find(value)
+        return @commentable
+      end
+    end
+    nil
   end
 
 

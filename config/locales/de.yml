@@ -2,7 +2,7 @@ de:
   activerecord:
     attributes:
       client:
-        department: Abteilung
+        department: Funktion
         email: E-mail
         fax: Fax
         first_name: Vorname
@@ -24,15 +24,15 @@ de:
         zip_code: PLZ
     models:
       client:
-        one: Kunde
-        other: Kunden
+        one: Kontakt
+        other: Kontakte
       company:
         one: Unternehmen
         other: Unternehmen
   helpers:
     label:
       client:
-        department: Abteilung
+        department: Funktion
         email: E-mail
         fax: Fax
         first_name: Vorname
@@ -62,5 +62,5 @@ de:
   new:  "%{model} erstellen"
   create: "%{model} erstellen"
   delete: löschen
-  client: Kunde
+  client: Kontakt
   company: Unternehmen
