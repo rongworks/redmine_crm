@@ -61,6 +61,6 @@ class ClientsController < ApplicationController
   end
 
   def global_access
-    :authorize unless User.current.admin?
+    authorize unless User.current.admin?
   end
 end
