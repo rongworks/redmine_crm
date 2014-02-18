@@ -6,6 +6,8 @@ Redmine::Plugin.register :crm do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
+  require_dependency 'projects_relation_patch'
+
   project_module :crm do
     permission :view_companies, :companies => [:index, :show]
     permission :edit_companies, :companies => [:edit, :import]

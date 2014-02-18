@@ -5,11 +5,19 @@ class Company < ActiveRecord::Base
 
   has_many :clients
   has_many :crmcomments, as: :commentable
+  has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id'
+  has_many :projects, :through => :companies_projects
+
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
 
   validates :name, presence: true
 
-
+  #scope :from_project, lambda { |project_id|
+  #  includes(:companies_projects).where('companies_projects.project_id = ?',  project_id)
+  #}
+  def self.from_project(project_id)
+    includes(:companies_projects).where('companies_projects.project_id = ?',  project_id)
+  end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

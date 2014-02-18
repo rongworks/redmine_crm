@@ -4,15 +4,17 @@ class CompaniesController < ApplicationController
   before_filter :global_access
 
   def index
+    @companies = Company.order(:name)
     if params[:search]
        search = params[:search]
        search.delete_if { |k, v| v.empty? }
-       @companies = Company.where(search)
-    else
-      @companies = Company.all
+       @companies = @companies.where(search)
     end
     if params[:tag]
-      @companies =  Company.where(search).tagged_with(params[:tag])
+      @companies = @companies.tagged_with(params[:tag])
+    end
+    if params[:project_id]
+      @companies = @companies.from_project(params[:project_id])
     end
   end
 
