@@ -50,8 +50,16 @@
       <%= builder.label :tag_list, "Tags (separated by commas)" %>
       <%= builder.text_field :tag_list %>
     </p>
-  </div>
 
+  </div>
+  <div style='clear: both'>
+    <p> Projects: </p>
+    <% Project.find_each do |p| %>
+      <%= check_box_tag 'company[project_ids][]', p.id, @company.projects.include?(p) %>
+      <%= p.name %>
+    <% end %>
+  </div>
+  <br>
   <div class='form_action'>
     <%= builder.submit %>
   </div>

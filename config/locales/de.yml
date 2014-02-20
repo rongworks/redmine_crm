@@ -29,6 +29,9 @@ de:
       company:
         one: Unternehmen
         other: Unternehmen
+      crmcomment:
+        one: Kommentar
+        other: Kommentare
   helpers:
     label:
       client:
@@ -64,3 +67,6 @@ de:
   delete: löschen
   client: Kontakt
   company: Unternehmen
+  lable_last_comment: Letzter Kommentar
+  lable_no_comments: Keine Kommentare
+  lable_no_contacts: Keine Kontake

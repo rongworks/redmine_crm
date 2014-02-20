@@ -5,17 +5,16 @@
   <%= link_to t(:delete), company, method: :delete,
               data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
 </div>
-<h4><%= link_to company.name, company_path(company.id)  %>
+<h4><%= link_to company.name, company_path(company.id)  %> &nbsp;&nbsp;
 <%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %>
 </h4>
 <p><%= company.quick_info %></p>
-
-<div>
+<p>Projekte: <%= raw company.projects.map{|p| link_to p.name, project_path(p) }.join(',') %></p>
   <fieldset class='collapsible collapsed'>
     <legend onclick='toggleFieldset(this);'><%= t('activerecord.models.client.other')%></legend>
     <div style="display: none;">
       <% if company.clients.empty? %>
-          <p>No contacts created yet</p>
+          <p><%= t(:lable_no_contacts) %></p>
       <% else %>
 
           <table class='customertable'>
@@ -25,10 +24,15 @@
       <% end %>
     </div>
   </fieldset>
-  <% last_comment = company.last_comment%>
-  <% if last_comment %>
+<fieldset class='collapsible collapsed'>
+  <legend onclick='toggleFieldset(this);'><%= company.crmcomments.count %>&nbsp;<%= t('activerecord.models.crmcomment.other') %></legend>
+  <div style="display: none;">
+    <% last_comment = company.last_comment %>
+    <% if last_comment %>
       <%= render 'crmcomments/comment', :c => last_comment, :parent => company %>
-  <% end %>
-</div>
-
+    <% else %>
+      <%= t(:lable_no_comments) %>
+    <% end %>
+  </div>
+</fieldset>
 

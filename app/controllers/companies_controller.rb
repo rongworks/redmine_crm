@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   unloadable
 
+  before_filter :find_project, :only => :index
   before_filter :global_access
 
   def index
@@ -14,7 +15,7 @@ class CompaniesController < ApplicationController
       @companies = @companies.tagged_with(params[:tag])
     end
     if params[:project_id]
-      @companies = @companies.from_project(params[:project_id])
+      @companies = @companies.from_project(@project.id)
     end
   end
 
@@ -39,6 +40,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    params[:company][:project_ids] ||= []
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
       if(params[:crmcomment])
@@ -71,7 +73,7 @@ class CompaniesController < ApplicationController
   end
 
   def find_project
-    @project = Project.find(params[:project_id])
+    @project = Project.find(params[:project_id]) if params[:project_id]
   end
 
   def global_access
