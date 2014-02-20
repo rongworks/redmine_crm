@@ -33,6 +33,10 @@
     <% else %>
       <%= t(:lable_no_comments) %>
     <% end %>
+    <a class='icon icon-add' onclick='$("#new_comment").toggle()'><%= t(:new) %></a>
+    <div id='new_comment' style='display: none;'>
+      <%= render 'crmcomments/form', {:parent => company, :comment => Crmcomment.new}  %>
+    </div>
   </div>
 </fieldset>
 

@@ -62,7 +62,8 @@ de:
   search: Suchen
   show_all: "Alles anzeigen"
   edit: aktualisieren
-  new:  "%{model} erstellen"
+  new:  "Neu"
+  new_model:  "%{model} erstellen"
   create: "%{model} erstellen"
   delete: löschen
   client: Kontakt
@@ -70,3 +71,4 @@ de:
   lable_last_comment: Letzter Kommentar
   lable_no_comments: Keine Kommentare
   lable_no_contacts: Keine Kontake
+  crmcomment: Kommentar

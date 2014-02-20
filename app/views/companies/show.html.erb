@@ -3,7 +3,7 @@
 <% end %>
 
 <div class='contextual'>
-  <%= link_to t(:new, :model => t(:client)), new_client_path(:company_id => @company.id), :class => 'icon icon-add' %>
+  <%= link_to t(:new_model, :model => t(:client)), new_client_path(:company_id => @company.id), :class => 'icon icon-add' %>
   <%= link_to t(:delete), @company, method: :delete,
               data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
   <%= link_to t(:edit), edit_company_path(@company.id), :class => 'icon icon-edit' %>
@@ -20,10 +20,9 @@
   <%= render @company.clients || "No clients created yet" %>
 </table>
 
-
+ <br>
 <fieldset>
-
-<legend><span id="comments_count"><%= pluralize(@comments.count, 'Crmcomment') %></span>
+<legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
 </legend>
 <div id='comment-notice'></div>
   <div id='comments'>
@@ -32,7 +31,7 @@
 <% end %>
   </div>
 <hr>
-<p><b>Neuer Kommentar</b></p>
+<p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
 
 <%= render 'crmcomments/form', {:parent => @company, :comment => @comment}  %>
 </fieldset>
