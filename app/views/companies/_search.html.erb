@@ -1,13 +1,11 @@
 <fieldset class='collapsible collapsed'>
   <legend onclick='toggleFieldset(this);'>Filter</legend>
   <div style="display: none;">
-
     <%= form_tag companies_path, :method => 'get' do%>
         <table>
-          <tr>
-            <td><%= label_tag :show_all %></td>
-            <td><%= check_box_tag "show_all" %></td>
-          </tr>
+          <% if params[:project_id].present? %>
+           <%= hidden_field_tag :project_id, params[:project_id] %>
+          <% end %>
           <tr>
             <td><%= label_tag t_att(:company, :name) %></td>
             <td>  <%= select_tag "search[name]", options_for_select(Company.uniq.pluck(:name)), include_blank: true %> </td>

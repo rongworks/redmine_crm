@@ -12,8 +12,9 @@ tr.contactheader, th.contactheader{
     border: 1px lightgray groove;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: beige;
+    padding: 2px 4px;
 }
 
 #comment-header{
@@ -55,7 +56,7 @@ tr.contactheader, th.contactheader{
 }
 
 .tags{
-    background-color: lightsteelblue;
+    background-color: orange;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     padding: 2px 4px;

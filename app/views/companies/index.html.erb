@@ -6,7 +6,11 @@
   <%= link_to t(:new_model, :model => t(:client)),new_client_path, :class => 'icon icon-add' %>
 </div>
 <h2> CRM </h2>
-<p>Tags: <%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %></p>
+<% if @project %>
+  <p>Tags: <%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t, :project_id => @project.id), :class => 'tags' }.join() %></p>
+<% else %>
+  <p>Tags: <%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %></p>
+<% end %>
 <fieldset class='collapsible collapsed'>
   <legend onclick='toggleFieldset(this);'>Import CSV</legend>
   <div style="display: none;">
@@ -22,14 +26,23 @@
   </div>
 </fieldset>
 
-<%= render 'search' %>
+<% if @project %>
+    <%= render 'search', :project_id => @project.id %>
+<% else %>
+    <%= render 'search' %>
+<% end %>
 
-<h3><%= t('activerecord.models.company.other') %></h3>
-
-
-<% @companies.each do |company| %>
-
+<h3>
+  <%= t('activerecord.models.company.other') %>
+</h3>
+  <%= link_to_if User.current.admin?, t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-stats' %><br>
+  <br>
+  <% @companies.each do |company| %>
+  <% if @project %>
+    <%= render company, :project_id => @project.id %>
+  <% else %>
     <%= render company %>
+  <% end %>
 
     <hr>
 <% end %>

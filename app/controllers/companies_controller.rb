@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
        search.delete_if { |k, v| v.empty? }
        @companies = @companies.where(search)
     end
-    if params[:tag]
+    if params[:tag].present?
       @companies = @companies.tagged_with(params[:tag])
     end
     if params[:project_id]
