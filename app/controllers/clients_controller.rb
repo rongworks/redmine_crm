@@ -4,7 +4,17 @@ class ClientsController < ApplicationController
 
 
   def index
-    @clients = Client.all
+    @clients = Client.order(:last_name)
+    if params[:search]
+      search = params[:search]
+      search.delete_if { |k, v| v.empty? }
+      @clients = @clients.where(search)
+    end
+    @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
+    @client_count = @clients.count
+    @client_pages = Paginator.new @client_count, @limit, params['page']
+    @offset ||= @client_pages.offset
+    @clients = @clients.limit(@limit).offset(@offset).order(:last_name)
   end
 
   def show
@@ -42,13 +52,17 @@ class ClientsController < ApplicationController
 
   def destroy
     Client.find(params[:id]).destroy
-    flash[:success] = "Client deleted."
-    redirect_to companies_url
+    redirect_to referrer.back , notice: 'Client deleted.'
   end
 
   def import
-    Client.import(params[:file])
-    redirect_to clients_url, notice: "Clients imported."
+    begin
+      Client.import(params[:file])
+      redirect_to clients_url, notice: 'Clients imported.'
+    rescue
+      flash[:failure] = 'Error: ' + $!.message
+      redirect_to clients_url
+    end
   end
 
   private

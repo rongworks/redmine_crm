@@ -1,5 +1,5 @@
 <tr>
-  <td></td>
+  <td><%= client.company if params[:with_company].present? %></td>
   <td><%= link_to client.to_s, client_path(client)  %> </td>
   <td><%= client.department %></td>
   <td><%= client.phone %></td>

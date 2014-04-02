@@ -10,9 +10,8 @@
 </div>
 <h2><%= '#' + @company.id.to_s + ' ' + @company.name %> </h2>
 
-<%= render 'form' %>
-
-<p>
+<%= render 'description' %>
+<p style='clear:both;'>
   <b><%= t('activerecord.models.client.other') %></b>
 </p>
 <table class ='customertable'>
@@ -26,9 +25,10 @@
 </legend>
 <div id='comment-notice'></div>
   <div id='comments'>
-<% @comments.each do |c|%>
- <%= render 'crmcomments/comment', :c => c, :parent => @company %>
-<% end %>
+    <% @comments.each do |c|%>
+     <%= render 'crmcomments/comment', :c => c, :parent => @company %>
+    <% end %>
+    <br>
   </div>
 <hr>
 <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>

@@ -5,6 +5,7 @@ class CompaniesController < ApplicationController
   before_filter :global_access
 
   def index
+
     @companies = Company.order(:name)
     if params[:search]
        search = params[:search]
@@ -17,6 +18,13 @@ class CompaniesController < ApplicationController
     if params[:project_id]
       @companies = @companies.from_project(@project.id)
     end
+
+    @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
+    @company_count = @companies.count
+    @company_pages = Paginator.new @company_count, @limit, params['page']
+    @offset ||= @company_pages.offset
+    @companies = @companies.limit(@limit).offset(@offset).order(:name)
+
   end
 
   def show
@@ -63,8 +71,13 @@ class CompaniesController < ApplicationController
 
 
   def import
-    Company.import(params[:file])
-    redirect_to companies_url, notice: "Companies imported."
+    begin
+      Company.import(params[:file])
+      redirect_to companies_url, notice: 'Companies imported.'
+    rescue
+      flash[:failure] = 'Error: ' + $!.message
+      redirect_to companies_url
+    end
   end
 
   private

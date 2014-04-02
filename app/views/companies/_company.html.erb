@@ -29,19 +29,18 @@
     </div>
   </fieldset>
 <fieldset class='collapsible collapsed'>
-  <legend onclick='toggleFieldset(this);'><%= company.crmcomments.count %>&nbsp;<%= t('activerecord.models.crmcomment.other') %></legend>
+  <legend onclick='toggleFieldset(this);'><%= t(:lable_last_comment) %> (<%= company.crmcomments.count %>  <%= t(:total) %>) </legend>
   <div style="display: none;">
     <% last_comment = company.last_comment %>
-    <a class='icon icon-add' onclick='$("#new_comment").toggle()'><%= t(:new) %></a>
-    <div id='new_comment' style='display: none;'>
-      <%= render 'crmcomments/form', {:parent => company, :comment => Crmcomment.new}  %>
-    </div>
-    <br>
     <% if last_comment %>
       <%= render 'crmcomments/comment', :c => last_comment, :parent => company %>
     <% else %>
       <%= t(:lable_no_comments) %>
     <% end %>
+    <a class='icon icon-add' onclick='$("#new_comment_<%=company.id%>").toggle()'><%= t(:new) %></a>
+    <div id='new_comment_<%=company.id%>' style='display: none;'>
+      <%= render 'crmcomments/form', {:parent => company, :comment => Crmcomment.new}  %>
+    </div>
   </div>
 </fieldset>
 

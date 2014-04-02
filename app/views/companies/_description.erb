@@ -1,0 +1,24 @@
+<div class='form_align'>
+  <table>
+    <%= label_block t_att(:company, :name), @company.name %>
+    <%= label_block t_att(:company, :extra_information), @company.extra_information %>
+    <%= label_block t_att(:company, :branch), @company.branch %>
+    <%= label_block t_att(:company, :organisation), @company.organisation %>
+  </table>
+</div>
+<div class='form_align'>
+  <table>
+    <%= label_block t_att(:company, :street), @company.street %>
+    <%= label_block t_att(:company, :zip_code), @company.zip_code %>
+    <%= label_block t_att(:company, :province), @company.province %>
+    <%= label_block t_att(:company, :state), @company.state %>
+  </table>
+</div>
+<div class='form_align'>
+  <table>
+    <%= label_block t_att(:company, :url), @company.url %>
+    <%= label_block t_att(:company, :mail), @company.mail %>
+    <%= label_block t_att(:company, :tag_list), @company.tag_list %>
+    <%= label_block t_att(:company, :projects), @company.projects.map{|p| p.name}.join(',') %>
+  </table>
+</div>

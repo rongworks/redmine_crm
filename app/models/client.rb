@@ -4,19 +4,24 @@ class Client < ActiveRecord::Base
   belongs_to :company
   has_many :crmcomments, as: :commentable
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
+  acts_as_attachable
 
   validates :last_name, presence: true
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    CSV.foreach(file.path, headers: true, encoding: 'windows-1252:utf-8') do |row|
       client = find_by_id(row['id']) || new
       client.attributes = row.to_hash
-      #TODO: need a way to connect to company
-      client.save!
+      client.id = row['id']
+      client.save
     end
   end
 
   def to_s
-    first_name + ' ' + last_name
+    if first_name.blank?
+      last_name
+    else
+      last_name + ', ' + first_name
+    end
   end
 end

@@ -20,11 +20,15 @@ class Company < ActiveRecord::Base
   end
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    CSV.foreach(file.path, headers: true, encoding: 'windows-1252:utf-8') do |row|
     company = find_by_id(row["id"]) || new
     company.attributes = row.to_hash
+    company.id = row['id']
+    if company.name.blank?
+      company.name = 'company' + '#' + row['id']
+    end
     #  company = Company.new(row.to_hash)
-    company.save!
+    company.save
     end
   end
 
@@ -43,4 +47,9 @@ class Company < ActiveRecord::Base
     end
     return @tags.uniq
   end
+
+  def to_s
+    name
+  end
+
 end

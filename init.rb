@@ -1,5 +1,5 @@
 Redmine::Plugin.register :crm do
-  name 'Crm plugin'
+  name 'CRM plugin'
   author 'Mathias Rong'
   description 'A Plugin for managing customers in Redmine'
   version '0.0.1'
@@ -8,7 +8,7 @@ Redmine::Plugin.register :crm do
 
   require_dependency 'projects_relation_patch'
 
-  project_module :crm do
+  project_module :CRM do
     permission :view_companies, :companies => [:index, :show]
     permission :edit_companies, :companies => [:edit, :import]
     permission :create_companies, :companies => :new
@@ -18,4 +18,10 @@ Redmine::Plugin.register :crm do
 
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true
   menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
+
+  class CrmViewListener < Redmine::Hook::ViewListener
+    def view_layouts_base_html_head(context)
+      stylesheet_link_tag 'CRMstyle', :plugin => 'crm'
+    end
+  end
 end

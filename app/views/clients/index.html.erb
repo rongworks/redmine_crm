@@ -1,1 +1,21 @@
-<h2>ClientsController#index</h2>
+<h2><%=  t('activerecord.models.client.other') %></h2>
+<p class="pagination"><%= pagination_links_full @client_pages, @client_count %></p>
+
+<%= render 'search' %>
+
+<table class='customertable'>
+  <%= render 'header' %>
+  <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.company.name unless client.company.nil? %> </td>
+        <td><%= link_to client.to_s, client_path(client)  %> </td>
+        <td><%= client.department %></td>
+        <td><%= client.phone %></td>
+        <td><%= client.email %></td>
+        <td> <%= link_to t(:edit), edit_client_path(client), :class => 'icon icon-edit' %> </td>
+        <td><%= link_to t(:delete), client, method: :delete,
+                        data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %> </td>
+      </tr>
+  <% end %>
+</table>
+<p class="pagination"><%= pagination_links_full @client_pages, @client_count %></p>

@@ -1,0 +1,14 @@
+<fieldset class='collapsible collapsed'>
+  <legend onclick='toggleFieldset(this);'>Import CSV</legend>
+  <div style="display: none;">
+    <%= form_tag import_companies_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Company Import" %>
+    <% end %>
+    <br>
+    <%= form_tag import_clients_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Client Import" %>
+    <% end %>
+  </div>
+</fieldset>

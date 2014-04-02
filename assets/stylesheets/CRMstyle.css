@@ -8,7 +8,7 @@ tr.contactheader, th.contactheader{
 }
 
 #comment-container{
-    display: inline-block;
+
     border: 1px lightgray groove;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -45,18 +45,21 @@ tr.contactheader, th.contactheader{
 }
 
 .customertable th{
-    background-color: lightsteelblue;
-}
-.customertable tr{
 
+}
+.customertable tr:hover{
+   background-color: lightblue;
 }
 
 .customertable tr:nth-child(odd){
     background-color: beige;
 }
+.customertable tr:nth-child(odd):hover{
+    background-color: lightblue;
+}
 
 .tags{
-    background-color: orange;
+    background-color: silver;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     padding: 2px 4px;
@@ -66,5 +69,15 @@ tr.contactheader, th.contactheader{
 }
 
 .tags:hover{
-    background-color: cadetblue;
+    background-color: orange;
+}
+
+.desc_label{
+    text-align: left;
+    font-weight: bold;
+}
+
+.desc_attribute{
+    text-align: left;
+    padding: 5px;
 }

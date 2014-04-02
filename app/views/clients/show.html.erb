@@ -5,8 +5,10 @@
 </div>
 <h2><%= @client %> </h2>
 
-<%= render 'form' %>
+<!-- TODO: maybe use helpers to combine forms and shows -->
+<%= render 'description' %>
 
+<p style='clear:both'></p>
 <p><b>Kommentare</b></p>
 <% @client.crmcomments.each do |c|%>
     <%= render 'crmcomments/comment', :c => c, :parent => @client %>
@@ -15,3 +17,5 @@
 <hr>
 <p><b>Neuer Kommentar</b></p>
 <%= render 'crmcomments/form', {:parent => @client, :comment => @comment}  %>
+<p>Attachments</p>
+<%=  @client.attachments %>

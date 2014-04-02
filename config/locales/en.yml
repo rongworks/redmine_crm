@@ -1,3 +1,76 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  activerecord:
+    attributes:
+      client:
+        department: department
+        email: email
+        fax: fax
+        first_name: first name
+        last_name: last name
+        phone: phone
+        salutation: salutation
+        salutation_letter: salutation(letter)
+        title: title
+      company:
+        branch: branch
+        extra_information: remarks
+        mail: email
+        name: name
+        organisation: organisation
+        province: province
+        state: state
+        street: street
+        url: url
+        zip_code: zip code
+    models:
+      client:
+        one: contact
+        other: contacts
+      company:
+        one: company
+        other: companies
+      crmcomment:
+        one: comment
+        other: comments
+  helpers:
+    label:
+      client:
+        department: department
+        email: email
+        fax: fax
+        first_name: first name
+        last_name: last name
+        phone: phone
+        salutation: salutation
+        salutation_letter: salutation(letter)
+        title: title
+      company:
+        branch: branch
+        extra_information: remarks
+        mail: email
+        name: name
+        organisation: organisation
+        province: province
+        state: state
+        street: street
+        url: url
+        zip_code: zip code
+    submit:
+      create: "create %{model}"
+      search: search
+      update: "update %{model}"
+  search: search
+  show_all: show all
+  edit: update
+  new:  new
+  new_model:  "new %{model}"
+  create: "create %{model}"
+  delete: delete
+  client: contact
+  company: company
+  lable_last_comment: last comment
+  lable_no_comments: no comments
+  lable_no_contacts: no contacts
+  crmcomment: comment
+  label_show_all: show all

@@ -1,6 +1,4 @@
-<% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'CRMstyle', :plugin => 'crm' %>
-<% end %>
+
 <div class='contextual'>
   <%= link_to t(:new_model, :model => t(:company)),new_company_path, :class => 'icon icon-add' %>
   <%= link_to t(:new_model, :model => t(:client)),new_client_path, :class => 'icon icon-add' %>
@@ -11,20 +9,8 @@
 <% else %>
   <p>Tags: <%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %></p>
 <% end %>
-<fieldset class='collapsible collapsed'>
-  <legend onclick='toggleFieldset(this);'>Import CSV</legend>
-  <div style="display: none;">
-    <%= form_tag import_companies_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Company Import" %>
-    <% end %>
-    <br>
-    <%= form_tag import_clients_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Client Import" %>
-    <% end %>
-  </div>
-</fieldset>
+
+<%= render 'import_files' %>
 
 <% if @project %>
     <%= render 'search', :project_id => @project.id %>
@@ -35,7 +21,10 @@
 <h3>
   <%= t('activerecord.models.company.other') %>
 </h3>
-  <%= link_to_if User.current.admin?, t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-stats' %><br>
+  <%= link_to_if User.current.admin?, t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-zoom-in' %> &nbsp;
+  <%= link_to_if User.current.admin?, t('activerecord.models.client.other'), clients_path, :search => params[:search], :class => 'icon icon-user' %><br>
+  <br>
+  <p class="pagination"><%= pagination_links_full @company_pages, @company_count %></p>
   <br>
   <% @companies.each do |company| %>
   <% if @project %>
@@ -46,3 +35,5 @@
 
     <hr>
 <% end %>
+
+<p class="pagination"><%= pagination_links_full @company_pages, @company_count %></p>
