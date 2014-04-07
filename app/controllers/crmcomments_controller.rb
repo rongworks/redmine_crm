@@ -29,6 +29,10 @@ class CrmcommentsController < ApplicationController
 
   def update
     @comment = Crmcomment.find(params[:id])
+    if @comment.update_attributes(params[:crmcomment])
+      flash[:success] = "Comment updated."
+      redirect_to @commentable
+    end
   end
 
   def destroy

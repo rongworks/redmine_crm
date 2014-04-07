@@ -1,0 +1,5 @@
+<p> <%= @comment.user.name + ' (' + @comment.dtime.to_formatted_s(:short)  + ' ): '%> </p>
+<%= form_for [@comment.commentable,@comment] do |f| %>
+    <%= f.text_area :comment, :rows => "4" %>
+    <%= f.submit %>
+<% end %>

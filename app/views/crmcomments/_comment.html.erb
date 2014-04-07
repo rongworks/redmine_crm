@@ -9,6 +9,6 @@
     <hr>
     <%= link_to t(:delete), polymorphic_path([parent,c]), method: :delete,
               data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
-    <%= link_to t(:edit),polymorphic_path([parent,c]), :class => 'icon icon-edit' %>
+    <%= link_to t(:edit),edit_polymorphic_path([parent,c]), :class => 'icon icon-edit' %>
   </div>
 </div>

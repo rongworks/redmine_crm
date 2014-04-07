@@ -1,21 +1,22 @@
 <div class='contextual'>
   <%= link_to t(:edit), edit_client_path(@client), :class => 'icon icon-edit' %>
   <%= link_to t(:delete), @client, method: :delete,
-              data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
+              data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %>
 </div>
 <h2><%= @client %> </h2>
-
 <!-- TODO: maybe use helpers to combine forms and shows -->
 <%= render 'description' %>
 
 <p style='clear:both'></p>
-<p><b>Kommentare</b></p>
-<% @client.crmcomments.each do |c|%>
-    <%= render 'crmcomments/comment', :c => c, :parent => @client %>
-<% end %>
 
-<hr>
-<p><b>Neuer Kommentar</b></p>
-<%= render 'crmcomments/form', {:parent => @client, :comment => @comment}  %>
-<p>Attachments</p>
-<%=  @client.attachments %>
+<fieldset>
+  <legend><%= l(:crmcomment) %> </legend>
+  <% @client.crmcomments.each do |c| %>
+      <%= render 'crmcomments/comment', :c => c, :parent => @client %>
+  <% end %>
+
+  <hr>
+  <p><b>Neuer Kommentar</b></p>
+  <%= render 'crmcomments/form', {:parent => @client, :comment => @comment} %>
+</fieldset>
+

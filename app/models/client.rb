@@ -2,9 +2,9 @@ class Client < ActiveRecord::Base
   unloadable
 
   belongs_to :company
-  has_many :crmcomments, as: :commentable
+  has_many :crmcomments, as: :commentable, :dependent => :destroy
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
-  acts_as_attachable
+
 
   validates :last_name, presence: true
 
@@ -24,4 +24,5 @@ class Client < ActiveRecord::Base
       last_name + ', ' + first_name
     end
   end
+
 end

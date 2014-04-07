@@ -51,11 +51,5 @@
           <%= builder.text_field :salutation_letter %>
         </p>
       </div>
-      </fieldset>
-      <fieldset><legend><%= l(:label_attachment_plural) %></legend>
-        <p><%= render :partial => 'attachments/form', :locals => {:container => @client} %></p>
-      </fieldset>
-      <div class='form_action'>
-        <%= builder.submit %>
-      </div>
+</fieldset>
   <% end %>

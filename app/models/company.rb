@@ -3,9 +3,9 @@ class Company < ActiveRecord::Base
 
   acts_as_taggable
 
-  has_many :clients
-  has_many :crmcomments, as: :commentable
-  has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id'
+  has_many :clients, :dependent => :destroy
+  has_many :crmcomments, as: :commentable, :dependent => :destroy
+  has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id', :dependent => :destroy
   has_many :projects, :through => :companies_projects
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true

@@ -2,6 +2,8 @@ class ClientsController < ApplicationController
   unloadable
   before_filter :global_access
 
+  helper :attachments
+  include AttachmentsHelper
 
   def index
     @clients = Client.order(:last_name)
@@ -37,8 +39,10 @@ class ClientsController < ApplicationController
   end
 
   def update
-    @client = Company.find(params[:id])
-    if @client.update_attributes(params[:company])
+    @client = Client.find(params[:id])
+    @client.save_attachments(params[:attachments] || (params[:client] && params[:client][:uploads]))
+    render_attachment_warning_if_needed(@client)
+    if @client.update_attributes(params[:client])
       if(params[:crmcomment])
         @client.crmcomments.build(params[:crmcomment])
       end
@@ -67,7 +71,7 @@ class ClientsController < ApplicationController
 
   private
   def client_params
-    params.required(:client).permit(:first_name, :last_name, :title, :salutation, :salutation_letter, :department, :phone, :fax, :mail, :company_id)
+    params.required(:client).permit(:first_name, :last_name, :title, :salutation, :salutation_letter, :department, :phone, :fax, :mail, :company_id, :attachments)
   end
 
   def find_project
