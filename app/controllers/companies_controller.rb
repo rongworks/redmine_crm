@@ -68,6 +68,11 @@ class CompaniesController < ApplicationController
     redirect_to companies_url
   end
 
+  def destroy_all
+    Company.destroy_all
+    flash[:success] = "Companies deleted."
+    redirect_to companies_url
+  end
 
 
   def import

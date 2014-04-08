@@ -2,11 +2,16 @@
 # See: http://guides.rubyonrails.org/routing.html
 
 resources :companies  do
-  collection { post :import }
+  collection do
+    post :import
+    delete :destroy_all
+  end
   resources :crmcomments
 end
 
 resources :clients  do
-  collection { post :import }
+  collection do
+    post :import
+  end
   resources :crmcomments
 end
