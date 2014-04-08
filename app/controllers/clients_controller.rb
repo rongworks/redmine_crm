@@ -75,8 +75,14 @@ class ClientsController < ApplicationController
   end
 
   def find_project
-    @project = Project.find(params[:project_id])
+    if(params[:project_id])
+      project_id = params[:project_id]
+    else
+      project_id = settings['root_project']
+    end
+      @project = Project.find(project_id)
   end
+
 
   def global_access
     authorize unless User.current.admin?

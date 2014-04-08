@@ -8,7 +8,19 @@
 <%= render 'description' %>
 
 <p style='clear:both'></p>
-
+<fieldset style='float:left;'>
+  <legend><%= l(:label_attachment_plural) %> (<%= @client.project.name %>) </legend>
+  <%= form_for @client do |atts| %>
+    <%= link_to_attachments(@client) %>
+    <br>
+    <a class='icon icon-add' onclick='$("#upload").toggle()' > <%= l(:label_attachment_plural) %> <%= t('upload') %> </a>
+    <div id="upload" style='display:none'>
+    <%= render 'attachments/form', :locals => {:container => @client} %>
+      <br>
+    <%= atts.submit t('upload') %>
+    </div>
+  <% end %>
+</fieldset>
 <fieldset>
   <legend><%= l(:crmcomment) %> </legend>
   <% @client.crmcomments.each do |c| %>

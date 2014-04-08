@@ -19,6 +19,10 @@ Redmine::Plugin.register :crm do
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true
   menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
 
+  settings :partial => 'settings/crm_settings', :default => {
+      :root_project => nil
+  }
+
   class CrmViewListener < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context)
       stylesheet_link_tag 'CRMstyle', :plugin => 'crm'

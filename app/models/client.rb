@@ -4,7 +4,8 @@ class Client < ActiveRecord::Base
   belongs_to :company
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
-
+  acts_as_attachable :view_permission => :organize_contacts,
+                     :delete_permission => :organize_contacts
 
   validates :last_name, presence: true
 
@@ -25,4 +26,8 @@ class Client < ActiveRecord::Base
     end
   end
 
+  def project
+    project_id = Setting.plugin_crm['root_project']
+    return Project.find(project_id)
+  end
 end

@@ -1,0 +1,4 @@
+<p>
+  <label><%= t(:crm_label_root_project) %></label>
+  <%= select_tag 'settings[root_project]', options_for_select(Project.all.collect{|c| [c.name, c.id]}, @settings['root_project']), include_blank: true %>
+</p>
