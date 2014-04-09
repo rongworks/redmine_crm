@@ -1,8 +1,8 @@
 Redmine::Plugin.register :crm do
   name 'CRM plugin'
   author 'Mathias Rong'
-  description 'A Plugin for managing customers in Redmine'
-  version '0.1b'
+  description 'A Plugin for managing external companies and contacts in Redmine'
+  version '0.1.0'
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
