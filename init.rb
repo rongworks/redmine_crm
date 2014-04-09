@@ -16,7 +16,7 @@ Redmine::Plugin.register :crm do
     permission :view_contacts, :clients => [:index, :show]
   end
 
-  menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true
+  menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}
   menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
 
   settings :partial => 'settings/crm_settings', :default => {
