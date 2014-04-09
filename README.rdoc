@@ -1,3 +1,44 @@
-= crm
+= CRM plugin
 
-Description goes here
+A Plugin for managing external companies and contacts in Redmine.
+
+== Description
+* You can manage companies on a global level (admin) or per-project
+* A Company can be assigned to different (or none) projects
+** The CRM module in projects manages all companies belonging to this project
+* Companies can be tagged in order to organize them
+* Contacts belong to companies, a company can have different contacts (i.e. for different departments)
+* Files can be attached to contacts (you must configure a root_project for attachments)
+
+== Install
+1. Clone git repository into <path/to/redmine>/plugins/crm
+2. Run rake redmine:plugins:migrate
+3. Restart Redmine (maybe not required)
+4. Go to Administration -> plugins and configure the plugin
+
+== Usage
+* The top panel contains a menu item "CRM" for global management
+* The project panel contains a menu item "CRM" (if the module is active) for managing Companies assigned to this project
+
+== Versions
+=== 0.1.0
+* First usable version
+* Basic management of companies and contacts
+* Related to projects
+* tagging
+* attachments
+
+== Bugs, problems
+
+This is my first redmine plugin in development, so expect some bugs.
+There are no tests (yet) and the structure is anything but solid (learning by doing).
+
+== Future plans
+* Reorganize code, refactoring
+* Improve (maybe change) relations for companies and projects
+* Connect contacts to tickets
+* Reports for contacts / clients
+
+
+
+
