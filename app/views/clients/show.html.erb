@@ -28,7 +28,7 @@
   <% end %>
 
   <hr>
-  <p><b>Neuer Kommentar</b></p>
+  <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
   <%= render 'crmcomments/form', {:parent => @client, :comment => @comment} %>
 </fieldset>
 
