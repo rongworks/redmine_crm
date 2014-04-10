@@ -12,9 +12,10 @@ A Plugin for managing external companies and contacts in Redmine.
 
 == Install
 1. Clone git repository into <path/to/redmine>/plugins/crm
-2. Run rake redmine:plugins:migrate
-3. Restart Redmine (maybe not required)
-4. Go to Administration -> plugins and configure the plugin
+2. Run bundle install
+3. Run rake redmine:plugins:migrate
+4. Restart Redmine (maybe not required)
+5. Go to Administration -> plugins and configure the plugin
 
 == Usage
 * The top panel contains a menu item "CRM" for global management
