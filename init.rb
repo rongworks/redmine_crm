@@ -1,4 +1,7 @@
+require 'redmine_acts_as_taggable_on/initialize'
+
 Redmine::Plugin.register :redmine_crm do
+  requires_acts_as_taggable_on
   name 'CRM plugin'
   author 'Mathias Rong'
   description 'A Plugin for managing external companies and contacts in Redmine'
