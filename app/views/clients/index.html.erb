@@ -1,5 +1,10 @@
 <h2><%=  t('activerecord.models.client.other') %></h2>
-<p class="pagination"><%= pagination_links_full @client_pages, @client_count %></p>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @clients %>
+  </div>
+  <%= will_paginate @clients, :container => false %>
+</div>
 
 <%= render 'search' %>
 
@@ -18,4 +23,9 @@
       </tr>
   <% end %>
 </table>
-<p class="pagination"><%= pagination_links_full @client_pages, @client_count %></p>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @clients %>
+  </div>
+  <%= will_paginate @clients, :container => false %>
+</div>

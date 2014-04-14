@@ -13,10 +13,7 @@ class ClientsController < ApplicationController
       @clients = @clients.where(search)
     end
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
-    @client_count = @clients.count
-    @client_pages = Paginator.new @client_count, @limit, params['page']
-    @offset ||= @client_pages.offset
-    @clients = @clients.limit(@limit).offset(@offset).order(:last_name)
+    @clients = @clients.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:last_name)
   end
 
   def show

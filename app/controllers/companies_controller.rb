@@ -18,13 +18,8 @@ class CompaniesController < ApplicationController
     if params[:project_id]
       @companies = @companies.from_project(@project.id)
     end
-
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
-    @company_count = @companies.count
-    @company_pages = Paginator.new @company_count, @limit, params['page']
-    @offset ||= @company_pages.offset
-    @companies = @companies.limit(@limit).offset(@offset).order(:name)
-
+    @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
   end
 
   def show

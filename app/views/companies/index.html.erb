@@ -26,7 +26,12 @@
   <%= link_to_if User.current.admin?, t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-zoom-in' %> &nbsp;
   <%= link_to_if User.current.admin?, t('activerecord.models.client.other'), clients_path, :search => params[:search], :class => 'icon icon-user' %><br>
   <br>
-  <p class="pagination"><%= pagination_links_full @company_pages, @company_count %></p>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @companies %>
+  </div>
+  <%= will_paginate @companies, :container => false %>
+</div>
   <br>
   <% @companies.each do |company| %>
   <% if @project %>
@@ -38,4 +43,9 @@
     <hr>
 <% end %>
 
-<p class="pagination"><%= pagination_links_full @company_pages, @company_count %></p>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @companies %>
+  </div>
+  <%= will_paginate @companies, :container => false %>
+</div>
