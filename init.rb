@@ -1,14 +1,14 @@
-Redmine::Plugin.register :crm do
+Redmine::Plugin.register :redmine_crm do
   name 'CRM plugin'
   author 'Mathias Rong'
   description 'A Plugin for managing external companies and contacts in Redmine'
   version '0.1.0'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/rongworks/redmine_crm'
+  author_url 'https://github.com/rongworks'
 
   require_dependency 'projects_relation_patch'
 
-  project_module :CRM do
+  project_module :redmine_crm do
     permission :view_companies, :companies => [:index, :show]
     permission :edit_companies, :companies => [:edit, :import]
     permission :create_companies, :companies => :new
@@ -25,7 +25,7 @@ Redmine::Plugin.register :crm do
 
   class CrmViewListener < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context)
-      stylesheet_link_tag 'CRMstyle', :plugin => 'crm'
+      stylesheet_link_tag 'CRMstyle', :plugin => 'redmine_crm'
     end
   end
 end
