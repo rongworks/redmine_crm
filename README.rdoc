@@ -9,6 +9,11 @@ A Plugin for managing external companies and contacts in Redmine.
 * Companies can be tagged in order to organize them
 * Contacts belong to companies, a company can have different contacts (i.e. for different departments)
 * Files can be attached to contacts (you must configure a root_project for attachments)
+* Companies and Contacts are commentable
+
+* The top panel contains a menu item "CRM" for global management
+* The project panel contains a menu item "CRM" (if the module is active) for managing Companies assigned to this project
+
 
 == Install
 1. Clone git repository into *<path/to/redmine>/plugins/redmine_crm*
@@ -23,10 +28,6 @@ A Plugin for managing external companies and contacts in Redmine.
 1. Run
   redmine:plugins:migrate NAME={redmine_crm} VERSION=0
 2. Delete plugin folder  *<path/to/redmine>/plugins/redmine_crm*
-
-== Usage
-* The top panel contains a menu item "CRM" for global management
-* The project panel contains a menu item "CRM" (if the module is active) for managing Companies assigned to this project
 
 == Versions
 === 0.1.0
