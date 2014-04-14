@@ -26,7 +26,7 @@ A Plugin for managing external companies and contacts in Redmine.
 
 == Uninstall
 1. Run
-  redmine:plugins:migrate NAME={redmine_crm} VERSION=0
+  redmine:plugins:migrate NAME=redmine_crm VERSION=0
 2. Delete plugin folder  *<path/to/redmine>/plugins/redmine_crm*
 
 == Versions
