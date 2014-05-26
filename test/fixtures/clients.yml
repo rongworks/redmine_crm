@@ -1,0 +1,22 @@
+client_no_last_name:
+  department: "Tester"
+  email: "tester1@example.com"
+  fax: "123456"
+  first_name: "Max"
+  phone: "1234567"
+  salutation: "Herr"
+  salutation_letter: "Sehr geehrter Herr"
+  title: "Dr.Prof."
+  company: valid_company
+
+client_valid:
+  department: "Tester"
+  email: "tester1@example.com"
+  fax: "123456"
+  first_name: "Max"
+  last_name: "Power"
+  phone: "1234567"
+  salutation: "Herr"
+  salutation_letter: "Sehr geehrter Herr"
+  title: "Dr.Prof."
+  company: valid_company

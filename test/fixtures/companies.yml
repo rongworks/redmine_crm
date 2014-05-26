@@ -1,0 +1,22 @@
+company_no_name:
+   branch: "Testing"
+   extra_information: "Zusatzinformation"
+   mail: "test@example.com"
+   organisation: 1
+   province: "Provinz 1"
+   state: "Testland"
+   street: "Teststraße 1"
+   url: "http://www.test-firma.de"
+   zip_code: "123456"
+
+valid_company:
+  name: "Test Firma"
+  branch: "Testing"
+  extra_information: "Zusatzinformation"
+  mail: "test@example.com"
+  organisation: 1
+  province: "Provinz 1"
+  state: "Testland"
+  street: "Teststraße 1"
+  url: "http://www.test-firma.de"
+  zip_code: "123456"

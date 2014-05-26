@@ -1,0 +1,5 @@
+valid_comment:
+  user: <% User.find(1) %>
+  dtime: <% Time.now %>
+  comment: "Ein Kommentar"
+  commentable: valid_client
