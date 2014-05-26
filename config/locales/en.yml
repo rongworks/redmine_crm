@@ -77,3 +77,4 @@ en:
   crm_label_root_project: root-project
   upload: upload
   delete_all: delete all
+  message_no_files_for_client: "no attachments available, please configure root_project in plugin settings"

@@ -76,3 +76,4 @@ de:
   crm_label_root_project: Haupt-Projekt
   upload: Speichern
   delete_all: Alles löschen
+  message_no_files_for_client: "Keine Anhänge verfügbar, bitte konfigurieren sie das Haupt-Projekt in den Plugin Einstellungen"

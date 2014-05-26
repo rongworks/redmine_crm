@@ -28,6 +28,6 @@ class Client < ActiveRecord::Base
 
   def project
     project_id = Setting.plugin_redmine_crm['root_project']
-    return Project.find(project_id)
+    return Project.where(:id => project_id).first
   end
 end
