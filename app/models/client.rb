@@ -27,7 +27,7 @@ class Client < ActiveRecord::Base
   end
 
   def project
-    project_id = Setting.plugin_crm['root_project']
+    project_id = Setting.plugin_redmine_crm['root_project']
     return Project.find(project_id)
   end
 end
