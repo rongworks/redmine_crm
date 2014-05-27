@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class ClientTest < ActiveSupport::TestCase
 
-  fixtures :clients
+  plugin_fixtures :clients
 
   test 'should fail' do
     assert false
