@@ -9,7 +9,7 @@ class ClientTest < ActiveSupport::TestCase
   end
 
   test 'should save valid client' do
-    client = clients(:valid_client)
+    client = build(:contact)
     assert  client.save
   end
 
