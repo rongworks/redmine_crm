@@ -1,4 +1,4 @@
-require File.expand_path('../../test_helper', __FILE__)
+require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < ActiveSupport::TestCase
 
