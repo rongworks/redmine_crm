@@ -1,5 +1,5 @@
 {<img src="https://travis-ci.org/rongworks/redmine_crm.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/rongworks/redmine_crm]
-[![endorse](https://api.coderwall.com/rongworks/endorsecount.png)](https://coderwall.com/rongworks)
+{<img alt="Endorse rongworks on Coderwall" src="https://api.coderwall.com/rongworks/endorsecount.png" />}[https://coderwall.com/rongworks]
 
 = CRM plugin
 
