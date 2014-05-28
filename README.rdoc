@@ -1,4 +1,6 @@
 {<img src="https://travis-ci.org/rongworks/redmine_crm.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/rongworks/redmine_crm]
+[![endorse](https://api.coderwall.com/rongworks/endorsecount.png)](https://coderwall.com/rongworks)
+
 = CRM plugin
 
 A Plugin for managing external companies and contacts in Redmine.
