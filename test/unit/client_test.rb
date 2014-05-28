@@ -1,12 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.expand_path('../../test_helper', __FILE__)
 
 class ClientTest < ActiveSupport::TestCase
-
-  plugin_fixtures :clients
-
-  test 'should fail' do
-    assert false
-  end
 
   test 'should save valid client' do
     client = build(:contact)
@@ -14,16 +8,19 @@ class ClientTest < ActiveSupport::TestCase
   end
 
   test 'should not save client without last_name' do
-    client = clients(:client_no_last_name)
-    assert_not client.save
+    client = build(:contact)
+    assert client.valid?, 'base client should be valid'
+    client.last_name = nil
+    assert !client.save, 'should not save client without last_name'
   end
 
   test 'should be commentable' do
-    client = clients(:client_no_last_name)
+    client = build(:contact)
     client.save
-    comment = crmcomments(:valid_comment)
-    assert comment.save, "comment should have been saved"
-    assert client.crmcomments.include?(comment), "Client should reference new comment"
+    comment = build(:comment)
+    comment.commentable = client
+    assert comment.save, 'comment should have been saved'
+    assert client.crmcomments.include?(comment), 'Client should reference new comment'
   end
 
 end
