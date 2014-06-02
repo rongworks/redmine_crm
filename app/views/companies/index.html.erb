@@ -8,7 +8,7 @@
               data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %>
   <% end %>
 </div>
-<h1> <%= t('activerecord.models.company.other') %> </h1>
+<h2> <%= Company.model_name.human(count:2) %> </h2>
 <%= render 'import_files' %>
 
 <% if @project %>
