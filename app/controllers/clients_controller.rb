@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   unloadable
+  layout 'companies_layout'
   before_filter :global_access
 
   helper :attachments

@@ -77,3 +77,7 @@ de:
   upload: Speichern
   delete_all: Alles löschen
   message_no_files_for_client: "Keine Anhänge verfügbar, bitte konfigurieren sie das Haupt-Projekt in den Plugin Einstellungen"
+  navigation: Navigation
+  tags: Themen
+  show_companies_label: Unternehmen anzeigen
+  show_clients_label: Kontakte anzeigen

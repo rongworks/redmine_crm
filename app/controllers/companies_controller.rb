@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   unloadable
+  layout 'companies_layout'
 
   before_filter :find_project, :only => :index
   before_filter :global_access
