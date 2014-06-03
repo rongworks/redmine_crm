@@ -4,6 +4,9 @@ rvm:
   - 1.9.3
 env:
   - REDMINE_VERSION=2.3.3 VERBOSE=yes
+branches:
+  only:
+    - master
 script:
   - export PLUGIN=redmine_crm
   - export WORKSPACE=$(pwd)/workspace
