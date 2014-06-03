@@ -12,6 +12,7 @@ en:
         salutation: salutation
         salutation_letter: salutation(letter)
         title: title
+        phone_mobile: mobile
       company:
         branch: branch
         extra_information: remarks
@@ -45,6 +46,7 @@ en:
         salutation: salutation
         salutation_letter: salutation(letter)
         title: title
+        phone_mobile: mobile
       company:
         branch: branch
         extra_information: remarks

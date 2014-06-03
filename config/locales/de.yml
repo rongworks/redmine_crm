@@ -11,6 +11,7 @@ de:
         salutation: Anrede
         salutation_letter: Briefanrede
         title: Titel
+        phone_mobile: Mobil
       company:
         branch: Branche
         extra_information: Zusatzinformation
@@ -44,6 +45,7 @@ de:
         salutation: Anrede
         salutation_letter: Briefanrede
         title: Titel
+        phone_mobile: Mobil
       company:
         branch: Branche
         extra_information: Zusatzinformation
