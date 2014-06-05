@@ -10,6 +10,10 @@
     <%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t, :project_id => project_id), :class => 'tags' }.join() %>
 </p>
 <p><%= company.quick_info %></p>
+<p>
+  <%= t_att(:company, :branch_list) %>:
+  <%= raw company.branch_list.map { |t| link_to t, companies_path(:branch => t, :project_id => project_id)}.join(', ') %>
+</p>
 <p>Projekte: <%= raw company.projects.map{|p| link_to p.name, project_path(p) }.join(',') %></p>
   <fieldset class='collapsible collapsed'>
     <legend onclick='toggleFieldset(this);'><%= company.clients.count %>&nbsp;<%= t('activerecord.models.client.other')%></legend>

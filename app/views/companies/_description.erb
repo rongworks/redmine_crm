@@ -18,6 +18,7 @@
   <table>
     <%= label_block t_att(:company, :url), @company.url %>
     <%= label_block t_att(:company, :mail), @company.mail %>
+    <%= label_block t_att(:company, :branch_list), @company.branch_list %>
     <%= label_block t_att(:company, :tag_list), @company.tag_list %>
     <%= label_block t_att(:company, :projects), @company.projects.map{|p| p.name}.join(',') %>
   </table>

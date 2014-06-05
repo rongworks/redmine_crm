@@ -15,7 +15,10 @@ class CompaniesController < ApplicationController
        @companies = @companies.where(search)
     end
     if params[:tag].present?
-      @companies = @companies.tagged_with(params[:tag])
+      @companies = @companies.tagged_with(params[:tag], :on => :tags)
+    end
+    if params[:branch].present?
+      @companies = @companies.tagged_with(params[:branch], :on => :branches)
     end
 
 

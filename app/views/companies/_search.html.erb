@@ -15,6 +15,10 @@
             <td><%= select_tag "search[branch]", options_for_select(Company.uniq.pluck(:branch)), include_blank: true %> </td>
           </tr>
           <tr>
+            <td><%= label_tag  t_att(:company, :branch_list) %></td>
+            <td><%= select_tag :branch, options_for_select(Company.get_all_branches), include_blank: true %> </td>
+          </tr>
+          <tr>
             <td><%= label_tag  t_att(:company, :state) %></td>
             <td><%= select_tag "search[state]", options_for_select(Company.uniq.pluck(:state)), include_blank: true %> </td>
           </tr>
@@ -31,7 +35,7 @@
             <td><%= select_tag "search[organisation]", options_for_select(Company.uniq.pluck(:organisation)), include_blank: true %> </td>
           </tr>
           <tr>
-            <td><%= label_tag  "tags" %></td>
+            <td><%= label_tag  t_att(:company, :tag_list) %></td>
             <td><%= select_tag :tag, options_for_select(Company.get_all_tags), include_blank: true %> </td>
           </tr>
         </table>

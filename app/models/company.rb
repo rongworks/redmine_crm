@@ -34,7 +34,7 @@ class Company < ActiveRecord::Base
   end
 
   def quick_info
-    "(#{branch_list}), #{zip_code} #{province},  #{url}"
+    "(#{branch}), #{zip_code} #{province},  #{url}"
   end
 
   def last_comment
@@ -42,11 +42,19 @@ class Company < ActiveRecord::Base
   end
 
   def self.get_all_tags
-    @tags  = Array.new
+    tags  = Array.new
     Company.all.each do |company|
-      @tags.concat(company.tag_list)
+      tags.concat(company.tag_list)
     end
-    return @tags.uniq
+    return tags.uniq
+  end
+
+  def self.get_all_branches
+    branches  = Array.new
+    Company.all.each do |company|
+      branches.concat(company.branch_list)
+    end
+    return branches.uniq
   end
 
   def to_s
