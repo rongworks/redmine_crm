@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
   unloadable
 
-  acts_as_taggable
+  acts_as_taggable_on :tags, :branches
 
   has_many :clients, :dependent => :destroy
   has_many :crmcomments, as: :commentable, :dependent => :destroy
@@ -34,7 +34,7 @@ class Company < ActiveRecord::Base
   end
 
   def quick_info
-    "#{branch}, #{zip_code} #{province},  #{url}"
+    "(#{branch_list}), #{zip_code} #{province},  #{url}"
   end
 
   def last_comment

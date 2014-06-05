@@ -9,8 +9,14 @@
       <%= builder.label :extra_information %>
       <%= builder.text_field :extra_information %>
     </p>
+    <p>
       <%= builder.label :branch %>
       <%= builder.text_field :branch %>
+    </p>
+    <p>
+      <%= builder.label :branch_list %>
+      <%= builder.text_field :branch_list %>
+    </p>
     <p>
       <%= builder.label :organisation %>
       <%= builder.text_field :organisation %>
@@ -44,7 +50,7 @@
       <%= builder.text_field :mail %>
     </p>
     <p>
-      <%= builder.label :tag_list, "Tags (separated by commas)" %>
+      <%= builder.label :tag_list %>
       <%= builder.text_field :tag_list %>
     </p>
 

@@ -14,7 +14,9 @@ en:
         title: title
         phone_mobile: mobile
       company:
-        branch: branch
+        branch: main branch
+        branch_list: branches
+        tag_list: tags
         extra_information: remarks
         mail: email
         name: name
@@ -48,7 +50,9 @@ en:
         title: title
         phone_mobile: mobile
       company:
-        branch: branch
+        branch: main branch
+        branch_list: branches
+        tag_list: tags
         extra_information: remarks
         mail: email
         name: name
