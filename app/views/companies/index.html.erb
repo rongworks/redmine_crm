@@ -26,12 +26,7 @@
 </div>
   <br>
   <% @companies.each do |company| %>
-  <% if @project %>
     <%= render company, :project_id => @project.id %>
-  <% else %>
-    <%= render company %>
-  <% end %>
-
     <hr>
 <% end %>
 

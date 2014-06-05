@@ -1,13 +1,13 @@
 class ClientsController < ApplicationController
   unloadable
   layout 'companies_layout'
-  before_filter :global_access
+  before_filter :global_access, :find_project
 
   helper :attachments
   include AttachmentsHelper
 
   def index
-    @clients = Client.order(:last_name)
+    @clients = Client.from_project(@project)
     if params[:search]
       search = params[:search]
       search.delete_if { |k, v| v.empty? }
@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
     end
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
     @clients = @clients.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:last_name)
+
   end
 
   def show
@@ -73,12 +74,15 @@ class ClientsController < ApplicationController
   end
 
   def find_project
-    if(params[:project_id])
-      project_id = params[:project_id]
+    root_project = Setting.plugin_redmine_crm['root_project']
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+    elsif  root_project.present?
+      @project = Project.find(root_project)
     else
-      project_id = settings['root_project']
+      flash[:error] = t(:message_no_root_project)
+      redirect_to :back
     end
-      @project = Project.find(project_id)
   end
 
 

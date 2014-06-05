@@ -1,4 +1,11 @@
 <p>
   <label><%= t(:crm_label_root_project) %></label>
+  <%= hidden_field_tag 'settings[root_project_old]', @settings['root_project'] %>
   <%= select_tag 'settings[root_project]', options_for_select(Project.all.collect{|c| [c.name, c.id]}, @settings['root_project']), include_blank: true %>
 </p>
+<p>
+  <label><%= t(:crm_label_delete_old_root_project) %></label>
+  <%= check_box_tag 'settings[delete_old_project]','bla',@settings['delete_old_project'] %>
+</p>
+<br>
+<%= link_to t(:crm_update_companies_root_project), change_root_project_companies_path({:new_project => @settings['root_project'], :old_project => @settings['root_project_old'], :delete_old_project => @settings['delete_old_project']}), method: :post  %>

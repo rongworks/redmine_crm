@@ -6,7 +6,7 @@ module ProjectsRelationPatch
     # Same as typing in the class
     base.class_eval do
       has_many :companies_projects
-      has_many :companies, :class_name => 'CompaniesProjects', :through => :companies_projects
+      has_many :companies, :through => :companies_projects
     end
 
   end

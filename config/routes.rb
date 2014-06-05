@@ -4,6 +4,7 @@
 resources :companies  do
   collection do
     post :import
+    post :change_root_project
     delete :destroy_all
   end
   resources :crmcomments

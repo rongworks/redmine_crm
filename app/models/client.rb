@@ -8,6 +8,11 @@ class Client < ActiveRecord::Base
                      :delete_permission => :organize_contacts
 
   validates :last_name, presence: true
+  scope :none, where('1 = 0')
+
+  def self.from_project(project)
+    Client.where(:company_id => CompaniesProjects.where(:project_id => project.id).map(&:company_id) )
+  end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true, encoding: 'windows-1252:utf-8') do |row|

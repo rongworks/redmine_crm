@@ -1,17 +1,13 @@
 
 <div class='contextual'>
-  <%= link_to t(:new_model, :model => t(:client)), new_client_path(:company_id => company.id), :class => 'icon icon-add' %>
-  <%= link_to t(:edit), edit_company_path(company.id), :class => 'icon icon-edit' %>
-  <%= link_to t(:delete), company, method: :delete,
+  <%= link_to t(:new_model, :model => t(:client)), new_client_path(:company_id => company.id,:project_id => @project), :class => 'icon icon-add' %>
+  <%= link_to t(:edit), edit_company_path(company.id, :project_id => @project), :class => 'icon icon-edit' %>
+  <%= link_to t(:delete, :project_id => @project), company, method: :delete,
               data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %>
 </div>
 <h4><%= link_to company.name, company_path(company.id)  %> </h4>
 <p>
-  <% if params[:project_id] %>
     <%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t, :project_id => project_id), :class => 'tags' }.join() %>
-  <% else %>
-      <%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %>
-   <% end %>
 </p>
 <p><%= company.quick_info %></p>
 <p>Projekte: <%= raw company.projects.map{|p| link_to p.name, project_path(p) }.join(',') %></p>

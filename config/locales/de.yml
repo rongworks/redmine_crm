@@ -79,7 +79,10 @@ de:
   upload: Speichern
   delete_all: Alles löschen
   message_no_files_for_client: "Keine Anhänge verfügbar, bitte konfigurieren sie das Haupt-Projekt in den Plugin Einstellungen"
+  message_no_root_project: "Kein Haupt-Projekt für CRM definiert, bitte konfigurieren sie das Haupt-Projekt in den Plugin Einstellungen"
   navigation: Navigation
   tags: Themen
   show_companies_label: Unternehmen anzeigen
   show_clients_label: Kontakte anzeigen
+  crm_label_delete_old_root_project: Altes Haupt-Projekt entfernen?
+  crm_update_companies_root_project: Unternehmen aktualisieren (Einstellungen müssen vorher gespeichert werden!)

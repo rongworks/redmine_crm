@@ -11,6 +11,7 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
 
   validates :name, presence: true
+  before_create :add_root_project
 
   #scope :from_project, lambda { |project_id|
   #  includes(:companies_projects).where('companies_projects.project_id = ?',  project_id)
@@ -52,4 +53,11 @@ class Company < ActiveRecord::Base
     name
   end
 
+  def add_root_project
+    root_project = Setting.plugin_redmine_crm['root_project']
+    if root_project.present?
+      project = Project.find(root_project)
+      projects << project unless projects.include? project
+    end
+  end
 end

@@ -1,10 +1,10 @@
 <tr>
-  <td><%= client.company if params[:with_company].present? %></td>
-  <td><%= link_to client.to_s, client_path(client)  %> </td>
+  <td><%= link_to client.company, company_path(client.company, :project_id => @project) if params[:with_company].present? %></td>
+  <td><%= link_to client.to_s, client_path(client, :project_id => @project)  %> </td>
   <td><%= client.department %></td>
   <td><%= client.phone %></td>
   <td><%= client.email %></td>
-  <td> <%= link_to t(:edit), edit_client_path(client), :class => 'icon icon-edit' %> </td>
-  <td><%= link_to t(:delete), client, method: :delete,
+  <td> <%= link_to t(:edit), edit_client_path(client, :project_id => @project), :class => 'icon icon-edit' %> </td>
+  <td><%= link_to t(:delete, :project_id => @project), client, method: :delete,
               data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %> </td>
 </tr>

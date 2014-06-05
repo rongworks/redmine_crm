@@ -1,26 +1,21 @@
 <% content_for :sidebar do %>
     <h3><%= t(:navigation) %></h3>
     <ul>
-      <% if User.current.admin? %>
-          <li><%= link_to t(:show_clients_label), clients_path, :search => params[:search], :class => 'icon icon-zoom-in' %>
-            <ul>
-              <li><%= link_to t(:new_model, :model => t(:client)), new_client_path, :class => 'icon icon-add' %></li>
-            </ul>
-          </li>
-      <% end %>
+        <li><%= link_to t(:show_clients_label), clients_path(:project_id => @project), :search => params[:search], :class => 'icon icon-zoom-in' %>
+          <ul>
+            <li><%= link_to t(:new_model, :model => t(:client)), new_client_path(:project_id => @project), :class => 'icon icon-add' %></li>
+          </ul>
+        </li>
       <br>
-      <li><%= link_to t(:show_companies_label), companies_path, :class => 'icon icon-zoom-in' %>
+      <li><%= link_to t(:show_companies_label), companies_path(:project_id => @project), :class => 'icon icon-zoom-in' %>
         <ul>
-          <li><%= link_to t(:new_model, :model => t(:company)), new_company_path, :class => 'icon icon-add' %></li>
+          <li><%= link_to t(:new_model, :model => t(:company)), new_company_path(:project_id => @project), :class => 'icon icon-add' %></li>
         </ul>
       </li>
     </ul>
     <h3><%= t(:tags) %></h3>
-    <% if @project %>
-        <p><%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t, :project_id => @project.id), :class => 'tags' }.join() %></p>
-    <% else %>
-        <p><%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t), :class => 'tags' }.join() %></p>
-    <% end %>
+    <p><%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t, :project_id => @project.id), :class => 'tags' }.join() %></p>
+
 <% end %>
 
 <%= render template: 'layouts/base' %>
