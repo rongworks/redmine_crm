@@ -34,7 +34,7 @@ class Company < ActiveRecord::Base
   end
 
   def quick_info
-    "(#{branch}), #{zip_code} #{province},  #{url}"
+    "#{branch}, #{zip_code} #{province},  #{url}"
   end
 
   def last_comment
