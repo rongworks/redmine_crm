@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
   include AttachmentsHelper
 
   def index
-    @clients = Client.from_project(@project)
+    @clients = @project.clients
     if params[:search]
       search = params[:search]
       search.delete_if { |k, v| v.empty? }
@@ -81,7 +81,7 @@ class ClientsController < ApplicationController
       @project = Project.find(root_project)
     else
       flash[:error] = t(:message_no_root_project)
-      redirect_to :back
+      redirect_to :home
     end
   end
 
