@@ -7,6 +7,8 @@ class Company < ActiveRecord::Base
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id', :dependent => :destroy
   has_many :projects, :through => :companies_projects
+  has_many :company_crm_actions
+  has_many :crm_actions, :through => :company_crm_actions
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
 

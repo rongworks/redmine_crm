@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   unloadable
+  include SharedModule
   layout 'companies_layout'
-  before_filter :global_access, :find_project
 
   helper :attachments
   include AttachmentsHelper
@@ -71,22 +71,5 @@ class ClientsController < ApplicationController
   private
   def client_params
     params.required(:client).permit(:first_name, :last_name, :title, :salutation, :salutation_letter, :department, :phone, :fax, :mail, :company_id, :attachments)
-  end
-
-  def find_project
-    root_project = Setting.plugin_redmine_crm['root_project']
-    if params[:project_id]
-      @project = Project.find(params[:project_id])
-    elsif  root_project.present?
-      @project = Project.find(root_project)
-    else
-      flash[:error] = t(:message_no_root_project)
-      redirect_to :home
-    end
-  end
-
-
-  def global_access
-    authorize unless User.current.admin?
   end
 end

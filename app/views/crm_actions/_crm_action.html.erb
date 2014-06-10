@@ -1,0 +1,8 @@
+<tr>
+<td> <%= link_to crm_action.name, crm_action_path(:id => crm_action, :project_id => @project) %> </td>
+<td> <%= crm_action.start_date %> </td>
+<td> <%= crm_action.end_date %> </td>
+<td> <%= crm_action.done ? 'x':'' %> </td>
+<td> <%= crm_action.description %></td>
+<td> <%= raw crm_action.companies.map{|c| link_to c.name, company_path(c) }.join(',') %></td>
+</tr>

@@ -15,6 +15,7 @@
   <%= raw company.branch_list.map { |t| link_to t, companies_path(:branch => t, :project_id => project_id)}.join(', ') %>
 </p>
 <p><%= Project.model_name.human(count:2) %> : <%= raw company.projects.map{|p| link_to p.name, project_path(p) }.join(',') %></p>
+<p><%= CrmAction.model_name.human(count:2) %> : <%= raw company.crm_actions.map{|p| link_to p.name, crm_action_path(p) }.join(',') %></p>
   <fieldset class='collapsible collapsed'>
     <legend onclick='toggleFieldset(this);'><%= company.clients.count %>&nbsp;<%= t('activerecord.models.client.other')%></legend>
     <div style="display: none;">

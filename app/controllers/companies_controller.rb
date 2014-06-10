@@ -1,14 +1,12 @@
 class CompaniesController < ApplicationController
+  include SharedModule
   unloadable
   layout 'companies_layout'
 
-  before_filter :find_project, except: [:change_root_project]
-  before_filter :global_access, except: [:change_root_project]
-
   def index
 
-    @companies = Company.from_project(@project.id)
-    #@companies = @project.companies
+    #@companies = Company.from_project(@project.id)
+    @companies = @project.companies
     if params[:search]
        search = params[:search]
        search.delete_if { |k, v| v.empty? }
@@ -103,22 +101,6 @@ class CompaniesController < ApplicationController
   private
   def company_params
     params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
-  end
-
-  def find_project
-    root_project = Setting.plugin_redmine_crm['root_project']
-    if params[:project_id]
-      @project = Project.find(params[:project_id])
-    elsif  root_project.present?
-      @project = Project.find(root_project)
-    else
-      flash[:error] = t(:message_no_root_project)
-      redirect_to :home
-    end
-  end
-
-  def global_access
-      authorize unless User.current.admin?
   end
 
 end

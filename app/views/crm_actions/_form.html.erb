@@ -1,0 +1,29 @@
+<%= form_for @crm_action do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </p>
+    <p>
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date %>
+    </p>
+    <p>
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date %>
+    </p>
+    <p>
+      <%= f.label :done %>
+      <%= f.check_box :done %>
+    </p>
+    <p> <%= Company.model_name.human(count:2) %> </p>
+    <% Company.find_each do |c| %>
+        <%= check_box_tag 'crm_action[company_ids][]', c.id, @crm_action.companies.include?(c) %>
+        <%= c.name %>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>

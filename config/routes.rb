@@ -16,3 +16,6 @@ resources :clients  do
   end
   resources :crmcomments
 end
+
+resources :crm_actions
+
