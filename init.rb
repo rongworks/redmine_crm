@@ -9,7 +9,22 @@ Redmine::Plugin.register :redmine_crm do
   url 'https://github.com/rongworks/redmine_crm'
   author_url 'https://github.com/rongworks'
 
-  require_dependency 'projects_relation_patch'
+
+
+  # Including dispatcher.rb in case of Rails 2.x
+  require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
+
+  if Rails::VERSION::MAJOR >= 3
+    ActionDispatch::Callbacks.to_prepare do
+      require_dependency 'projects_relation_patch'
+      Project.send(:include, ProjectsRelationPatch)
+    end
+  else
+    Dispatcher.to_prepare BW_AssetHelpers::PLUGIN_NAME do
+      require_dependency 'projects_relation_patch'
+      Project.send(:include, ProjectsRelationPatch)
+    end
+  end
 
   project_module :redmine_crm do
     permission :view_companies, :companies => [:index, :show]

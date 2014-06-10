@@ -27,5 +27,3 @@ module ProjectsRelationPatch
   end
 end
 
-Project.send(:include, ProjectsRelationPatch)
-
