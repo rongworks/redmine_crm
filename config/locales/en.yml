@@ -26,6 +26,12 @@ en:
         street: street
         url: url
         zip_code: zip code
+      crm_action:
+        name: name
+        description: description
+        start_date: start
+        end_date: end
+        done: done
     models:
       client:
         one: contact
@@ -36,6 +42,9 @@ en:
       crmcomment:
         one: comment
         other: comments
+      crm_action:
+        one: action
+        other: actions
   helpers:
     label:
       client:
@@ -62,6 +71,12 @@ en:
         street: street
         url: url
         zip_code: zip code
+      crm_action:
+        name: name
+        description: name
+        start_date: start
+        end_date: end
+        done: done
     submit:
       create: "create %{model}"
       search: search
@@ -91,3 +106,4 @@ en:
   show_clients_label: Kontakte anzeigen
   crm_label_delete_old_root_project: Delete old root project?
   crm_update_companies_root_project: Update companies (You have to apply settings first!)
+  explain_root_project: "the root project contains all companies/contacts and can be used as Overview"
