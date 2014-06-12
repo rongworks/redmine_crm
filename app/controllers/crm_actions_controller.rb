@@ -2,6 +2,8 @@ class CrmActionsController < ApplicationController
   include SharedModule
   unloadable
   layout 'companies_layout'
+  helper :attachments
+  include AttachmentsHelper
 
 
   def index
@@ -24,6 +26,8 @@ class CrmActionsController < ApplicationController
 
   def show
     @crm_action = CrmAction.find(params[:id])
+    @comments = @crm_action.crmcomments
+    @comment = Crmcomment.new
   end
 
   def edit
@@ -31,8 +35,8 @@ class CrmActionsController < ApplicationController
   end
 
   def update
-    params[:crm_action][:company_ids] ||= []
     @crm_action = CrmAction.find(params[:id])
+    @crm_action.save_attachments(params[:attachments] || (params[:crm_action] && params[:crm_action][:uploads]))
     if @crm_action.update_attributes(params[:crm_action])
       @crm_action.save!
       redirect_to @crm_action

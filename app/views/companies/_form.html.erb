@@ -57,7 +57,7 @@
   </div>
   <div style='clear: both'>
     <p> Projects: </p>
-    <% Project.find_each do |p| %>
+    <% Project.has_module('redmine_crm').each do |p| %>
       <%= check_box_tag 'company[project_ids][]', p.id, @company.projects.include?(p) %>
       <%= p.name %>
     <% end %>

@@ -9,3 +9,37 @@
 <%= link_to t(:edit), edit_crm_action_path(:id => @crm_action, :project_id => @project), :class => 'icon icon-edit'%>
 <%= link_to t(:delete), @crm_action, method: :delete,
             data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
+
+<fieldset style='float:left;'>
+  <% if @crm_action.project.present? %>
+      <legend><%= l(:label_attachment_plural) %> (<%= @crm_action.project.name %>) </legend>
+      <%= form_for @crm_action do |atts| %>
+          <%= link_to_attachments(@crm_action) %>
+          <br>
+          <a class='icon icon-add' onclick='$("#upload").toggle()' > <%= l(:label_attachment_plural) %> <%= t('upload') %> </a>
+          <div id="upload" style='display:none'>
+            <%= render 'attachments/form', :locals => {:container => @crm_action} %>
+            <br>
+            <%= atts.submit t('upload') %>
+          </div>
+      <% end %>
+  <% else %>
+      <legend ><%= l(:label_attachment_plural) %></legend><%= %>
+      <p style="color:red;font-weight: bold"><%= t(:message_no_files_for_client) %>
+  <% end %>
+</fieldset>
+<fieldset>
+  <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
+  </legend>
+  <div id='comment-notice'></div>
+  <div id='comments'>
+    <% @comments.each do |c|%>
+        <%= render 'crmcomments/comment', :c => c, :parent => @crm_action %>
+    <% end %>
+    <br>
+  </div>
+  <hr>
+  <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
+
+  <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment}  %>
+</fieldset>

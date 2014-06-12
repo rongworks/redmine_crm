@@ -17,5 +17,7 @@ resources :clients  do
   resources :crmcomments
 end
 
-resources :crm_actions
+resources :crm_actions do
+  resources :crmcomments
+end
 

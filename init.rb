@@ -32,6 +32,8 @@ Redmine::Plugin.register :redmine_crm do
     permission :create_companies, :companies => :new
     permission :organize_contacts, :clients => [:new, :edit]
     permission :view_contacts, :clients => [:index, :show]
+    permission :view_crm_actions, :crm_actions => [:index, :show]
+    permission :edit_crm_actions, :crm_actions => [:new, :edit]
   end
 
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}
