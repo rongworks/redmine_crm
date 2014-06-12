@@ -1,3 +1,6 @@
+<div class="contextual"><%= link_to t(:edit), edit_crm_action_path(:id => @crm_action, :project_id => @project), :class => 'icon icon-edit'%>
+  <%= link_to t(:delete), @crm_action, method: :delete,
+              data: { confirm: "You sure?" }, :class => 'icon icon-del' %></div>
 <h2><%= @crm_action.name %></h2>
 <p><strong><%= t_att(:crm_action,:description) %></strong>: <%= @crm_action.description %></p>
 <p><strong><%= t_att(:crm_action,:start_date) %></strong>: <%= @crm_action.start_date %></p>
@@ -6,10 +9,9 @@
 <p><strong><%= Company.model_name.human(count:2) %>: <%= raw @crm_action.companies.map{|c| link_to c.name, company_path(c) }.join(',') %></strong></p>
 
 
-<%= link_to t(:edit), edit_crm_action_path(:id => @crm_action, :project_id => @project), :class => 'icon icon-edit'%>
-<%= link_to t(:delete), @crm_action, method: :delete,
-            data: { confirm: "You sure?" }, :class => 'icon icon-del' %>
 
+
+<br>
 <fieldset style='float:left;'>
   <% if @crm_action.project.present? %>
       <legend><%= l(:label_attachment_plural) %> (<%= @crm_action.project.name %>) </legend>
