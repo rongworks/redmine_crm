@@ -1,3 +1,6 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'companies', :plugin => 'redmine_crm' %>
+<% end %>
 
 <div class='contextual'>
   <%= link_to t(:new_model, :model => t(:company)),new_company_path, :class => 'icon icon-add' %>
@@ -25,10 +28,12 @@
   <%= will_paginate @companies, :container => false %>
 </div>
   <br>
+<div class="accordion">
   <% @companies.each do |company| %>
     <%= render company, :project_id => @project.id %>
-    <hr>
+
 <% end %>
+</div>
 
 <div class="digg_pagination">
   <div class="page_info">

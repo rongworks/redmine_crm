@@ -81,3 +81,13 @@ tr.contactheader, th.contactheader{
     text-align: left;
     padding: 5px;
 }
+
+.company_quick_detail{
+    font-size: small;
+    color: darkslategray;
+    float:right;
+}
+
+.company_name{
+    color: black;
+}
