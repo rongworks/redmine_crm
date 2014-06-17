@@ -16,6 +16,10 @@ class ClientsController < ApplicationController
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
     @clients = @clients.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:last_name)
 
+    respond_to do |format|
+      format.html
+      format.csv {send_data Client.to_csv(@project.clients) }
+    end
   end
 
   def show

@@ -21,3 +21,5 @@ resources :crm_actions do
   resources :crmcomments
 end
 
+get 'crm_data', :to => 'data_handling#index'
+

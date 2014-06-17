@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   include SharedModule
+  include CrmHelper
   unloadable
   layout 'companies_layout'
 
@@ -23,6 +24,11 @@ class CompaniesController < ApplicationController
 
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
     @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Company.to_csv(@project.companies) }
+    end
   end
 
   def show

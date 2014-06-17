@@ -1,0 +1,7 @@
+<%= render 'companies/import_files' %>
+<fieldset>
+  <legend> Export CSV </legend>
+  <%= link_to Company.model_name.human(count:2), companies_path(:project_id => @project,:format => 'csv') %> <br>
+  <%= link_to CrmAction.model_name.human(count:2), crm_actions_path(:project_id => @project,:format => 'csv') %> <br>
+  <%= link_to Client.model_name.human(count:2), clients_path(:project_id => @project,:format => 'csv') %>
+</fieldset>

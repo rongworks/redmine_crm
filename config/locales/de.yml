@@ -106,3 +106,4 @@ de:
   crm_label_delete_old_root_project: Altes Haupt-Projekt entfernen?
   crm_update_companies_root_project: Unternehmen aktualisieren (Einstellungen müssen vorher gespeichert werden!)
   explain_root_project: "Das Hauptprojekt beinhaltet alle Unternehmen/Kontakte und kann als Übersicht genutzt werden"
+  data_handling: "Import/Export"

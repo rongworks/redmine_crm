@@ -35,6 +35,16 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def self.to_csv(items)
+   CSV.generate(:col_sep => ';') do |csv|
+      csv << column_names + %w(tag_list branch_list)
+      items.each do |item|
+        csv << item.attributes.values_at(*column_names) + ([item.tag_list.join(',')]) + ([item.branch_list.join(',')])
+      end
+   end
+
+  end
+
   def quick_info
     "#{branch}, #{zip_code} #{province},  #{url}"
   end

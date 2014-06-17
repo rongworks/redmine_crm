@@ -8,6 +8,11 @@ class CrmActionsController < ApplicationController
 
   def index
     @crm_actions = @project.crm_actions
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data CrmAction.to_csv(@project.crm_actions) }
+    end
   end
 
   def new
@@ -38,7 +43,6 @@ class CrmActionsController < ApplicationController
     @crm_action = CrmAction.find(params[:id])
     @crm_action.save_attachments(params[:attachments] || (params[:crm_action] && params[:crm_action][:uploads]))
     if @crm_action.update_attributes(params[:crm_action])
-      @crm_action.save!
       redirect_to @crm_action
     else
       flash[:failure] = "CrmAction could not be saved: "+@crm_action.errors.to_s

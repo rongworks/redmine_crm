@@ -107,3 +107,4 @@ en:
   crm_label_delete_old_root_project: Delete old root project?
   crm_update_companies_root_project: Update companies (You have to apply settings first!)
   explain_root_project: "the root project contains all companies/contacts and can be used as Overview"
+  data_handling: "import/export"

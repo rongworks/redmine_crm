@@ -23,6 +23,15 @@ class Client < ActiveRecord::Base
     end
   end
 
+  def self.to_csv(items)
+    CSV.generate(:col_sep => ';') do |csv|
+      csv << column_names
+      items.each do |item|
+        csv << item.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   def to_s
     if first_name.blank?
       last_name

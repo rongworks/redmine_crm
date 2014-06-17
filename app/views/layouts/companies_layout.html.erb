@@ -16,6 +16,7 @@
           </ul>
         </li>
       <br>
+      <li> <%= link_to t(:data_handling), crm_data_path %></li>
     </ul>
     <h3><%= t(:tags) %></h3>
     <p><%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t, :project_id => @project.id), :class => 'tags' }.join() %></p>
