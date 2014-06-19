@@ -14,10 +14,6 @@
       <%= builder.text_field :branch %>
     </p>
     <p>
-      <%= builder.label :branch_list %>
-      <%= builder.text_field :branch_list %>
-    </p>
-    <p>
       <%= builder.label :organisation %>
       <%= builder.text_field :organisation %>
     </p>
@@ -52,6 +48,10 @@
 
   </div>
   <div style='clear: both'>
+    <p>
+      <%= builder.label :branch_list %>
+      <%= builder.text_field :branch_list, {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'}  %>
+    </p>
     <p>
       <%= builder.label :tag_list %>
       <%= builder.text_field :tag_list, {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %>
