@@ -28,6 +28,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data Company.to_csv(@project.companies) }
+      format.json
     end
   end
 

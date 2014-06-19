@@ -4,6 +4,12 @@ class CrmcommentsController < ApplicationController
 
   def index
     @comments = @commentable.crmcomments
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data CrmComment.to_csv(Crmcomment.all)}
+      format.json
+    end
   end
 
   def show

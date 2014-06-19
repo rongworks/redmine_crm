@@ -10,15 +10,6 @@ module SharedModule
     # all class methods here
   end
 
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |item|
-        csv << item.attributes.values_at(*column_names)
-      end
-    end
-  end
-
   private
   def find_project
     root_project = Setting.plugin_redmine_crm['root_project']

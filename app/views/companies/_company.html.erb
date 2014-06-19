@@ -1,5 +1,5 @@
-<h3 class="company_name"><%= link_to company.name, company_path(company.id) %>
-  <span class="company_quick_detail">
+<h3 class="company_name search_item"><%= link_to company.name, company_path(company.id), :class => 'search_text' %>
+  <span class="company_quick_detail search_text">
     <%= company.quick_info %>
   </span>
 </h3>

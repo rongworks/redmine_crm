@@ -30,6 +30,9 @@ class Company < ActiveRecord::Base
     if company.name.blank?
       company.name = 'company' + '#' + row['id']
     end
+    if company.branch.blank? && company.branch_list.count > 0
+      company.branch = company.branch_list[0]
+    end
     #  company = Company.new(row.to_hash)
     company.save
     end
@@ -37,9 +40,9 @@ class Company < ActiveRecord::Base
 
   def self.to_csv(items)
    CSV.generate(:col_sep => ';') do |csv|
-      csv << column_names + %w(tag_list branch_list)
+      csv << column_names + %w(tag_list branch_list project_ids)
       items.each do |item|
-        csv << item.attributes.values_at(*column_names) + ([item.tag_list.join(',')]) + ([item.branch_list.join(',')])
+        csv << item.attributes.values_at(*column_names) + ([item.tag_list.join(',')]) + ([item.branch_list.join(',')]) + ([item.project_ids.join(',')])
       end
    end
 
