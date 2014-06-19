@@ -49,13 +49,13 @@
       <%= builder.label :mail %>
       <%= builder.text_field :mail %>
     </p>
-    <p>
-      <%= builder.label :tag_list %>
-      <%= builder.text_field :tag_list %>
-    </p>
 
   </div>
   <div style='clear: both'>
+    <p>
+      <%= builder.label :tag_list %>
+      <%= builder.text_field :tag_list, {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %>
+    </p>
     <p> Projects: </p>
     <% Project.has_module('redmine_crm').each do |p| %>
       <%= check_box_tag 'company[project_ids][]', p.id, @company.projects.include?(p) %>
