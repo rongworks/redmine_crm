@@ -1,6 +1,12 @@
 # Plugin's routes
 # See: http://guides.rubyonrails.org/routing.html
 
+resources :crmcomments do
+  collection do
+    post :import
+  end
+end
+
 resources :companies  do
   collection do
     post :import
@@ -18,8 +24,12 @@ resources :clients  do
 end
 
 resources :crm_actions do
+  collection do
+    post :import
+  end
   resources :crmcomments
 end
 
 get 'crm_data', :to => 'data_handling#index'
+get 'export_crm', :to => 'data_handling#full_export'
 

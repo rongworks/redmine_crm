@@ -58,4 +58,13 @@ class CrmActionsController < ApplicationController
     redirect_to crm_actions_path
   end
 
+  def import
+    begin
+      CrmAction.import(params[:file])
+      redirect_to crm_actions_path, notice: 'CrmActions imported.'
+    rescue
+      flash[:failure] = 'Error: ' + $!.message
+      redirect_to crm_actions_path
+    end
+  end
 end

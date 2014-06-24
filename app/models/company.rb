@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id', :dependent => :destroy
   has_many :projects, :through => :companies_projects
-  has_many :company_crm_actions
+  has_many :company_crm_actions, :dependent => :destroy
   has_many :crm_actions, :through => :company_crm_actions
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
@@ -33,13 +33,16 @@ class Company < ActiveRecord::Base
     if company.branch.blank? && company.branch_list.count > 0
       company.branch = company.branch_list[0]
     end
+    if(row['project_ids']).present?
+      company.project_ids = row['project_ids'].split(',')
+    end
     #  company = Company.new(row.to_hash)
     company.save
     end
   end
 
   def self.to_csv(items)
-   CSV.generate(:col_sep => ';') do |csv|
+   CSV.generate do |csv|
       csv << column_names + %w(tag_list branch_list project_ids)
       items.each do |item|
         csv << item.attributes.values_at(*column_names) + ([item.tag_list.join(',')]) + ([item.branch_list.join(',')]) + ([item.project_ids.join(',')])

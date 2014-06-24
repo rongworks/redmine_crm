@@ -10,5 +10,15 @@
         <%= file_field_tag :file %>
         <%= submit_tag "Client Import" %>
     <% end %>
+    <br>
+    <%= form_tag import_crmcomments_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Comment Import" %>
+    <% end %>
+    <br>
+    <%= form_tag import_crm_actions_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "CRM Actions Import" %>
+    <% end %>
   </div>
 </fieldset>

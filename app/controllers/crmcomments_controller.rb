@@ -47,6 +47,16 @@ class CrmcommentsController < ApplicationController
     redirect_to request.referer
   end
 
+  def import
+    begin
+      Crmcomment.import(params[:file])
+      redirect_to companies_path, notice: 'Comments imported.'
+    rescue
+      flash[:failure] = 'Error: ' + $!.message
+      redirect_to companies_path
+    end
+  end
+
   private
 
   def find_commentable
