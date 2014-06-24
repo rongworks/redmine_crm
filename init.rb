@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_crm do
   name 'CRM plugin'
   author 'Mathias Rong'
   description 'A Plugin for managing external companies and contacts in Redmine'
-  version '0.1.0'
+  version '0.2.0'
   url 'https://github.com/rongworks/redmine_crm'
   author_url 'https://github.com/rongworks'
 

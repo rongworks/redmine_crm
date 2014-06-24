@@ -6,15 +6,16 @@
 A Plugin for managing external companies and contacts in Redmine.
 
 == Description
-* You can manage companies on a global level (admin) or per-project
+* You can manage companies on a global level (by configuring a root project) or per-project
 * A Company can be assigned to different (or none) projects
   * The CRM module in projects manages all companies belonging to this project
 * Companies can be tagged in order to organize them
 * Contacts belong to companies, a company can have different contacts (i.e. for different departments)
-* Files can be attached to contacts (you must configure a root_project for attachments)
-* Companies and Contacts are commentable
+* You can define CRM-Actions (advertisement, customer aquisition or similar) for multiple companies
+* Files can be attached to contacts and CRM-Actions (you must configure a root_project for attachments)
+* Companies, CRM-Actions and Contacts are commentable
 
-* The top panel contains a menu item "CRM" for global management
+* The top panel contains a menu item "CRM" for global management (root project)
 * The project panel contains a menu item "CRM" (if the module is active) for managing Companies assigned to this project
 
 
@@ -33,6 +34,13 @@ A Plugin for managing external companies and contacts in Redmine.
 2. Delete plugin folder  *<path/to/redmine>/plugins/redmine_crm*
 
 == Versions
+=== 0.2.0
+* CRM-Actions implemented
+* CSV-Import/Export (attachments get exported seperately with folder structure)
+* Root project is now responsible for "global" management of companies
+* Multiple branches can be set per company
+* Patch for projects fixed
+
 === 0.1.0
 * First usable version
 * Basic management of companies and contacts
