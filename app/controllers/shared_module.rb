@@ -3,7 +3,7 @@ module SharedModule
 
   included do
     # class level code
-    before_filter :global_access, :find_project
+    before_filter :find_project, :global_access
   end
 
   module ClassMethods

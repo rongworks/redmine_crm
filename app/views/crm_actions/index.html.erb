@@ -1,11 +1,14 @@
 <h2><%= CrmAction.model_name.human(count:2)%></h2>
 
 <table>
-  <th><%= t_att(:crm_action,:name) %></th>
-  <th><%= t_att(:crm_action,:start) %></th>
-  <th><%= t_att(:crm_action,:end) %></th>
-  <th><%= t_att(:crm_action,:done) %></th>
-  <th><%= t_att(:crm_action,:description) %></th>
-  <th><%= Company.model_name.human(count:2) %> </th>
+  <tr>
+    <th><%= t_att(:crm_action,:name) %></th>
+    <th><%= t_att(:crm_action,:start) %></th>
+    <th><%= t_att(:crm_action,:end) %></th>
+    <th><%= t_att(:crm_action,:done) %></th>
+    <th><%= t_att(:crm_action,:description) %></th>
+    <th><%= Company.model_name.human(count:2) %> </th>
+    <th></th>
+  </tr>
   <%= render @crm_actions %>
 </table>

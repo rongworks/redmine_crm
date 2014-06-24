@@ -50,11 +50,11 @@
   <div style='clear: both'>
     <p>
       <%= builder.label :branch_list %>
-      <%= builder.text_field :branch_list, {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'}  %>
+      <%= builder.text_field :branch_list, {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi', :size => '150'}  %>
     </p>
     <p>
       <%= builder.label :tag_list %>
-      <%= builder.text_field :tag_list, {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %>
+      <%= builder.text_field :tag_list, {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi', :size => '150'} %>
     </p>
     <p> Projects: </p>
     <% Project.has_module('redmine_crm').each do |p| %>
