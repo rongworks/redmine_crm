@@ -16,16 +16,17 @@
       <%= f.label :done %>
       <%= f.check_box :done %>
     </p>
-      <p>
-        <%= Company.model_name.human(count:2) %>
-        <%= f.text_field :company_names, {:value => @crm_action.companies.map(&:name).join(','), :data => {'source' => Company.all.map{|c| c.name}}, :class => 'autoc_multi', :size => '150'} %>
-      </p>
+
     </div>
     <p>
       <%= f.label :description %>
     </p>
     <p>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :rows => '3' %>
+    </p><br>
+    <p>
+      <%= Company.model_name.human(count:2) %>
+      <%= f.text_field :company_names, {:value => @crm_action.companies.map(&:name).join(','), :data => {'source' => Company.all.map{|c| c.name}}, :class => 'autoc_multi', :size => '150'} %>
     </p>
     <%= f.submit %>
 <% end %>
