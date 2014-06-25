@@ -1,5 +1,5 @@
 <h2><%= CrmAction.model_name.human(count:2)%></h2>
-
+<%= link_to 'CSV', crm_actions_path(:params => params,:format => 'csv'), :class => 'icon icon-edit' %>
 <table>
   <tr>
     <th><%= t_att(:crm_action,:name) %></th>

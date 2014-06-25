@@ -7,6 +7,7 @@
 </div>
 
 <%= render 'search' %>
+<%= link_to 'CSV', clients_path(:params => params,:format => 'csv'), :class => 'icon icon-edit' %>
 
 <table class='customertable'>
   <%= render 'header' %>
