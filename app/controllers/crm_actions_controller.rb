@@ -21,6 +21,9 @@ class CrmActionsController < ApplicationController
 
   def create
     @crm_action = CrmAction.new(params[:crm_action])
+    if params[:companies]
+
+    end
     if @crm_action.save
       redirect_to @crm_action, notice: 'CRM action created successfully'
     else

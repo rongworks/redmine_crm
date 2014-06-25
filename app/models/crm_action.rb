@@ -11,6 +11,10 @@ class CrmAction < ActiveRecord::Base
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
 
+  attr_accessor :company_names
+
+  after_save :assign_companies
+
   def project
     project_id = Setting.plugin_redmine_crm['root_project']
     return Project.where(:id => project_id).first
@@ -34,6 +38,15 @@ class CrmAction < ActiveRecord::Base
         crm_action.company_ids = row['company_ids'].split(',')
       end
       crm_action.save
+    end
+  end
+
+  private
+
+  def assign_companies
+    if @company_names
+      self.companies = @company_names.split(',').map{ |name|
+        Company.find_by_name(name.strip)}.reject{|c| c.nil?}
     end
   end
 end

@@ -16,11 +16,10 @@
       <%= f.label :done %>
       <%= f.check_box :done %>
     </p>
-    <p> <%= Company.model_name.human(count:2) %> </p>
-    <% Company.find_each do |c| %>
-        <%= check_box_tag 'crm_action[company_ids][]', c.id, @crm_action.companies.include?(c) %>
-        <%= c.name %>
-    <% end %>
+      <p>
+        <%= Company.model_name.human(count:2) %>
+        <%= f.text_field :company_names, {:value => @crm_action.companies.map(&:name).join(','), :data => {'source' => Company.all.map{|c| c.name}}, :class => 'autoc_multi', :size => '150'} %>
+      </p>
     </div>
     <p>
       <%= f.label :description %>
