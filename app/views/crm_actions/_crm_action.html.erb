@@ -4,7 +4,7 @@
 <td> <%= crm_action.end_date %> </td>
 <td> <%= crm_action.done ? 'x':'' %> </td>
 <td> <%= crm_action.description %></td>
-<td> <%= raw crm_action.companies.map{|c| link_to c.name, company_path(c) }.join(',') %></td>
+  <td><%= link_to t(:edit), edit_crm_action_path(crm_action.id, :project_id => @project),:class => 'icon icon-edit'%></td>
   <td><%= link_to t(:delete), @crm_action, method: :delete,
                   data: { confirm: "You sure?" }, :class => 'icon icon-del' %></td>
 </tr>

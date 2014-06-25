@@ -24,7 +24,7 @@ class CrmAction < ActiveRecord::Base
     CSV.generate do |csv|
       csv << column_names + %w(company_ids)
       items.each do |item|
-        csv << item.attributes.values_at(*column_names) + item.company_ids
+        csv << item.attributes.values_at(*column_names) + [item.company_ids.join(',')]
       end
     end
   end
