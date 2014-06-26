@@ -4,7 +4,8 @@ gem 'redmine_acts_as_taggable_on', '~> 1.0'
 gem 'will_paginate'
 
 group :zip_fix do
-  gem 'zip'
+  #gem 'zip'
+  gem 'zip-zip'
 end
 
 group :test do
