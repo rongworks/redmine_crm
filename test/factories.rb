@@ -36,4 +36,28 @@ FactoryGirl.define do
     association :commentable, factory: :contact
   end
 
+  factory :admin, class: User do
+    status 1
+    last_login_on '2006-07-19 22:57:52 +02:00'
+    language 'en'
+    # password = admin
+    salt '82090c953c4a0000a7db253b0691a6b4'
+    hashed_password 'b5b6ff9543bf1387374cdfa27a54c96d236a7150'
+    admin true
+    mail 'admin@somenet.foo'
+    lastname 'Admin'
+    firstname 'Redmine'
+    id 1
+    mail_notification 'all'
+    login 'admin'
+    type 'User'
+  end
+  factory :project, class: Project do
+    name 'test project'
+    id 1
+    description 'Some description'
+    homepage 'http://ecookbook.somenet.foo/'
+    is_public true
+    identifier 'testproject'
+  end
 end
