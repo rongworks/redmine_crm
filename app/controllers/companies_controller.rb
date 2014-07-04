@@ -1,3 +1,4 @@
+require 'iconv'
 class CompaniesController < ApplicationController
   include SharedModule
   include CrmHelper
@@ -27,7 +28,8 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Company.to_csv(@companies) }
+      format.csv {
+        send_data Company.to_csv(@companies) }
       format.json
     end
   end

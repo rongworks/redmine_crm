@@ -3,11 +3,15 @@ class CrmcommentsController < ApplicationController
   before_filter :find_commentable
 
   def index
+    if @commentable
     @comments = @commentable.crmcomments
+    else
+    @comments = Crmcomment.all
+    end
 
     respond_to do |format|
       format.html
-      format.csv {send_data CrmComment.to_csv(Crmcomment.all)}
+      format.csv {send_data Crmcomment.to_csv(Crmcomment.all)}
       format.json
     end
   end

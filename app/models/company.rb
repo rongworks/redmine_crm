@@ -23,7 +23,7 @@ class Company < ActiveRecord::Base
   end
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true, encoding: 'windows-1252:utf-8') do |row|
+    CSV.foreach(file.path, headers: true, encoding: "#{Setting.plugin_redmine_crm['csv_encoding']}:utf8", col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |row|
     company = find_by_id(row["id"]) || new
     company.attributes = row.to_hash
     company.id = row['id']
@@ -42,12 +42,13 @@ class Company < ActiveRecord::Base
   end
 
   def self.to_csv(items)
-   CSV.generate do |csv|
+   a = Iconv.new(Setting.plugin_redmine_crm['csv_encoding'], 'UTF-8')
+   a.iconv(CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
       csv << column_names + %w(tag_list branch_list project_ids)
       items.each do |item|
         csv << item.attributes.values_at(*column_names) + ([item.tag_list.join(',')]) + ([item.branch_list.join(',')]) + ([item.project_ids.join(',')])
       end
-   end
+   end)
 
   end
 

@@ -43,9 +43,9 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    @client.save_attachments(params[:attachments] || (params[:client] && params[:client][:uploads]))
-    render_attachment_warning_if_needed(@client)
     if @client.update_attributes(params[:client])
+      @client.save_attachments(params[:attachments] || (params[:client] && params[:client][:uploads]))
+      render_attachment_warning_if_needed(@client)
       if(params[:crmcomment])
         @client.crmcomments.build(params[:crmcomment])
       end

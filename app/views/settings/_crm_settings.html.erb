@@ -10,3 +10,12 @@
 </p>
 <br>
 <%= link_to t(:crm_update_companies_root_project), change_root_project_companies_path({:new_project => @settings['root_project'], :old_project => @settings['root_project_old'], :delete_old_project => @settings['delete_old_project']}), method: :post  %>
+<hr>
+<p>
+  <%= label_tag 'csv_delimiter' %>
+  <%= text_field_tag 'settings[csv_delimiter]', @settings['csv_delimiter'] %>
+</p>
+<p>
+  <%= label_tag 'csv_encoding' %>
+  <%= text_field_tag 'settings[csv_encoding]', @settings['csv_encoding'] %>
+</p>

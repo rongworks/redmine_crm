@@ -17,13 +17,13 @@ class CrmActionsController < ApplicationController
 
   def new
     @crm_action = CrmAction.new
+    if params[:companies]
+
+    end
   end
 
   def create
     @crm_action = CrmAction.new(params[:crm_action])
-    if params[:companies]
-
-    end
     if @crm_action.save
       redirect_to @crm_action, notice: 'CRM action created successfully'
     else

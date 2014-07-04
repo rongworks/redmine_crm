@@ -39,7 +39,8 @@ Redmine::Plugin.register :redmine_crm do
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}
   menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
 
-  settings :default =>{'root_project' => nil}, :partial => 'settings/crm_settings'
+  settings :default =>{'root_project' => nil, 'csv_delimiter' => ',', 'csv_encoding' => 'utf8'},
+           :partial => 'settings/crm_settings'
 
   class CrmViewListener < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context)
