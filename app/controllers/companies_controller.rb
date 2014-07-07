@@ -5,6 +5,9 @@ class CompaniesController < ApplicationController
   unloadable
   layout 'companies_layout'
 
+  require 'zip/zip'
+  require 'zip/zipfilesystem'
+
   def index
 
     #@companies = Company.from_project(@project.id)
@@ -29,7 +32,9 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding']) }
+        #send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding'])
+        get_csv_with_clients(@companies)
+      }
       format.json
     end
   end
@@ -108,6 +113,32 @@ class CompaniesController < ApplicationController
   end
 
   private
+  def get_csv_with_clients(companies)
+    clientEntries = []
+    companies.each do |comp|
+      clientEntries.concat(comp.clients) unless comp.clients.empty?
+    end
+    encoding = Setting.plugin_redmine_crm['csv_encoding']
+    t = Tempfile.new("some-weird-temp-file-basename")
+
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      zos.put_next_entry('clients.csv')
+      clients = Tempfile.open("clients.csv", encoding: encoding) do |f|
+        f.print(Client.to_csv(clientEntries).encode(encoding))
+        f.flush
+      end
+      zos.print IO.read(clients)
+      zos.put_next_entry('companies.csv')
+      companies = Tempfile.open("companies.csv", encoding: encoding) do |f|
+        f.print(Company.to_csv(companies).encode(encoding))
+        f.flush
+      end
+      zos.print IO.read(companies)
+    end
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "company_export.zip"
+    t.close
+
+  end
   def company_params
     params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
   end
