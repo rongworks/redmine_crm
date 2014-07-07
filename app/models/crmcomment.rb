@@ -9,13 +9,12 @@ class Crmcomment < ActiveRecord::Base
   validates :dtime, :comment, presence: true
 
   def self.to_csv(items)
-    a = Iconv.new(Setting.plugin_redmine_crm['csv_encoding'], 'UTF-8')
-    a.iconv(CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
+    CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
       csv << column_names
       items.each do |item|
         csv << item.attributes.values_at(*column_names)
       end
-    end)
+    end
   end
 
   def self.import(file)

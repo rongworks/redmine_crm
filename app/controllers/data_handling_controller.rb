@@ -13,7 +13,7 @@ class DataHandlingController < ApplicationController
   def full_export
     project = @project
     attachment_hash = get_attachments(project)
-
+    encoding = Setting.plugin_redmine_crm['csv_encoding']
     t = Tempfile.new("some-weird-temp-file-basename")
 # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
@@ -25,26 +25,26 @@ class DataHandlingController < ApplicationController
           zos.print IO.read(Rails.root.join('files').to_s + '/' + attachment.disk_directory + '/' + attachment.disk_filename)
         end
         zos.put_next_entry('csv/clients.csv')
-        clients = Tempfile.open("clients.csv") do |f|
-          f.print(Client.to_csv(@project.clients))
+        clients = Tempfile.open("clients.csv", encoding: encoding) do |f|
+          f.print(Client.to_csv(@project.clients).encode(encoding))
           f.flush
         end
         zos.print IO.read(clients)
         zos.put_next_entry('csv/companies.csv')
-        companies = Tempfile.open("companies.csv") do |f|
-          f.print(Company.to_csv(@project.companies))
+        companies = Tempfile.open("companies.csv", encoding: encoding) do |f|
+          f.print(Company.to_csv(@project.companies).encode(encoding))
           f.flush
         end
         zos.print IO.read(companies)
         zos.put_next_entry('csv/crm_actions.csv')
-        actions = Tempfile.open("crm_actions.csv") do |f|
-          f.print(CrmAction.to_csv(@project.crm_actions))
+        actions = Tempfile.open("crm_actions.csv", encoding: encoding) do |f|
+          f.print(CrmAction.to_csv(@project.crm_actions).encode(encoding))
           f.flush
         end
         zos.print IO.read(actions)
         zos.put_next_entry('csv/crm_comments.csv')
-        comments = Tempfile.open("crm_comments.csv") do |f|
-          f.print(Crmcomment.to_csv(Crmcomment.all))
+        comments = Tempfile.open("crm_comments.csv", encoding: encoding) do |f|
+          f.print(Crmcomment.to_csv(Crmcomment.all).encode(encoding))
           f.flush
         end
         zos.print IO.read(comments)
@@ -52,7 +52,7 @@ class DataHandlingController < ApplicationController
     end
 # End of the block  automatically closes the file.
 # Send it using the right mime type, with a download window and some nice file name.
-    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "attachments.zip"
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "crm_export.zip"
 # The temp file will be deleted some time...
     t.close
   end
