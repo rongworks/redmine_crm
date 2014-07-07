@@ -7,16 +7,18 @@ class ClientsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  def test_post_create_with_attachment
+  def test_post_update_with_attachment
     set_tmp_attachments_directory
+    client = create(:contact)
     user = create(:admin)
     test_project = create(:project)
     User.expects(:current).at_least_once.returns(user)
+    client.stubs(:project).returns(test_project)
 
-    assert_difference 'Client.count' do
+    assert_difference 'client.attachments.count' do
       assert_difference 'Attachment.count', +1  do
-        post :create, :project_id => test_project.id,
-             :client => build(:contact).attributes,
+        post :update, :project_id => test_project.id,
+             :id => client.id,
              :attachments => {'1' => {'file' => mock_file_with_options(:original_filename => 'upload')}}
       end
     end
