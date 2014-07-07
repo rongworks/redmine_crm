@@ -1,4 +1,4 @@
-require 'iconv'
+
 class CompaniesController < ApplicationController
   include SharedModule
   include CrmHelper
@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        send_data Company.to_csv(@companies) }
+        send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding']) }
       format.json
     end
   end

@@ -11,7 +11,7 @@ class CrmActionsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv {send_data CrmAction.to_csv(@crm_actions) }
+      format.csv {send_data CrmAction.to_csv(@crm_actions).encode(Setting.plugin_redmine_crm['csv_encoding']) }
     end
   end
 

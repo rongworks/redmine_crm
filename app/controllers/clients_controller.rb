@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv {send_data Client.to_csv(@clients) }
+      format.csv {send_data Client.to_csv(@clients).encode(Setting.plugin_redmine_crm['csv_encoding']) }
     end
   end
 

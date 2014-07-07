@@ -21,13 +21,12 @@ class CrmAction < ActiveRecord::Base
   end
 
   def self.to_csv(items)
-    a = Iconv.new(Setting.plugin_redmine_crm['csv_encoding'], 'UTF-8')
-    a.iconv(CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
+    CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
       csv << column_names + %w(company_ids)
       items.each do |item|
         csv << item.attributes.values_at(*column_names) + [item.company_ids.join(',')]
       end
-    end)
+    end
   end
 
   def self.import(file)
