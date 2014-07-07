@@ -85,7 +85,7 @@ tr.contactheader, th.contactheader{
 .company_quick_detail{
     font-size: small;
     color: darkslategray;
-    float:right;
+    padding: 5%;
 }
 
 .company_name{
