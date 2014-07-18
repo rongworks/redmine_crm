@@ -17,8 +17,8 @@ class CrmActionsController < ApplicationController
 
   def new
     @crm_action = CrmAction.new
-    if params[:companies]
-
+    if params[:company_ids].present?
+      @crm_action.company_ids = params[:company_ids]
     end
   end
 

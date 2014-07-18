@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
     end
 
 
-
+    @companies_no_paging = @companies
     @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
     @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
 
@@ -33,7 +33,7 @@ class CompaniesController < ApplicationController
       format.html
       format.csv {
         #send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding'])
-        get_csv_with_clients(@companies)
+        get_csv_with_clients(@companies_no_paging)
       }
       format.json
     end
