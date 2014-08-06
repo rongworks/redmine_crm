@@ -42,24 +42,11 @@ class ClientsControllerTest < ActionController::TestCase
 
   test 'should update client' do
     client = create(:contact)
+    assert_equal client, Client.find(client.id)
     post :update, id: client.id, project_id: @project.id, client: {first_name: 'Peter'}
     assert_redirected_to client_path(id: client.id),"expected redirect to client, but got: #{response.body}"
     assert_not_nil assigns(:client), "No client assigned #{assigns.inspect}"
-    assert_equal 'Peter', Client.find(client.id).first_name, "Name should have changed to Peter, but was #{Client.find(client.id).first_name}, #{Client.find(client.id).inspect}"
-  end
-
-  def test_post_update_with_attachment
-    set_tmp_attachments_directory
-    client = create(:contact)
-    client.stubs(:project).returns(@project)
-
-    assert_difference 'client.attachments.count' do
-      assert_difference 'Attachment.count', +1  do
-        post :update, :project_id => @project.id,
-             :id => client.id,
-             :attachments => {'1' => {'file' => mock_file_with_options(:original_filename => 'upload')}}
-      end
-    end
+    assert_equal 'Peter', Client.find(client.id).first_name, "Name should have changed to Peter, but was #{Client.find(client.id).first_name}, flash: #{flash.map{|k,v| "#{k}:#{v}"}}"
   end
 
 end

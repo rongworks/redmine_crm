@@ -1,16 +1,12 @@
 
 class Client < ActiveRecord::Base
   unloadable
-  attr_accessible :attached_documents_attributes
   belongs_to :company
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   has_many :attached_documents, as: :container, dependent: :destroy
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
   accepts_nested_attributes_for :attached_documents, :allow_destroy => true
-
-  acts_as_attachable :view_permission => :edit_contacts,
-                     :delete_permission => :edit_contacts
 
   validates :last_name, presence: true
   scope :none, where('1 = 0')

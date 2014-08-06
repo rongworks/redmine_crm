@@ -4,9 +4,6 @@ class ClientsController < ApplicationController
   include SharedModule
   layout 'companies_layout'
 
-  helper :attachments
-  include AttachmentsHelper
-
   def index
     @clients = @project.clients
     if params[:search]
@@ -47,12 +44,9 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])
-      @client.save_attachments(params[:attachments] || (params[:client] && params[:client][:uploads]))
-      render_attachment_warning_if_needed(@client)
       if(params[:crmcomment])
         @client.crmcomments.build(params[:crmcomment])
       end
-      @client.save!
       redirect_to @client
     else
       flash[:failure] = "Client could not be saved: "+@client.errors.to_s
