@@ -13,22 +13,7 @@
 
 <br>
 <fieldset style='float:left;'>
-  <% if @crm_action.project.present? %>
-      <legend><%= l(:label_attachment_plural) %> (<%= @crm_action.project.name %>) </legend>
-      <%= form_for @crm_action do |atts| %>
-          <%= link_to_attachments(@crm_action) %>
-          <br>
-          <a class='icon icon-add' onclick='$("#upload").toggle()' > <%= l(:label_attachment_plural) %> <%= t('upload') %> </a>
-          <div id="upload" style='display:none'>
-            <%= render 'attachments/form', :locals => {:container => @crm_action} %>
-            <br>
-            <%= atts.submit t('upload') %>
-          </div>
-      <% end %>
-  <% else %>
-      <legend ><%= l(:label_attachment_plural) %></legend><%= %>
-      <p style="color:red;font-weight: bold"><%= t(:message_no_files_for_client) %>
-  <% end %>
+  <%= attached_documents_and_new(@crm_action) %>
 </fieldset>
 <fieldset>
   <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>

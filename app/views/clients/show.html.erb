@@ -8,24 +8,11 @@
 <%= render 'description' %>
 
 <p style='clear:both'></p>
-<fieldset style='float:left;'>
-  <% if @client.project.present? %>
-  <legend><%= l(:label_attachment_plural) %> (<%= @client.project.name %>) </legend>
-  <%= form_for @client do |atts| %>
-    <%= link_to_attachments(@client) %>
-    <br>
-    <a class='icon icon-add' onclick='$("#upload").toggle()' > <%= l(:label_attachment_plural) %> <%= t('upload') %> </a>
-    <div id="upload" style='display:none'>
-    <%= render 'attachments/form', :locals => {:container => @client} %>
-      <br>
-    <%= atts.submit t('upload') %>
-    </div>
-  <% end %>
-  <% else %>
-     <legend ><%= l(:label_attachment_plural) %></legend><%= %>
-      <p style="color:red;font-weight: bold"><%= t(:message_no_files_for_client) %>
-  <% end %>
+<fieldset style='float:left;margin-right: 5px;'>
+  <legend><%= l(:attachments)%></legend>
+  <%= attached_documents_and_new(@client) %>
 </fieldset>
+
 <fieldset>
   <legend><%= l(:crmcomment) %> </legend>
   <% @client.crmcomments.each do |c| %>
@@ -36,4 +23,5 @@
   <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
   <%= render 'crmcomments/form', {:parent => @client, :comment => @comment} %>
 </fieldset>
+
 

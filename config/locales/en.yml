@@ -108,3 +108,9 @@ en:
   crm_update_companies_root_project: Update companies (You have to apply settings first!)
   explain_root_project: "the root project contains all companies/contacts and can be used as Overview"
   data_handling: "import/export"
+  attachments: Documents
+  upload_file: File upload
+  description: description
+  unlock_file: unlock file to allow modifications
+  lock_file: lock file to protect it against modification
+  replace_file: replace this file with a new one

@@ -83,6 +83,7 @@ de:
   search: Suchen
   show_all: "Alles anzeigen"
   edit: aktualisieren
+  show: Anzeigen
   new:  "Neu"
   new_model:  "%{model} erstellen"
   create: "%{model} erstellen"
@@ -107,3 +108,21 @@ de:
   crm_update_companies_root_project: Unternehmen aktualisieren (Einstellungen müssen vorher gespeichert werden!)
   explain_root_project: "Das Hauptprojekt beinhaltet alle Unternehmen/Kontakte und kann als Übersicht genutzt werden"
   data_handling: "Import/Export"
+  attachments: Dokumente
+  time:
+    am: vormittags
+    formats:
+      default: ! '%A, %d. %B %Y, %H:%M Uhr'
+      long: ! '%A, %d. %B %Y, %H:%M Uhr'
+      short: ! '%d. %B, %H:%M Uhr'
+    pm: nachmittags
+  date:
+    formats:
+      default: ! '%d.%m.%Y'
+      long: ! '%e. %B %Y'
+      short: ! '%e. %b'
+  upload_file: Dokument hochladen
+  description: Beschreibung
+  unlock_file: Datei entsperren, so dass andere Mitarbeiter daran arbeiten können
+  lock_file: Datei sperren, um Änderungen an der Datei zu vermeiden
+  replace_file: Diese Datei durch eine andere ersetzen

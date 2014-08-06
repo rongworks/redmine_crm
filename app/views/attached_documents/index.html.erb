@@ -1,0 +1,6 @@
+<h2>AttachedDocumentController#index</h2>
+<ul>
+<% @documents.each do |doc| %>
+  <li><%= "#{doc.container.to_s} |  #{doc.filename}" %></li>
+<% end %>
+</ul>

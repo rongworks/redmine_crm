@@ -1,0 +1,18 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'attached_documents', :plugin => 'redmine_crm' %>
+<% end %>
+<table>
+  <% documents.each do |doc| %>
+    <tr id="doc_<%= doc.id %>">
+      <td ><%= link_to doc.filename, download_file_attached_document_path(id: doc.id) %></td>
+      <td><%= doc.description %></td>
+      <td style="text-align: right"> <%= "#{doc.size} KB" %> </td>
+      <td> <%= doc.user.name %> </td>
+      <td> <%= doc.last_update.nil? ? '':doc.last_update.to_formatted_s(:short) %></td>
+      <td> <%= link_to '', switch_locked_attached_document_path(:id => doc.id),:method => :post, :class => "icon icon-#{doc.locked? ? 'unlock':'lock'}", :title => (doc.locked? ? t(:unlock_file):t(:lock_file)) %> </td>
+      <td><%= link_to '', edit_attached_document_path(:id => doc.id), :class => 'replace_file icon icon-edit', :title => t(:replace_file) %></td>
+      <td><%= link_to '', doc, method: :delete,
+                      data: {confirm: "Are you sure?"}, :class => 'icon icon-del', :title => t(:delete) %></td>
+    </tr>
+  <% end %>
+</table>

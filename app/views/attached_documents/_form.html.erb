@@ -1,0 +1,11 @@
+<%= form_for @document || AttachedDocument.new, :html => {:multipart => true} do |ff| %>
+    <p> <strong><%= t(:upload_file) %></strong> </p><br>
+
+    <%= ff.hidden_field :user_id, :value => User.current.id %>
+    <%= ff.hidden_field :container_id, :value => container.id %>
+    <%= ff.hidden_field :container_type, :value => container.class.name %>
+    <%= ff.file_field :file %> <br>
+    <%= label_tag t(:description) %>
+    <%= ff.text_field :description %>
+    <%= ff.submit t(:upload) %>
+<% end %>

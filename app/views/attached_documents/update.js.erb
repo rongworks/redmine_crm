@@ -1,0 +1,8 @@
+<%- if @document.errors.any? %>
+console.log('Error');
+$('#dialog-form').html('<%= escape_javascript(render('form')) %>');
+<%- else %>
+$('#dialog-form').dialog('close');
+$('#dialog-form').remove();
+$('table').replaceWith('<%= escape_javascript(render('attached_documents/attached_documents_list', :documents => @document.container.attached_documents)) %>');
+<%- end %>

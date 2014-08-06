@@ -51,6 +51,17 @@
           <%= builder.text_field :salutation_letter %>
         </p>
       </div>
+      <div class='form_align'>
+
+      <ul>
+      <% @client.attached_documents.each do |at| %>
+        <li><%= at.file.inspect %></li>
+        <li><%= at.filename %></li>
+      <% end %>
+      </ul>
+
+
+      </div>
       <div class="form_action">
         <%= builder.submit %>
       </div>

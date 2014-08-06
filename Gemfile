@@ -8,6 +8,8 @@ group :zip_fix do
   gem 'zip-zip'
 end
 
+gem 'carrierwave'
+
 group :test do
   gem "factory_girl_rails", :require => false
 end

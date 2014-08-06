@@ -16,6 +16,10 @@
 </table>
 
  <br>
+<fieldset style='float:left;'>
+  <%= attached_documents_and_new(@company) %>
+</fieldset>
+
 <fieldset>
 <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
 </legend>

@@ -1,3 +1,4 @@
+require 'carrierwave'
 class ClientsController < ApplicationController
   unloadable
   include SharedModule
@@ -25,6 +26,7 @@ class ClientsController < ApplicationController
   def show
     @client = Client.find(params[:id])
     @comment = Crmcomment.new
+    @document = AttachedDocument.new
   end
 
   def new
@@ -39,6 +41,7 @@ class ClientsController < ApplicationController
 
   def edit
     @client = Client.find(params[:id])
+    @document = @client.attached_documents.build
   end
 
   def update

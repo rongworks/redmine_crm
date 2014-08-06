@@ -7,6 +7,13 @@ resources :crmcomments do
   end
 end
 
+resources :attached_documents do
+  member do
+    get :download_file
+    post :switch_locked
+  end
+end
+
 resources :companies  do
   collection do
     post :import

@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_crm do
   name 'CRM plugin'
   author 'Mathias Rong'
   description 'A Plugin for managing external companies and contacts in Redmine'
-  version '0.2.0'
+  version '0.2.1'
   url 'https://github.com/rongworks/redmine_crm'
   author_url 'https://github.com/rongworks'
 
@@ -34,6 +34,9 @@ Redmine::Plugin.register :redmine_crm do
     permission :view_contacts, :clients => [:index, :show]
     permission :view_crm_actions, :crm_actions => [:index, :show]
     permission :edit_crm_actions, :crm_actions => [:new, :edit, :import]
+    permission :add_documents, :attached_documents => [:new, :edit]
+    permission :delete_documents, :attached_documents => [:delete]
+    permission :lock_documents, :attached_documents => [:switch_locked]
   end
 
   menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}

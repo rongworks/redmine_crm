@@ -2,8 +2,7 @@ class CrmAction < ActiveRecord::Base
   unloadable
 
   acts_as_taggable
-  acts_as_attachable :view_permission => :view_crm_actions,
-                     :delete_permission => :edit_crm_actions
+  has_many :attached_documents, :as => :container, dependent: :destroy
 
   has_many :company_crm_actions, :dependent => :destroy
   has_many :companies, :through => :company_crm_actions
