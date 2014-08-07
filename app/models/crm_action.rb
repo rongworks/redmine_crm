@@ -54,6 +54,9 @@ class CrmAction < ActiveRecord::Base
     end
   end
 
+  def to_s
+    name
+  end
   private
 
   def assign_companies
@@ -61,9 +64,5 @@ class CrmAction < ActiveRecord::Base
       self.companies = @company_names.split(',').map{ |name|
         Company.find_by_name(name.strip)}.reject{|c| c.nil?}
     end
-  end
-
-  def to_s
-    name
   end
 end
