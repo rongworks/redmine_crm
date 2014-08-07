@@ -19,6 +19,7 @@ resources :companies  do
     post :import
     post :change_root_project
     delete :destroy_all
+    post :reset_primary_contacts
   end
   resources :crmcomments
 end
@@ -33,6 +34,9 @@ end
 resources :crm_actions do
   collection do
     post :import
+  end
+  member do
+    get :export_addresses
   end
   resources :crmcomments
 end

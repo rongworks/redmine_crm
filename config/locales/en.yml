@@ -26,6 +26,7 @@ en:
         street: street
         url: url
         zip_code: zip code
+        primary_contact: primary contact
       crm_action:
         name: name
         description: description
@@ -71,6 +72,7 @@ en:
         street: street
         url: url
         zip_code: zip code
+        primary_contact: primary contact
       crm_action:
         name: name
         description: name
@@ -102,8 +104,8 @@ en:
   message_no_root_project: "No root project defined for CRM, please configure root_project in plugin settings"
   navigation: navigation
   tags: tags
-  show_companies_label: Unternehmen anzeigen
-  show_clients_label: Kontakte anzeigen
+  show_companies_label: show company
+  show_clients_label: show clients
   crm_label_delete_old_root_project: Delete old root project?
   crm_update_companies_root_project: Update companies (You have to apply settings first!)
   explain_root_project: "the root project contains all companies/contacts and can be used as Overview"
@@ -114,3 +116,5 @@ en:
   unlock_file: unlock file to allow modifications
   lock_file: lock file to protect it against modification
   replace_file: replace this file with a new one
+  export_adress: export company addresses
+  reset_primary_contacts: Reassign primary contacts

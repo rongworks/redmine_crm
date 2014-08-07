@@ -112,6 +112,11 @@ class CompaniesController < ApplicationController
     redirect_to :back, notice: 'updated'
   end
 
+  def reset_primary_contacts
+    Company.reset_primary_contacts
+    redirect_to :back, notice: 'updated'
+  end
+
   private
   def get_csv_with_clients(companies)
     clientEntries = []
@@ -142,5 +147,4 @@ class CompaniesController < ApplicationController
   def company_params
     params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
   end
-
 end

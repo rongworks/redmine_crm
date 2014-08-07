@@ -70,4 +70,10 @@ class CrmActionsController < ApplicationController
       redirect_to crm_actions_path
     end
   end
+
+  def export_addresses
+    @crm_action = CrmAction.find(params[:id])
+    filename = "crm_action_addresses.csv"
+    send_data @crm_action.export_address.encode(Setting.plugin_redmine_crm['csv_encoding']), :type => 'text/csv; charset=utf-8; header=present', :disposition => "attachment; filename=#{filename}"
+  end
 end

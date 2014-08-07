@@ -10,6 +10,8 @@
 </p>
 <br>
 <%= link_to t(:crm_update_companies_root_project), change_root_project_companies_path({:new_project => @settings['root_project'], :old_project => @settings['root_project_old'], :delete_old_project => @settings['delete_old_project']}), method: :post  %>
+<br>
+<%= link_to t(:reset_primary_contacts), reset_primary_contacts_companies_path, method: :post %>
 <hr>
 <p>
   <%= label_tag 'csv_delimiter' %>

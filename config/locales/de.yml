@@ -25,6 +25,7 @@ de:
         street: Straße
         url: Web
         zip_code: PLZ
+        primary_contact: Anschrift an
       crm_action:
         name: Name
         description: Beschreibung
@@ -70,6 +71,7 @@ de:
         street: Straße
         url: Web
         zip_code: PLZ
+        primary_contact: Anschrift an
       crm_action:
         name: Name
         description: Beschreibung
@@ -126,3 +128,5 @@ de:
   unlock_file: Datei entsperren, so dass andere Mitarbeiter daran arbeiten können
   lock_file: Datei sperren, um Änderungen an der Datei zu vermeiden
   replace_file: Diese Datei durch eine andere ersetzen
+  export_adress: Adressen exportieren
+  reset_primary_contacts: Primäre Kontakte zurücksetzen

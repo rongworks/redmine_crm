@@ -28,6 +28,20 @@ class CrmAction < ActiveRecord::Base
     end
   end
 
+  def export_address
+    company_columns = Company.column_names
+    client_columns = Client.column_names
+
+    CSV.generate(col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |csv|
+      csv << company_columns + client_columns
+      companies.each do |company|
+        items = company.attributes.values_at(*company_columns)
+        items += company.primary_contact.attributes.values_at(*client_columns) unless company.primary_contact.nil?
+        csv << items
+      end
+    end
+  end
+
   def self.import(file)
     CSV.foreach(file.path, headers: true, encoding: "#{Setting.plugin_redmine_crm['csv_encoding']}:utf8", col_sep: Setting.plugin_redmine_crm['csv_delimiter']) do |row|
       crm_action = find_by_id(row['id']) || new

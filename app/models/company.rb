@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
 
   acts_as_taggable_on :tags, :branches
 
+  belongs_to :primary_contact, :class_name => 'Client', :foreign_key => 'primary_contact_id'
   has_many :clients, :dependent => :destroy
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   has_many :companies_projects,  :class_name => 'CompaniesProjects', :foreign_key => 'company_id', :dependent => :destroy
@@ -85,6 +86,13 @@ class Company < ActiveRecord::Base
     if root_project.present?
       project = Project.find(root_project)
       projects << project unless projects.include? project
+    end
+  end
+
+  def self.reset_primary_contacts
+    Company.all.each do |company|
+      company.primary_contact = company.clients.first unless company.clients.empty?
+      company.save
     end
   end
 end
