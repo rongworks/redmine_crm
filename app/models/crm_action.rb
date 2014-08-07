@@ -62,4 +62,8 @@ class CrmAction < ActiveRecord::Base
         Company.find_by_name(name.strip)}.reject{|c| c.nil?}
     end
   end
+
+  def to_s
+    name
+  end
 end
