@@ -5,7 +5,7 @@
 <td> <%= crm_action.done ? 'x':'' %> </td>
 <td> <%= crm_action.description %></td>
   <td><%= link_to t(:edit), edit_crm_action_path(crm_action.id, :project_id => @project),:class => 'icon icon-edit'%></td>
-  <td><%= link_to t(:delete), @crm_action, method: :delete,
+  <td><%= link_to t(:delete), crm_action, method: :delete,
                   data: { confirm: "You sure?" }, :class => 'icon icon-del' %></td>
   <td><%= link_to t(:export_adress), export_addresses_crm_action_path(:id => crm_action.id), :class => 'icon icon-report' %></td>
 </tr>
