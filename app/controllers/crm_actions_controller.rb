@@ -44,7 +44,6 @@ class CrmActionsController < ApplicationController
 
   def update
     @crm_action = CrmAction.find(params[:id])
-    @crm_action.save_attachments(params[:attachments] || (params[:crm_action] && params[:crm_action][:uploads]))
     if @crm_action.update_attributes(params[:crm_action])
       redirect_to @crm_action
     else
