@@ -1,6 +1,6 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class CompaniesControllerTest < ActionController::TestCase
+class AttachedDocumentsControllerTest < ActionController::TestCase
 
   def setup
     User.current = nil
@@ -15,13 +15,12 @@ class CompaniesControllerTest < ActionController::TestCase
   def teardown
     @user.destroy
     @project.destroy
-    @client.destroy
   end
 
-  def should_get_index
-    get :index, project_id: @project.id
+  def test_get_index
+    create(:attached_document)
+    get :index
+    assert_not_nil assigns(:documents), "No documents assigned #{assigns.inspect}"
     assert_response :success
-    assert_not_nil assigns(:companies)
   end
-
 end

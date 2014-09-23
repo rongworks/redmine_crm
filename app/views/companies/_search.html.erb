@@ -1,7 +1,7 @@
 <fieldset class='collapsible collapsed'>
   <legend onclick='toggleFieldset(this);'>Filter</legend>
   <div style="display: none;">
-    <%= form_tag companies_path, :method => 'get' do%>
+    <%= form_tag '#', :method => 'get' do%>
         <table>
           <% if params[:project_id].present? %>
            <%= hidden_field_tag :project_id, params[:project_id] %>

@@ -1,32 +1,44 @@
-<div class="contextual"><%= link_to t(:edit), edit_crm_action_path(:id => @crm_action, :project_id => @project), :class => 'icon icon-edit'%>
+<div class="contextual"><%= link_to t(:edit), edit_crm_action_path(:id => @crm_action, :project_id => @project), :class => 'icon icon-edit' %>
   <%= link_to t(:delete), @crm_action, method: :delete,
-              data: { confirm: "You sure?" }, :class => 'icon icon-del' %></div>
+              data: {confirm: "You sure?"}, :class => 'icon icon-del' %>
+</div>
 <h2><%= @crm_action.name %></h2>
-<p><strong><%= t_att(:crm_action,:description) %></strong>: <%= @crm_action.description %></p>
-<p><strong><%= t_att(:crm_action,:start_date) %></strong>: <%= @crm_action.start_date %></p>
-<p><strong><%= t_att(:crm_action,:end_date) %></strong>: <%= @crm_action.end_date %></p>
-<p><strong><%= t_att(:crm_action,:done) %></strong>: <%= @crm_action.done ? 'x':'' %></p>
-<p><strong><%= Company.model_name.human(count:2) %>: <%= raw @crm_action.companies.map{|c| link_to c.name, company_path(c) }.join(',') %></strong></p>
+<p><strong><%= t_att(:crm_action, :description) %></strong>: <%= @crm_action.description %></p>
+<p><strong><%= t_att(:crm_action, :start_date) %></strong>: <%= @crm_action.start_date %></p>
+<p><strong><%= t_att(:crm_action, :end_date) %></strong>: <%= @crm_action.end_date %></p>
+<p><strong><%= t_att(:crm_action, :done) %></strong>: <%= @crm_action.done ? 'x' : '' %></p>
+<p><strong><%= Company.model_name.human(count: 2) %>
+  : <%= raw @crm_action.companies.map { |c| link_to c.name, company_path(c) }.join(',') %></strong></p>
 
+<hr>
 
+<div id="tabs" data-selected="<%= params[:selected]||1 %>" style="overflow:hidden;">
+  <ul>
+    <li><a href="#tabs-attachments"><%= t(:attachments)%></a></li>
+    <li><a href="#tabs-companies"><%= Company.model_name.human(count:2) %> </a></li>
+  </ul>
+  <div id="tabs-attachments">
+    <fieldset style='float:left;'>
+      <%= attached_documents_and_new(@crm_action) %>
+    </fieldset>
+    <fieldset>
+      <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
+      </legend>
+      <div id='comment-notice'></div>
+      <div id='comments'>
+        <% @comments.each do |c| %>
+            <%= render 'crmcomments/comment', :c => c, :parent => @crm_action %>
+        <% end %>
+        <br>
+      </div>
+      <hr>
+      <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
 
-
-<br>
-<fieldset style='float:left;'>
-  <%= attached_documents_and_new(@crm_action) %>
-</fieldset>
-<fieldset>
-  <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
-  </legend>
-  <div id='comment-notice'></div>
-  <div id='comments'>
-    <% @comments.each do |c|%>
-        <%= render 'crmcomments/comment', :c => c, :parent => @crm_action %>
-    <% end %>
-    <br>
+      <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment} %>
+    </fieldset>
   </div>
-  <hr>
-  <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
 
-  <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment}  %>
-</fieldset>
+  <div id="tabs-companies">
+    <%= render 'manage_companies' %>
+  </div>
+</div>

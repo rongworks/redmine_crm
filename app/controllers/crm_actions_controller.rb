@@ -36,6 +36,7 @@ class CrmActionsController < ApplicationController
     @crm_action = CrmAction.find(params[:id])
     @comments = @crm_action.crmcomments
     @comment = Crmcomment.new
+    @companies = @project.companies.limit(50)
   end
 
   def edit

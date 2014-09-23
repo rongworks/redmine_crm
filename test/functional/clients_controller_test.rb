@@ -10,43 +10,40 @@ class ClientsControllerTest < ActionController::TestCase
     @request.session[:user_id] = @user.id
     @project = create(:project)
     @user.stubs(:project).returns(@project)
+    @client = create(:contact)
   end
 
   def teardown
     @user.destroy
     @project.destroy
+    @client.destroy
   end
 
-  def should_get_index
+  def test_should_get_index
     get :index, :project_id => @project.id
     assert_not_nil assigns(:clients), "No clients assigned #{assigns.inspect}"
     assert_response :success
   end
 
   test 'should show client' do
-    client = create(:contact)
-    get :show, {id: client.id, :project_id => @project.id}
+    get :show, {id: @client.id, :project_id => @project.id}
     assert_not_nil assigns(:client), "No client assigned #{assigns.inspect}"
     assert_response(:success, "expected success, but got: #{@response.body}")
-
   end
 
   test 'should show edit form for client' do
-
-    client = create(:contact)
-    get :edit, {id: client.id, :project_id => @project.id}
+    get :edit, {id: @client.id, :project_id => @project.id}
     assert_not_nil assigns(:client), "No client assigned #{assigns.inspect}"
     assert_response :success, "expected success, but got: #{@response.body}"
 
   end
 
   test 'should update client' do
-    client = create(:contact)
-    assert_equal client, Client.find(client.id)
-    post :update, id: client.id, project_id: @project.id, client: {first_name: 'Peter'}
-    assert_redirected_to client_path(id: client.id),"expected redirect to client, but got: #{response.body}"
+    assert_equal @client, Client.find(@client.id)
+    post :update, id: @client.id, project_id: @project.id, client: {first_name: 'Peter'}
+    assert_redirected_to client_path(id: @client.id),"expected redirect to client, but got: #{response.body}"
     assert_not_nil assigns(:client), "No client assigned #{assigns.inspect}"
-    assert_equal 'Peter', Client.find(client.id).first_name, "Name should have changed to Peter, but was #{Client.find(client.id).first_name}, flash: #{flash.map{|k,v| "#{k}:#{v}"}}"
+    assert_equal 'Peter', Client.find(@client.id).first_name, "Name should have changed to Peter, but was #{Client.find(@client.id).first_name}, flash: #{flash.map{|k,v| "#{k}:#{v}"}}"
   end
 
 end

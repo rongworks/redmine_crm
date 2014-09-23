@@ -91,3 +91,14 @@ tr.contactheader, th.contactheader{
 .company_name{
     color: black;
 }
+
+.dragdropbox{
+    border: 1px groove grey;
+}
+.dragdropbox.list_item{
+    border: 1px dotted grey;
+    background-color: cadetblue;
+}
+.dragdropbox.list_item:hover{
+    background-color: aqua;
+}

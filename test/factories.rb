@@ -60,4 +60,18 @@ FactoryGirl.define do
     is_public true
     identifier 'testproject'
   end
+
+  factory :crm_action, class: CrmAction do
+    name 'test action'
+    id 1
+    description 'a test action'
+    start_date '2006-07-19'
+    end_date '2006-08-19'
+  end
+
+  factory :attached_document, class: AttachedDocument do
+    association :user, factory: :admin
+    association :container, factory: :company
+    locked false
+  end
 end

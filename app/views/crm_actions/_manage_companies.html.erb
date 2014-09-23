@@ -1,0 +1,13 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'action_companies', :plugin => 'redmine_crm' %>
+<% end %>
+
+<div>
+  <div id="child_companies" class="droppable" style="display:block;float:left; width:50%">
+    <%= render 'companies/list', companies: @crm_action.companies, parent_id: "child_companies" %>
+  </div>
+
+  <div id="available_companies" class="droppable" style="display:block; width:40%; float:left">
+    <%= render 'companies/list', companies: @companies, parent_id: "available_companies" %>
+  </div>
+</div>

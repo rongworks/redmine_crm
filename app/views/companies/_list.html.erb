@@ -1,0 +1,7 @@
+<div class="dragdropbox">
+<ol id="<%= parent_id %>" >
+    <% companies.each do |c| %>
+        <li id="<%= "#{parent_id}_#{c.id}" %>" class="draggable"><%= c.name %></li>
+    <% end %>
+</ol>
+</div>
