@@ -37,6 +37,7 @@ resources :crm_actions do
   end
   member do
     get :export_addresses
+    post :add_companies
   end
   resources :crmcomments
 end

@@ -65,5 +65,16 @@ $(function() {
         });
     });
 
-    $("#tabs").tabs({  selected: $(this).data("selected") });
+    $("#tabs").tabs({
+        active: sessionStorage.getItem('crmAction_selectedTab'),
+        activate : function( event, ui ){
+            $(this).data("selected", ui.newTab.index());
+            if (sessionStorage) {
+                sessionStorage.setItem('crmAction_selectedTab', ui.newTab.index());
+            } else {
+                // No support. Use a fallback such as browser cookies or store on the server.
+                console.log('no session storage available')
+            }
+        }
+    });
 });

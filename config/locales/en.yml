@@ -118,3 +118,6 @@ en:
   replace_file: replace this file with a new one
   export_adress: export company addresses
   reset_primary_contacts: Reassign primary contacts
+  available_companies: Verfügbare Unternehmen
+  assigned_companies: Zugewiesene Unternehmen
+  save: save

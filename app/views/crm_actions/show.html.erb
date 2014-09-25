@@ -3,24 +3,29 @@
               data: {confirm: "You sure?"}, :class => 'icon icon-del' %>
 </div>
 <h2><%= @crm_action.name %></h2>
-<p><strong><%= t_att(:crm_action, :description) %></strong>: <%= @crm_action.description %></p>
-<p><strong><%= t_att(:crm_action, :start_date) %></strong>: <%= @crm_action.start_date %></p>
-<p><strong><%= t_att(:crm_action, :end_date) %></strong>: <%= @crm_action.end_date %></p>
-<p><strong><%= t_att(:crm_action, :done) %></strong>: <%= @crm_action.done ? 'x' : '' %></p>
-<p><strong><%= Company.model_name.human(count: 2) %>
-  : <%= raw @crm_action.companies.map { |c| link_to c.name, company_path(c) }.join(',') %></strong></p>
 
-<hr>
 
 <div id="tabs" data-selected="<%= params[:selected]||1 %>" style="overflow:hidden;">
   <ul>
+    <li><a href="#tabs-info"> Info </a></li>
     <li><a href="#tabs-attachments"><%= t(:attachments)%></a></li>
     <li><a href="#tabs-companies"><%= Company.model_name.human(count:2) %> </a></li>
+    <li><a href="#tabs-comments"><%= Crmcomment.model_name.human(count:2) %> </a></li>
   </ul>
+  <div id="tabs-info">
+    <p><strong><%= t_att(:crm_action, :description) %></strong>: <%= @crm_action.description %></p>
+    <p><strong><%= t_att(:crm_action, :start_date) %></strong>: <%= @crm_action.start_date %></p>
+    <p><strong><%= t_att(:crm_action, :end_date) %></strong>: <%= @crm_action.end_date %></p>
+    <p><strong><%= t_att(:crm_action, :done) %></strong>: <%= @crm_action.done ? 'x' : '' %></p>
+    <p><strong><%= Company.model_name.human(count: 2) %>
+      : <%= raw @crm_action.companies.map { |c| link_to c.name, company_path(c) }.join(',') %></strong></p>
+  </div>
   <div id="tabs-attachments">
-    <fieldset style='float:left;'>
+    <fieldset>
       <%= attached_documents_and_new(@crm_action) %>
     </fieldset>
+  </div>
+  <div id="tabs-comments">
     <fieldset>
       <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
       </legend>

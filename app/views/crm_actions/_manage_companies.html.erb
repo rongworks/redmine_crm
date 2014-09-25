@@ -2,12 +2,17 @@
     <%= javascript_include_tag 'action_companies', :plugin => 'redmine_crm' %>
 <% end %>
 
-<div>
-  <div id="child_companies" class="droppable" style="display:block;float:left; width:50%">
-    <%= render 'companies/list', companies: @crm_action.companies, parent_id: "child_companies" %>
+<%= render 'companies/search'%>
+<%= button_to t(:save),'', id: 'save', data: {actionid: @crm_action.id}%>
+
+<div style="display:table">
+  <div class="droppable" style="display:table-cell;padding:10px;">
+    <p><%= t(:available_companies)%> :</p>
+    <%= render 'companies/list', companies: @companies, parent_id: "available_companies" %>
   </div>
 
-  <div id="available_companies" class="droppable" style="display:block; width:40%; float:left">
-    <%= render 'companies/list', companies: @companies, parent_id: "available_companies" %>
+  <div class="droppable" style="display:table-cell">
+    <p><%= t(:assigned_companies)%> :</p>
+    <%= render 'companies/list', companies: @crm_action.companies, parent_id: "assigned_companies" %>
   </div>
 </div>

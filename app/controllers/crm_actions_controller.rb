@@ -36,7 +36,18 @@ class CrmActionsController < ApplicationController
     @crm_action = CrmAction.find(params[:id])
     @comments = @crm_action.crmcomments
     @comment = Crmcomment.new
-    @companies = @project.companies.limit(50)
+    @companies = @project.companies
+    if params[:search] #TODO: not DRY, same as companies controller
+      search = params[:search]
+      search.delete_if { |k, v| v.empty? }
+      @companies = @companies.where(search)
+    end
+    if params[:tag].present?
+      @companies = @companies.tagged_with(params[:tag], :on => :tags)
+    end
+    if params[:branch].present?
+      @companies = @companies.tagged_with(params[:branch], :on => :branches)
+    end
   end
 
   def edit
@@ -69,6 +80,16 @@ class CrmActionsController < ApplicationController
       flash[:failure] = 'Error: ' + $!.message
       redirect_to crm_actions_path
     end
+  end
+
+  def add_companies
+    @crm_action = CrmAction.find(params[:id])
+    if ids = params[:ids]
+      @crm_action.company_ids = ids
+      @crm_action.save!
+    end
+
+    render @crm_action
   end
 
   def export_addresses

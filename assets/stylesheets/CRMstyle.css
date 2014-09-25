@@ -93,12 +93,19 @@ tr.contactheader, th.contactheader{
 }
 
 .dragdropbox{
-    border: 1px groove grey;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 2px 4px;
+    background-color: white;
 }
-.dragdropbox.list_item{
-    border: 1px dotted grey;
-    background-color: cadetblue;
+.list_item{
+    background-color: silver;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 10px;
+    margin: 0px 0px 5px 2px;
 }
-.dragdropbox.list_item:hover{
-    background-color: aqua;
+.list_item:hover{
+    background-color: orange;
 }
