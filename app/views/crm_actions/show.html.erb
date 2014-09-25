@@ -17,8 +17,12 @@
     <p><strong><%= t_att(:crm_action, :start_date) %></strong>: <%= @crm_action.start_date %></p>
     <p><strong><%= t_att(:crm_action, :end_date) %></strong>: <%= @crm_action.end_date %></p>
     <p><strong><%= t_att(:crm_action, :done) %></strong>: <%= @crm_action.done ? 'x' : '' %></p>
-    <p><strong><%= Company.model_name.human(count: 2) %>
-      : <%= raw @crm_action.companies.map { |c| link_to c.name, company_path(c) }.join(',') %></strong></p>
+    <p><strong><%= Company.model_name.human(count: 2) %></strong></p>
+       <ul>
+         <% @crm_action.companies.each do |c| %>
+           <li><%= link_to c.name, company_path(c) %> </li>
+         <% end %>
+       </ul>
   </div>
   <div id="tabs-attachments">
     <fieldset>
