@@ -88,7 +88,7 @@ class CrmActionsController < ApplicationController
       @crm_action.company_ids = ids
       @crm_action.save!
     end
-
+    flash[:notice] = t(:save_successful)
     render @crm_action
   end
 
