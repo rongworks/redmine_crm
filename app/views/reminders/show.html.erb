@@ -1,0 +1,16 @@
+<h2><%= "#{Reminder.model_name.human(count:2)}: #{@reminder.title}" %></h2>
+<%= link_to t(:edit), edit_reminder_path(@reminder.id), class: 'icon icon-edit' %>
+<%= link_to '.ics', reminder_path(@reminder.id, format: 'ics'), class: 'icon icon-attachment' %>
+<%= link_to t(:delete), @reminder, confirm: t(:destroy_confirm), method: :delete, class: 'icon icon-del' %>
+
+<h3><%= link_to @reminder.remindable, @reminder.remindable %></h3>
+
+<div class='form_align'>
+  <table>
+    <%= label_block t_att(:reminder, :begin), I18n.l(@reminder.begin) %>
+    <%= label_block t_att(:reminder, :due), I18n.l(@reminder.due) %>
+    <%= label_block t_att(:reminder, :title), @reminder.title %>
+    <%= label_block t_att(:reminder, :location), @reminder.location %>
+    <%= label_block t_att(:reminder, :summary), @reminder.summary %>
+  </table>
+</div>

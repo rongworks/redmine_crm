@@ -109,3 +109,12 @@ tr.contactheader, th.contactheader{
 .list_item:hover{
     background-color: orange;
 }
+
+.tabular{
+    display: table;
+}
+
+.table_item{
+    display: table-cell;
+    padding: 2px 4px;
+}

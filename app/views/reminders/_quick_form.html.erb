@@ -1,0 +1,18 @@
+<div id="form">
+  <%= form_for Reminder.new do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, value: title || 'Erinnerung' %>
+      <%= f.hidden_field :remindable_id, :value => container_id %>
+      <%= f.hidden_field :remindable_type, :value => container_type %>
+
+      <br>
+      <%= f.label :due %>
+      <%= f.text_field :due, id: 'due', class: 'datepicker' %>
+      <br>
+
+      <%= f.label :summary %><br>
+      <%= f.text_area :summary, :rows => "4" %>
+
+      <%= f.submit %>
+  <% end %>
+</div>

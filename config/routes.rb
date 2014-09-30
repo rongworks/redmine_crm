@@ -40,7 +40,10 @@ resources :crm_actions do
     post :add_companies
   end
   resources :crmcomments
+  resources :reminders
 end
+
+resources :reminders
 
 get 'crm_data', :to => 'data_handling#index'
 get 'export_crm', :to => 'data_handling#full_export'

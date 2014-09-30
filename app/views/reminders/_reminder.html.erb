@@ -1,0 +1,10 @@
+<div style="display: table-row">
+  <div class="table_item"> <%= I18n.l(reminder.due, :format => :short) %></div>
+
+  <div class="table_item"><%= link_to reminder.title, reminder_path(reminder) %></div>
+
+  <div class="table_item"><%= link_to '.ics', reminder_path(reminder, format: 'ics'), class: "icon icon-attachment" %></div>
+
+  <div class="table_item"><%= link_to t(:delete), reminder, method: :delete, data: {confirm: t(:destroy_confirm)}, :class => 'icon icon-del' %></div>
+  <br>
+</div>

@@ -8,21 +8,26 @@
 <div id="tabs" data-selected="<%= params[:selected]||1 %>" style="overflow:hidden;">
   <ul>
     <li><a href="#tabs-info"> Info </a></li>
-    <li><a href="#tabs-attachments"><%= t(:attachments)%></a></li>
-    <li><a href="#tabs-companies"><%= Company.model_name.human(count:2) %> </a></li>
-    <li><a href="#tabs-comments"><%= Crmcomment.model_name.human(count:2) %> </a></li>
+    <li><a href="#tabs-attachments"><%= t(:attachments) %></a></li>
+    <li><a href="#tabs-companies"><%= Company.model_name.human(count: 2) %> </a></li>
+    <li><a href="#tabs-comments"><%= Crmcomment.model_name.human(count: 2) %>
+      / <%= Reminder.model_name.human(count: 2) %> </a></li>
   </ul>
   <div id="tabs-info">
     <p><strong><%= t_att(:crm_action, :description) %></strong>: <%= @crm_action.description %></p>
+
     <p><strong><%= t_att(:crm_action, :start_date) %></strong>: <%= @crm_action.start_date %></p>
+
     <p><strong><%= t_att(:crm_action, :end_date) %></strong>: <%= @crm_action.end_date %></p>
+
     <p><strong><%= t_att(:crm_action, :done) %></strong>: <%= @crm_action.done ? 'x' : '' %></p>
+
     <p><strong><%= Company.model_name.human(count: 2) %></strong></p>
-       <ul>
-         <% @crm_action.companies.each do |c| %>
-           <li><%= link_to c.name, company_path(c) %> </li>
-         <% end %>
-       </ul>
+    <ul>
+      <% @crm_action.companies.each do |c| %>
+          <li><%= link_to c.name, company_path(c) %> </li>
+      <% end %>
+    </ul>
   </div>
   <div id="tabs-attachments">
     <fieldset>
@@ -30,21 +35,31 @@
     </fieldset>
   </div>
   <div id="tabs-comments">
-    <fieldset>
-      <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
-      </legend>
-      <div id='comment-notice'></div>
-      <div id='comments'>
-        <% @comments.each do |c| %>
-            <%= render 'crmcomments/comment', :c => c, :parent => @crm_action %>
-        <% end %>
-        <br>
-      </div>
-      <hr>
-      <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
+    <div style="float:left">
+      <fieldset>
+        <legend><span id="comments_count"><%= pluralize(@comments.count, t('crmcomment')) %></span>
+        </legend>
+        <div id='comment-notice'></div>
+        <div id='comments'>
+          <% @comments.each do |c| %>
+              <%= render 'crmcomments/comment', :c => c, :parent => @crm_action %>
+          <% end %>
+          <br>
+        </div>
+        <hr>
+        <p><b><%= t(:new_model, :model => t(:crmcomment)) %></b></p>
 
-      <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment} %>
-    </fieldset>
+        <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment} %>
+      </fieldset>
+    </div>
+    <div>
+      <fieldset>
+        <legend><%= Reminder.model_name.human(count: 2) %></legend>
+        <%= render @crm_action.reminders %>
+        <hr>
+        <%= render 'reminders/quick_form', title: @crm_action.name, container_id: @crm_action.id, container_type: CrmAction.model_name %>
+      </fieldset>
+    </div>
   </div>
 
   <div id="tabs-companies">

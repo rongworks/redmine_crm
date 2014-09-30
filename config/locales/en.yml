@@ -33,6 +33,14 @@ en:
         start_date: start
         end_date: end
         done: done
+      reminder:
+        due: Fällig
+        begin: Beginn
+        title: Titel
+        summary: Beschreibung
+        location: Ort
+        organizer_mail: Absender
+        organizer_name: Absender Name
     models:
       client:
         one: contact
@@ -46,6 +54,9 @@ en:
       crm_action:
         one: action
         other: actions
+      reminder:
+        one: reminder
+        other: reminders
   helpers:
     label:
       client:
@@ -79,6 +90,14 @@ en:
         start_date: start
         end_date: end
         done: done
+      reminder:
+        due: Fällig
+        begin: Beginn
+        title: Titel
+        summary: Beschreibung
+        location: Ort
+        organizer_mail: Absender
+        organizer_name: Absender Name
     submit:
       create: "create %{model}"
       search: search
@@ -122,3 +141,4 @@ en:
   assigned_companies: Zugewiesene Unternehmen
   save: save
   save_successful: saved successfully
+  destroy_confirm: Are you sure?

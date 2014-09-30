@@ -77,4 +77,8 @@ $(function() {
             }
         }
     });
+
+    $(".datepicker").datepicker({
+        dateFormat: 'yy-mm-d'
+    });
 });

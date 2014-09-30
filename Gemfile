@@ -15,3 +15,4 @@ group :test do
 end
 
 gem "erb2haml-win", :group => :development
+gem 'icalendar'
