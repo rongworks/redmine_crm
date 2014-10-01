@@ -1,7 +1,7 @@
 <div id="form">
-  <%= form_for Reminder.new do |f| %>
+  <%= form_for Reminder.new, remote: true do |f| %>
       <%= f.label :title %>
-      <%= f.text_field :title, value: title || 'Erinnerung' %>
+      <%= f.text_field :title, value: (title.present? ? title : 'Erinnerung') %>
       <%= f.hidden_field :remindable_id, :value => container_id %>
       <%= f.hidden_field :remindable_type, :value => container_type %>
 

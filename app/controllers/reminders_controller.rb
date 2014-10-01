@@ -23,10 +23,14 @@ class RemindersController < ApplicationController
     if @reminder.begin.nil?
       @reminder.begin = @reminder.due
     end
-    if @reminder.save
-      redirect_to reminders_path, notice: t(:save_successful)
-    else
-      render :new
+    respond_to do |format|
+      if @reminder.save
+        format.html {redirect_to reminders_path, notice: t(:save_successful)}
+        format.js
+      else
+        format.html{render :new}
+        format.js
+      end
     end
 
   end

@@ -52,14 +52,7 @@
         <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment} %>
       </fieldset>
     </div>
-    <div>
-      <fieldset>
-        <legend><%= Reminder.model_name.human(count: 2) %></legend>
-        <%= render @crm_action.reminders %>
-        <hr>
-        <%= render 'reminders/quick_form', title: @crm_action.name, container_id: @crm_action.id, container_type: CrmAction.model_name %>
-      </fieldset>
-    </div>
+    <%= render 'reminders/list_create', remindable: @crm_action %>
   </div>
 
   <div id="tabs-companies">
