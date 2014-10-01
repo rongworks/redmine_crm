@@ -21,6 +21,7 @@
         <td> <%= link_to t(:edit), edit_client_path(client,:project_id => @project), :class => 'icon icon-edit' %> </td>
         <td><%= link_to t(:delete), client, method: :delete,
                         data: { confirm: "Are you sure?" }, :class => 'icon icon-del' %> </td>
+        <td><%= link_to '.vcard', client_path(client.id, format: 'text'), class: 'icon icon-attachment' %></td>
       </tr>
   <% end %>
 </table>

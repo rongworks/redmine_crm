@@ -24,6 +24,11 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     @comment = Crmcomment.new
     @document = AttachedDocument.new
+
+    respond_to do |format|
+      format.html
+      format.text {send_data @client.to_vcard.to_s, :filename => "#{@client.last_name}.vcf"	}
+    end
   end
 
   def new

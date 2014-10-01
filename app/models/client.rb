@@ -47,6 +47,40 @@ class Client < ActiveRecord::Base
     end
   end
 
+  def to_vcard
+    card = Vpim::Vcard::Maker.make2 do |maker|
+      maker.add_name do |name|
+        name.prefix = title
+        name.given = first_name
+        name.family = last_name
+      end
+      if company
+        maker.add_addr do |addr|
+          addr.preferred = true
+          addr.location = 'work'
+          addr.street = company.street
+          addr.locality = company.province
+          addr.postalcode = company.zip_code
+        end
+        maker.org = company.name
+      end
+      maker.add_tel(phone) do |tel|
+        tel.location = 'work'
+        tel.capability = 'voice'
+        tel.preferred = true
+      end
+      maker.add_tel(phone_mobile) do |tel|
+        tel.location = 'cell'
+      end
+      maker.add_tel(fax) do |tel|
+        tel.location = 'work'
+        tel.capability = 'fax'
+      end
+      maker.add_email email
+      maker.title=department
+    end
+  end
+
   def project
     project_id = Setting.plugin_redmine_crm['root_project']
     return Project.where(:id => project_id).first

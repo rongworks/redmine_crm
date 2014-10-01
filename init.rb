@@ -1,5 +1,6 @@
 require 'redmine_acts_as_taggable_on/initialize'
 require 'icalendar'
+require 'vpim/vcard'
 
 Redmine::Plugin.register :redmine_crm do
   requires_acts_as_taggable_on

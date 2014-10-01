@@ -1,5 +1,6 @@
 <div class='contextual'>
   <%= link_to t(:edit), edit_client_path(@client), :class => 'icon icon-edit' %>
+  <%= link_to '.vcard', client_path(@client.id, format: 'text'), class: 'icon icon-attachment' %>
   <%= link_to t(:delete), @client, method: :delete,
               data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %>
 </div>
