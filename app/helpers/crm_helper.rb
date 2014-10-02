@@ -16,4 +16,5 @@ module CrmHelper
     '<hr>'.html_safe +
     (render 'attached_documents/form', :container => container).to_s.html_safe
   end
+
 end

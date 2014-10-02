@@ -49,6 +49,10 @@
       <%= builder.label :primary_contact %>
       <%= builder.collection_select :primary_contact_id, @company.clients, :id, :to_s, :prompt => '-- select --' %>
     </p>
+    <p>
+      <%= builder.label :recommendation %>
+      <%= builder.text_field :recommendation %>
+    </p>
   </div>
   <div style='clear: both'>
     <p>

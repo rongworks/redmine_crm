@@ -1,7 +1,7 @@
 class RemindersController < ApplicationController
   unloadable
   include SharedModule
-  before_filter :find_reminder, :find_remindable, only: [:show, :edit, :destroy]
+  before_filter :find_reminder, :find_remindable, only: [:show, :edit, :destroy, :close]
   layout 'companies_layout'
 
   def index
@@ -52,6 +52,12 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder.destroy
+    redirect_to :back
+  end
+
+  def close
+    @reminder.closed=true
+    @reminder.save
     redirect_to :back
   end
 

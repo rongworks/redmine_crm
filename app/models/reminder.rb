@@ -25,6 +25,10 @@ class Reminder < ActiveRecord::Base
     event
   end
 
+  def overdue?
+    closed? ? false : Time.now > due
+  end
+
   private
   def set_time
     self.due = DateTime.new(self.due.year, self.due.month, self.due.day, 9, 15, 0)

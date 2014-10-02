@@ -2,6 +2,7 @@ require 'carrierwave'
 class ClientsController < ApplicationController
   unloadable
   include SharedModule
+
   layout 'companies_layout'
 
   def index
@@ -27,7 +28,15 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text {send_data @client.to_vcard.to_s, :filename => "#{@client.last_name}.vcf"	}
+      format.text {
+        vcard = @client.to_vcard.to_s
+        filename = "#{@client.last_name}.vcf"
+        if get_operating_system(@_request) == "Windows"
+          vcard = vcard.encode('windows-1252','UTF-8')
+          filename = "#{@client.last_name}_windows.vcf"
+        end
+          send_data vcard, :filename => filename
+      }
     end
   end
 

@@ -3,7 +3,7 @@
 <% end %>
 
 <%= render 'companies/search'%>
-<%= button_to t(:save),'', id: 'save', data: {actionid: @crm_action.id}%>
+<%= link_to t(:save),'', id: 'save_crm_action', data: {actionid: @crm_action.id}%>
 
 <div style="display:table">
   <div class="droppable" style="display:table-cell;padding:10px;">

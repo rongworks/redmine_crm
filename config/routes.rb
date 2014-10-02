@@ -43,7 +43,11 @@ resources :crm_actions do
   resources :reminders
 end
 
-resources :reminders
+resources :reminders do
+  member do
+    post :close
+  end
+end
 
 get 'crm_data', :to => 'data_handling#index'
 get 'export_crm', :to => 'data_handling#full_export'

@@ -26,6 +26,7 @@ de:
         url: Web
         zip_code: PLZ
         primary_contact: Anschrift an
+        recommendation: Empfehlung
       crm_action:
         name: Name
         description: Beschreibung
@@ -40,6 +41,7 @@ de:
         location: Ort
         organizer_mail: Absender
         organizer_name: Absender Name
+        closed: Abgeschlossen
     models:
       client:
         one: Kontakt
@@ -54,8 +56,8 @@ de:
         one: Aktion
         other: Aktionen
       reminder:
-        one: Erinnerung
-        other: Erinnerungen
+        one: Termin
+        other: Termine
   helpers:
     label:
       client:
@@ -82,6 +84,7 @@ de:
         street: Straße
         url: Web
         zip_code: PLZ
+        recommendation: Empfehlung
         primary_contact: Anschrift an
       crm_action:
         name: Name
@@ -97,6 +100,7 @@ de:
         location: Ort
         organizer_mail: Absender
         organizer_name: Absender Name
+        closed: Abgeschlossen
     submit:
       create: "%{model} erstellen"
       search: Suchen
@@ -130,6 +134,7 @@ de:
   explain_root_project: "Das Hauptprojekt beinhaltet alle Unternehmen/Kontakte und kann als Übersicht genutzt werden"
   data_handling: "Import/Export"
   attachments: Dokumente
+  finish: abschließen
   time:
     am: vormittags
     formats:
@@ -153,3 +158,4 @@ de:
   assigned_companies: Zugewiesene Unternehmen
   save_successful: Erfolgreich gespeichert
   destroy_confirm: Sind Sie sicher?
+  save: Speichern

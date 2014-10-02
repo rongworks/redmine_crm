@@ -10,7 +10,7 @@ $(function() {
                 .find("ol").append( ui.draggable );
         }
     });
-    $("#save").click(function(event){
+    $("#save_crm_action").click(function(event){
         event.preventDefault();
         var ids = [];
         $("#assigned_companies").find("li").each(function(){
@@ -22,7 +22,7 @@ $(function() {
             type: "POST",
             dataType: 'json',
             contentType: 'application/json',
-            url: $(location).attr('href').replace(window.location.search,'')+"/add_companies",
+            url: $(location).attr('href').replace(window.location.search,'').split('#')[0] + "/add_companies",
             data: JSON.stringify({"ids":ids}),
             complete: function(){
                 location.reload(true);

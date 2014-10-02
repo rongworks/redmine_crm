@@ -27,6 +27,7 @@ en:
         url: url
         zip_code: zip code
         primary_contact: primary contact
+        recommendation: Empfehlung
       crm_action:
         name: name
         description: description
@@ -84,6 +85,7 @@ en:
         url: url
         zip_code: zip code
         primary_contact: primary contact
+        recommendation: Empfehlung
       crm_action:
         name: name
         description: name
