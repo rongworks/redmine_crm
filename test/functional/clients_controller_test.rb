@@ -4,7 +4,7 @@ class ClientsControllerTest < ActionController::TestCase
 
   def setup
     User.current = nil
-    @user = create(:admin)
+    @user = build(:admin)
     #User.stubs(:current).at_least_once.returns(user)
     #user.stubs(:allowed_to?).returns(true)
     @request.session[:user_id] = @user.id
