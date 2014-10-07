@@ -73,6 +73,8 @@ FactoryGirl.define do
     association :user, factory: :admin
     association :container, factory: :company
     locked false
-    file {fixture_file_upload('files/test_doc.txt', 'text/plain')}
+    file_file_name { 'test.pdf' }
+    file_content_type { 'application/pdf' }
+    file_file_size { 1024 }
   end
 end
