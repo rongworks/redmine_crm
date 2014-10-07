@@ -73,8 +73,6 @@ FactoryGirl.define do
     association :user, factory: :admin
     association :container, factory: :company
     locked false
-    file_file_name { 'test.pdf' }
-    file_content_type { 'application/pdf' }
-    file_file_size { 1024 }
+    file { Tempfile.new('foo') }
   end
 end

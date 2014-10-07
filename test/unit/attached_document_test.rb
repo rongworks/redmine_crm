@@ -3,7 +3,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class AttachedDocumentTest < ActiveSupport::TestCase
 
   def setup
-    @doc = build(:attached_document)
+    @doc = build(:attached_document, :file => nil)
     @tmp_file = Tempfile.new('foo')
     @uploader = DocumentUploader.new(@doc,:file)
 

@@ -19,8 +19,9 @@ class AttachedDocumentsControllerTest < ActionController::TestCase
 
   def test_get_index
     create(:attached_document)
-    get :index
-    assert_not_nil assigns(:documents), "No documents assigned #{assigns.inspect}"
+    get :index, :project_id => @project.id
     assert_response :success
+    assert_not_nil assigns(:documents), "No documents assigned #{assigns.inspect}"
+
   end
 end
