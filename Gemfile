@@ -14,6 +14,6 @@ group :test do
   gem "factory_girl_rails", :require => false
 end
 
-gem "erb2haml-win", :group => :development
+#gem "erb2haml-win", :group => :development
 gem 'icalendar'
 gem 'vpim'
