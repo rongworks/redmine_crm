@@ -21,7 +21,7 @@
           </ul>
         </li>
       <br>
-      <li><%= link_to CrmReminder.model_name.human(count:2), reminders_path(:project_id => @project),:class => 'icon icon-zoom-in' %></li>
+      <li><%= link_to CrmReminder.model_name.human(count:2), crm_reminders_path(:project_id => @project),:class => 'icon icon-zoom-in' %></li>
       <br>
       <% if User.current.admin? %>
         <li> <%= link_to t(:data_handling), crm_data_path %></li>

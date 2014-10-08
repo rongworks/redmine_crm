@@ -34,7 +34,7 @@ en:
         start_date: start
         end_date: end
         done: done
-      reminder:
+      crm_reminder:
         due: Fällig
         begin: Beginn
         title: Titel
@@ -55,7 +55,7 @@ en:
       crm_action:
         one: action
         other: actions
-      reminder:
+      crm_reminder:
         one: reminder
         other: reminders
   helpers:
@@ -92,7 +92,7 @@ en:
         start_date: start
         end_date: end
         done: done
-      reminder:
+      crm_reminder:
         due: Fällig
         begin: Beginn
         title: Titel

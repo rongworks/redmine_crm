@@ -1,6 +1,6 @@
 <h2><%= "#{CrmReminder.model_name.human(count:2)}: #{@crm_reminder.title}" %></h2>
-<%= link_to t(:edit), edit_reminder_path(@crm_reminder.id), class: 'icon icon-edit' %>
-<%= link_to '.ics', reminder_path(@crm_reminder.id, format: 'ics'), class: 'icon icon-attachment' %>
+<%= link_to t(:edit), edit_crm_reminder_path(@crm_reminder.id), class: 'icon icon-edit' %>
+<%= link_to '.ics', crm_reminder_path(@crm_reminder.id, format: 'ics'), class: 'icon icon-attachment' %>
 <%= link_to t(:delete), @crm_reminder, confirm: t(:destroy_confirm), method: :delete, class: 'icon icon-del' %>
 
 <h3><%= link_to @crm_reminder.remindable, @crm_reminder.remindable %></h3>
