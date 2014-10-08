@@ -64,26 +64,26 @@ class Client < ActiveRecord::Base
         end
         maker.org = company.name
       end
-      if phone
+      if phone.present?
         maker.add_tel(phone) do |tel|
           tel.location = 'work'
           tel.capability = 'voice'
           tel.preferred = true
         end
       end
-      if phone_mobile
+      if phone_mobile.present?
         maker.add_tel(phone_mobile) do |tel|
           tel.location = 'cell'
         end
       end
-      if fax
+      if fax.present?
         maker.add_tel(fax) do |tel|
           tel.location = 'work'
           tel.capability = 'fax'
         end
       end
-      maker.add_email email
-      maker.title=department
+      maker.add_email email if email.present?
+      maker.title=department if department.present?
     end
   end
 
