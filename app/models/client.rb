@@ -58,9 +58,9 @@ class Client < ActiveRecord::Base
         maker.add_addr do |addr|
           addr.preferred = true
           addr.location = 'work'
-          addr.street = company.street
-          addr.locality = company.province
-          addr.postalcode = company.zip_code
+          addr.street = company.street if company.street
+          addr.locality = company.province if company.province
+          addr.postalcode = company.zip_code if company.zip_code
         end
         maker.org = company.name
       end
@@ -69,12 +69,16 @@ class Client < ActiveRecord::Base
         tel.capability = 'voice'
         tel.preferred = true
       end
-      maker.add_tel(phone_mobile) do |tel|
-        tel.location = 'cell'
+      if phone_mobile
+        maker.add_tel(phone_mobile) do |tel|
+          tel.location = 'cell'
+        end
       end
-      maker.add_tel(fax) do |tel|
-        tel.location = 'work'
-        tel.capability = 'fax'
+      if fax
+        maker.add_tel(fax) do |tel|
+          tel.location = 'work'
+          tel.capability = 'fax'
+        end
       end
       maker.add_email email
       maker.title=department
