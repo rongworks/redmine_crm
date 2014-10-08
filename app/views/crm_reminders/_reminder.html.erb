@@ -1,0 +1,15 @@
+<% highlight = 'warning' if crm_reminder.overdue? %>
+<% highlight = 'checked' if crm_reminder.closed? %>
+<div style="display: table-row;" >
+  <div class="table_item icon icon-<%=highlight%>"> &NonBreakingSpace;&NonBreakingSpace; </div>
+  <div class="table_item"> <%= I18n.l(crm_reminder.due, :format => :short) %></div>
+
+  <div class="table_item"><%= link_to crm_reminder.title, reminder_path(crm_reminder) %></div>
+
+  <div class="table_item"><%= link_to '.ics', reminder_path(crm_reminder, format: 'ics'), class: "icon icon-attachment" %></div>
+
+  <div class="table_item"><%= link_to t(:finish), close_reminder_path(crm_reminder), method: :post, class: "icon icon-checked" unless crm_reminder.closed?%></div>
+
+  <div class="table_item"><%= link_to t(:delete), crm_reminder, method: :delete, data: {confirm: t(:destroy_confirm)}, :class => 'icon icon-del' %></div>
+  <br>
+</div>

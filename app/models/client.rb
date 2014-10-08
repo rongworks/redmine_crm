@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
   belongs_to :company
   has_many :crmcomments, as: :commentable, :dependent => :destroy
   has_many :attached_documents, as: :container, dependent: :destroy
-  has_many :reminders, as: :remindable, dependent: :destroy
+  has_many :crm_reminders, as: :remindable, dependent: :destroy
 
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
   accepts_nested_attributes_for :attached_documents, :allow_destroy => true

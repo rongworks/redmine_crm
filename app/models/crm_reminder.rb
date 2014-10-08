@@ -1,4 +1,4 @@
-class Reminder < ActiveRecord::Base
+class CrmReminder < ActiveRecord::Base
   unloadable
   PUBLIC_URL = Rails.root
   belongs_to :remindable, polymorphic:true

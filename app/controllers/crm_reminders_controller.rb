@@ -1,30 +1,30 @@
-class RemindersController < ApplicationController
+class CrmRemindersController < ApplicationController
   unloadable
   include SharedModule
   before_filter :find_reminder, :find_remindable, only: [:show, :edit, :destroy, :close]
   layout 'companies_layout'
 
   def index
-    @reminders = Reminder.order('reminders.due DESC').all
+    @crm_reminders = CrmReminder.order('crm_reminders.due DESC').all
   end
 
   def new
-    @reminder = Reminder.new
+    @crm_reminder = CrmReminder.new
   end
 
   def create
-    @reminder = Reminder.new(params[:reminder])
+    @crm_reminder = CrmReminder.new(params[:crm_reminder])
     if params[:due_time]
-      change_date(@reminder.due, params[:due_time])
+      change_date(@crm_reminder.due, params[:due_time])
     end
     if params[:begin_time]
-      change_date(@reminder.begin, params[:begin_time])
+      change_date(@crm_reminder.begin, params[:begin_time])
     end
-    if @reminder.begin.nil?
-      @reminder.begin = @reminder.due
+    if @crm_reminder.begin.nil?
+      @crm_reminder.begin = @crm_reminder.due
     end
     respond_to do |format|
-      if @reminder.save
+      if @crm_reminder.save
         format.html {redirect_to reminders_path, notice: t(:save_successful)}
         format.js
       else
@@ -43,7 +43,7 @@ class RemindersController < ApplicationController
       wants.html
       wants.ics do
         calendar = Icalendar::Calendar.new
-        calendar.add_event(@reminder.to_ics)
+        calendar.add_event(@crm_reminder.to_ics)
         calendar.publish
         render :text => calendar.to_ical
       end
@@ -51,13 +51,13 @@ class RemindersController < ApplicationController
   end
 
   def destroy
-    @reminder.destroy
+    @crm_reminder.destroy
     redirect_to :back
   end
 
   def close
-    @reminder.closed=true
-    @reminder.save
+    @crm_reminder.closed=true
+    @crm_reminder.save
     redirect_to :back
   end
 
@@ -69,7 +69,7 @@ class RemindersController < ApplicationController
   end
 
   def find_reminder
-    @reminder = Reminder.find(params[:id])
+    @crm_reminder = CrmReminder.find(params[:id])
   end
 
   def find_remindable

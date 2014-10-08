@@ -11,7 +11,7 @@ class Company < ActiveRecord::Base
   has_many :company_crm_actions, :dependent => :destroy
   has_many :crm_actions, :through => :company_crm_actions
   has_many :attached_documents, :as => :container, :dependent => :destroy
-  has_many :reminders, as: :remindable, dependent: :destroy
+  has_many :crm_reminders, as: :remindable, dependent: :destroy
   accepts_nested_attributes_for :crmcomments, :allow_destroy => true
 
   validates :name, presence: true

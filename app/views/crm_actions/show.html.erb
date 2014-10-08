@@ -11,7 +11,7 @@
     <li><a href="#tabs-attachments"><%= t(:attachments) %></a></li>
     <li><a href="#tabs-companies"><%= Company.model_name.human(count: 2) %> </a></li>
     <li><a href="#tabs-comments"><%= Crmcomment.model_name.human(count: 2) %>
-      / <%= Reminder.model_name.human(count: 2) %> </a></li>
+      / <%= CrmReminder.model_name.human(count: 2) %> </a></li>
   </ul>
   <div id="tabs-info">
     <p><strong><%= t_att(:crm_action, :description) %></strong>: <%= @crm_action.description %></p>
@@ -52,7 +52,7 @@
         <%= render 'crmcomments/form', {:parent => @crm_action, :comment => @comment} %>
       </fieldset>
     </div>
-    <%= render 'reminders/list_create', remindable: @crm_action %>
+    <%= render 'crm_reminders/list_create', remindable: @crm_action %>
   </div>
 
   <div id="tabs-companies">

@@ -40,10 +40,10 @@ resources :crm_actions do
     post :add_companies
   end
   resources :crmcomments
-  resources :reminders
+  resources :crm_reminders
 end
 
-resources :reminders do
+resources :crm_reminders do
   member do
     post :close
   end

@@ -1,8 +1,0 @@
-<h2><%= Reminder.model_name.human(count:2)%></h2>
-<% @reminders.group_by(&:remindable_type).each do |group, reminder| %>
-  <div>
-    <h3><%= group %></h3>
-    <%= render reminder %>
-  </div>
-<% end %>
-

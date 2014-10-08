@@ -1,0 +1,10 @@
+<div style="float:left;">
+  <fieldset>
+    <legend><%= CrmReminder.model_name.human(count: 2) %></legend>
+    <div id="reminder_list">
+      <%= render remindable.crm_reminders %>
+    </div>
+    <hr>
+    <%= render 'crm_reminders/quick_form', title:'', container_id: remindable.id, container_type: remindable.class.model_name %>
+  </fieldset>
+</div>

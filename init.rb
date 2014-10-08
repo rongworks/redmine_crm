@@ -36,7 +36,7 @@ Redmine::Plugin.register :redmine_crm do
     permission :view_contacts, :clients => [:index, :show]
     permission :view_crm_actions, :crm_actions => [:index, :show]
     permission :edit_crm_actions, :crm_actions => [:new, :edit, :import]
-    permission :manage_reminders, :reminders => [:new, :edit,:destroy, :index, :show]
+    permission :manage_reminders, :crm_reminders => [:new, :edit,:destroy, :index, :show]
     permission :add_documents, :attached_documents => [:new, :edit]
     permission :delete_documents, :attached_documents => [:delete]
     permission :lock_documents, :attached_documents => [:switch_locked]
