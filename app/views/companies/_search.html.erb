@@ -8,35 +8,31 @@
           <% end %>
           <tr>
             <td><%= label_tag t_att(:company, :name) %></td>
-            <td> <%= text_field_tag "search[name]",'', {:data => {'source' => @project.companies.map{|c| c.name}}, :class => 'autoc'} %> </td>
+            <td> <%= text_field_tag "search[single][name]",'', {:data => {'source' => @project.companies.map{|c| c.name}}, :class => 'autoc'} %> </td>
           </tr>
           <tr>
-            <td><%= label_tag t_att(:company, :branch) %></td>
-            <td><%= select_tag "search[branch]", options_for_select(Company.uniq.pluck(:branch)), include_blank: true %> </td>
-          </tr>
-          <tr>
-            <td><%= label_tag  t_att(:company, :branch_list) %></td>
-            <td><%= select_tag :branch, options_for_select(Company.get_all_branches), include_blank: true %> </td>
+            <td><%= label_tag t_att(:company, :branch_list) %></td>
+            <td><%= text_field_tag "search[multi][branch]",  {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :state) %></td>
-            <td><%= select_tag "search[state]", options_for_select(Company.uniq.pluck(:state)), include_blank: true %> </td>
+            <td><%= text_field_tag "search[multi][state]",  {:data => {'source' => @project.companies.map{|c| c.state}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag t_att(:company, :zip_code) %></td>
-            <td><%= select_tag "search[zip_code]", options_for_select(Company.uniq.pluck(:zip_code)), include_blank: true %> </td>
+            <td><%= text_field_tag "search[multi][zip_code]",  {:data => {'source' => @project.companies.map{|c| c.zip_code}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :province) %></td>
-            <td><%= select_tag "search[province]", options_for_select(Company.uniq.pluck(:province)), include_blank: true %> </td>
+            <td><%= text_field_tag "search[multi][province]",  {:data => {'source' => @project.companies.map{|c| c.province}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :organisation) %></td>
-            <td><%= select_tag "search[organisation]", options_for_select(Company.uniq.pluck(:organisation)), include_blank: true %> </td>
+            <td><%= text_field_tag "search[multi][organisation]",  {:data => {'source' => @project.companies.map{|c| c.organisation}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :tag_list) %></td>
-            <td><%= select_tag :tag, options_for_select(Company.get_all_tags), include_blank: true %> </td>
+            <td><%= text_field_tag "search[multi][tag_list]",  {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %></td>
           </tr>
         </table>
         <%= submit_tag   t 'search' %>

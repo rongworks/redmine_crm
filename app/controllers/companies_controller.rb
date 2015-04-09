@@ -13,9 +13,21 @@ class CompaniesController < ApplicationController
     #@companies = Company.from_project(@project.id)
     @companies = @project.companies
     if params[:search]
-       search = params[:search]
-       search.delete_if { |k, v| v.empty? }
-       @companies = @companies.where(search)
+       search_single = params[:search][:single]
+       search_multi = params[:search][:multi]
+
+       search_single.delete_if { |k, v| v.empty? }
+       search_multi.delete_if { |k, v| v.empty? }
+
+       search_single.each do |k,v|
+         @companies = @companies.where(search_single)
+       end
+       search_multi.each do |k,v|
+         v.split(',').each do |val|
+           @companies = @companies.where(val+' IN ?',k)
+         end
+       end
+
     end
     if params[:tag].present?
       @companies = @companies.tagged_with(params[:tag], :on => :tags)
