@@ -24,7 +24,8 @@ class CompaniesController < ApplicationController
        end
        search_multi.each do |k,v|
          #v.split(',').each do |val|
-           @companies = @companies.where(k+' IN ?',v) unless v.empty?
+         values = v.split(',').reject{|u| u.empty?}.map{|x| x = "'#{x}'"}.join(',')
+           @companies = @companies.where(k+' IN ?',values)
          #end
        end
 
