@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <td><%= label_tag t_att(:company, :branch_list) %></td>
-            <td><%= text_field_tag "search[multi][branch]", '', {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][branch_list]", '', {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :state) %></td>
