@@ -12,27 +12,27 @@
           </tr>
           <tr>
             <td><%= label_tag t_att(:company, :branch_list) %></td>
-            <td><%= text_field_tag "search[multi][branch]",  {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][branch]", '', {:data => {'source' => Company.get_all_branches}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :state) %></td>
-            <td><%= text_field_tag "search[multi][state]",  {:data => {'source' => @project.companies.map{|c| c.state}}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][state]", '', {:data => {'source' => @project.companies.map{|c| c.state}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag t_att(:company, :zip_code) %></td>
-            <td><%= text_field_tag "search[multi][zip_code]",  {:data => {'source' => @project.companies.map{|c| c.zip_code}}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][zip_code]", '', {:data => {'source' => @project.companies.map{|c| c.zip_code}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :province) %></td>
-            <td><%= text_field_tag "search[multi][province]",  {:data => {'source' => @project.companies.map{|c| c.province}}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][province]", '', {:data => {'source' => @project.companies.map{|c| c.province}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :organisation) %></td>
-            <td><%= text_field_tag "search[multi][organisation]",  {:data => {'source' => @project.companies.map{|c| c.organisation}}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][organisation]",'',  {:data => {'source' => @project.companies.map{|c| c.organisation}}, :class => 'autoc_multi'} %></td>
           </tr>
           <tr>
             <td><%= label_tag  t_att(:company, :tag_list) %></td>
-            <td><%= text_field_tag "search[multi][tag_list]",  {:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %></td>
+            <td><%= text_field_tag "search[multi][tag_list]",  '',{:data => {'source' => Company.get_all_tags}, :class => 'autoc_multi'} %></td>
           </tr>
         </table>
         <%= submit_tag   t 'search' %>
