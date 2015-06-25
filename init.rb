@@ -11,8 +11,6 @@ Redmine::Plugin.register :redmine_crm do
   url 'https://github.com/rongworks/redmine_crm'
   author_url 'https://github.com/rongworks'
 
-
-
   # Including dispatcher.rb in case of Rails 2.x
   require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
 
@@ -42,8 +40,8 @@ Redmine::Plugin.register :redmine_crm do
     permission :lock_documents, :attached_documents => [:switch_locked]
   end
 
-  menu :top_menu, :companies, { :controller => 'companies', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}
-  menu :project_menu, :companies, { :controller => 'companies', :action => 'index'}, :caption => 'CRM',:param => :project_id
+  menu :top_menu, :companies, { :controller => 'crm_main', :action => 'index' }, :caption => 'CRM', :last => true, :if => Proc.new {User.current.admin?}
+  menu :project_menu, :companies, { :controller => 'crm_main', :action => 'index'}, :caption => 'CRM',:param => :project_id
 
   settings :default =>{'root_project' => nil, 'csv_delimiter' => ',', 'csv_encoding' => 'utf8'},
            :partial => 'settings/crm_settings'

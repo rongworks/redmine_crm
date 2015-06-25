@@ -3,7 +3,7 @@ module SharedModule
 
   included do
     # class level code
-    before_filter :find_project, :global_access
+    before_filter :find_project, :global_access, :api_access
   end
 
   module ClassMethods
@@ -11,6 +11,11 @@ module SharedModule
   end
 
   private
+
+  def api_access
+    request.headers['X-Redmine-API-Key'] = User.current.api_key
+  end
+
   def find_project
     root_project = Setting.plugin_redmine_crm['root_project']
     if params[:project_id]
@@ -24,7 +29,8 @@ module SharedModule
   end
 
   def global_access
-    authorize unless User.current.admin?
+    #TODO: check if required
+    #authorize unless User.current.admin?
   end
 
   def get_operating_system(request)

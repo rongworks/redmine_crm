@@ -10,32 +10,33 @@ class CompaniesController < ApplicationController
 
   def index
 
-    #@companies = Company.from_project(@project.id)
-    @companies = @project.companies
-    if params[:search]
-       search = params[:search]
-       search.delete_if { |k, v| v.empty? }
-       @companies = @companies.where(search)
-    end
-    if params[:tag].present?
-      @companies = @companies.tagged_with(params[:tag], :on => :tags)
-    end
-    if params[:branch].present?
-      @companies = @companies.tagged_with(params[:branch], :on => :branches)
-    end
-
-
-    @companies_no_paging = @companies
-    @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
-    @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
-
     respond_to do |format|
       format.html
       format.csv {
         #send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding'])
         get_csv_with_clients(@companies_no_paging)
       }
-      format.json
+      format.json{
+        #@companies = Company.from_project(@project.id)
+        @companies = @project.companies
+        if params[:search]
+          search = params[:search]
+          search.delete_if { |k, v| v.empty? }
+          @companies = @companies.where(search)
+        end
+        if params[:tag].present?
+          @companies = @companies.tagged_with(params[:tag], :on => :tags)
+        end
+        if params[:branch].present?
+          @companies = @companies.tagged_with(params[:branch], :on => :branches)
+        end
+
+
+        @companies_no_paging = @companies
+        @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
+        @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
+        render json: @companies_no_paging, :root => false
+      }
     end
   end
 
@@ -86,6 +87,16 @@ class CompaniesController < ApplicationController
     redirect_to companies_url
   end
 
+  def info
+    @companies = Company.all
+    if request.xhr?
+      @company = Company.find(params[:id])
+
+      render :partial => "info", :object => @company
+    else
+      @company = @companies.first unless @companies.empty?
+    end
+  end
 
   def import
     begin

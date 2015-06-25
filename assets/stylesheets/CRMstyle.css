@@ -82,16 +82,32 @@ tr.contactheader, th.contactheader{
     padding: 5px;
 }
 
+.company_item_header{
+    display: table-cell;
+    width: 10%;
+    font-weight: bold;
+}
 .company_quick_detail{
-    font-size: small;
-    color: darkslategray;
-    padding: 5%;
+    display: table-cell;
+    width: 10%;
 }
 
 .company_name{
     color: black;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
+.company_item{
+    border: 1px solid darkslategray;
+    display: table;
+    width:90%;
+    padding: 0.4em;
+    margin-top: 0.4em;
+}
+.company_item:hover{
+    background-color: azure;
+}
 .dragdropbox{
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
@@ -117,4 +133,19 @@ tr.contactheader, th.contactheader{
 .table_item{
     display: table-cell;
     padding: 2px 4px;
+}
+
+.nav_bar_actions{
+    list-style: none;
+}
+.nav_bar_actions li{
+    float:left;
+    margin-left: 0.4em;
+    background-color: lightcyan;
+    border: 1px solid cornflowerblue;
+    border-radius: 0.2em;
+}
+
+.clear-fix{
+    clear:both;
 }

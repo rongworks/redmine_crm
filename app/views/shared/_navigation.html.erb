@@ -1,0 +1,28 @@
+<div id="nav" style="overflow:hidden;">
+      <ul class="nav_bar_actions" >
+        <li><%= link_to t(:show_companies_label), companies_path(:project_id => @project), :class => 'icon icon-zoom-in' %></li>
+        <li><%= link_to t(:new_model, :model => t(:company)), new_company_path(:project_id => @project), :class => 'icon icon-add' %></li>
+        <li><%= link_to CrmAction.model_name.human(count:2), crm_actions_path(:project_id => @project), :class => 'icon icon-zoom-in'%></li>
+        <li><%= link_to t(:new_model, :model => CrmAction.model_name.human), new_crm_action_path(:project_id => @project), :class => 'icon icon-add' %></li>
+        <li><%= link_to t(:show_clients_label), clients_path(:project_id => @project), :search => params[:search], :class => 'icon icon-zoom-in' %></li>
+        <li><%= link_to t(:new_model, :model => t(:client)), new_client_path(:project_id => @project), :class => 'icon icon-add' %></li>
+        <li><%= link_to CrmReminder.model_name.human(count:2), crm_reminders_path(:project_id => @project),:class => 'icon icon-zoom-in' %></li>
+        <% if User.current.admin? %>
+            <li> <%= link_to t(:data_handling), crm_data_path %></li>
+            <li><%= link_to t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-zoom-in' %></li>
+            <li><%= link_to t(:delete_all), destroy_all_companies_path, :method => :delete,
+                        data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %></li>
+        <% end %>
+        <li><%= link_to 'CSV', companies_path(:params => params,:format => 'csv'), :class => 'icon icon-edit' %></li>
+        <li><%= link_to t(:new_model, :model => CrmAction.model_name.human), new_crm_action_path(:company_ids => @companies_no_paging.pluck(:id), :project_id => @project), :class => 'icon icon-add' %></li>
+      </ul>
+      <p class="clear-fix"></p>
+      <p><%= t(:branches) %>:</p>
+      <p><%= raw Company.get_all_branches.map { |b| link_to b, companies_path(:branch => b, :project_id => @project.id), :class => 'tags' }.join() %></p>
+
+
+      <p><%= t(:tags) %>:</p>
+      <p><%= raw Company.get_all_tags.map { |t| link_to t, companies_path(:tag => t, :project_id => @project.id), :class => 'tags' }.join() %></p>
+
+
+</div>

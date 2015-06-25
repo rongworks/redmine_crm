@@ -81,4 +81,14 @@ $(function() {
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-d'
     });
+
+    $("div.company_item").click(function(event){
+        var id = $(this).attr('id');
+        var url = "/companies/info?id="+id;
+        var data = $(this).serialize();
+        console.log("id="+id);
+        $.post(url,function(response_data){$("#company_item_details").html(response_data)});
+        return false;
+    });
+
 });

@@ -1,42 +1,17 @@
 
-<div class='contextual'>
-  <%= link_to t(:new_model, :model => t(:company)),new_company_path, :class => 'icon icon-add' %>
-  <%= link_to t(:new_model, :model => t(:client)),new_client_path, :class => 'icon icon-add' %>
-  <%= link_to 'CSV', companies_path(:params => params,:format => 'csv'), :class => 'icon icon-edit' %>
-  <%= link_to t(:new_model, :model => CrmAction.model_name.human), new_crm_action_path(:company_ids => @companies_no_paging.pluck(:id), :project_id => @project), :class => 'icon icon-add' %>
-  <% if User.current.admin? %>
-  <%= link_to t(:label_show_all), companies_path, :search => params[:search], :class => 'icon icon-zoom-in' %>
-  <%= link_to t(:delete_all), destroy_all_companies_path, :method => :delete,
-              data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %>
-  <% end %>
-</div>
-<h2> <%= Company.model_name.human(count:2) %> </h2>
-<%= render 'import_files' %>
+<h2> <%= "CRM"  %><%=" : #{@project.name}" if @project.present?  %> </h2>
+<div id="companies_index" ng-app="contacts">
 
-<% if @project %>
-    <%= render 'search', :project_id => @project.id %>
-<% else %>
-    <%= render 'search' %>
-<% end %>
-
- <br>
-<div class="digg_pagination">
-  <div class="page_info">
-    <%= page_entries_info @companies %>
-  </div>
-  <%= will_paginate @companies, :container => false %>
-</div>
-  <br>
-<div class="accordion">
-  <% @companies.each do |company| %>
-    <%= render company, :project_id => @project.id %>
-
-<% end %>
+<div ng-controller="CompaniesController as companiesCtrl">
+  <table>
+    <tr ng-repeat="company in companiesCtrl.companies">
+      <td>{{company.name}}</td>
+    </tr>
+  </table>
 </div>
 
-<div class="digg_pagination">
-  <div class="page_info">
-    <%= page_entries_info @companies %>
-  </div>
-  <%= will_paginate @companies, :container => false %>
+
+
+
+
 </div>

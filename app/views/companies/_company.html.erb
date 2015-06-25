@@ -1,62 +1,27 @@
-<h3 class="company_name search_item"><%= link_to company.name, company_path(company.id), :class => 'search_text' %>
-  <span class="company_quick_detail search_text">
-    <%= company.quick_info %>
-  </span>
-</h3>
-<div class="content">
-  <div >
-    <%= link_to t(:show), company_path(company.id, :project_id => @project), :class => 'icon icon-zoom-in' %>
-    <%= link_to t(:new_model, :model => t(:client)), new_client_path(:company_id => company.id, :project_id => @project), :class => 'icon icon-add' %>
-    <%= link_to t(:edit), edit_company_path(company.id, :project_id => @project), :class => 'icon icon-edit' %>
-    <%= link_to t(:delete, :project_id => @project), company, method: :delete,
-                data: {confirm: "Are you sure?"}, :class => 'icon icon-del' %>
+<div class="content company_item" id="<%= company.id %>">
+  <div class="company_quick_detail company_name">
+    <%= link_to company.name, company_path(company.id) %>
   </div>
-  <p>
-    <%= raw company.tag_list.map { |t| link_to t, companies_path(:tag => t, :project_id => project_id), :class => 'tags' }.join() %>
-  </p>
-
-  <p>
-    <%= t_att(:company, :branch_list) %>:
-    <%= raw company.branch_list.map { |t| link_to t, companies_path(:branch => t, :project_id => project_id) }.join(', ') %>
-  </p>
-
-  <p><%= Project.model_name.human(count: 2) %>
-    : <%= raw company.projects.map { |p| link_to p.name, project_path(p) if p.visible?(User.current) }.join(',') %></p>
-
-  <p><%= CrmAction.model_name.human(count: 2) %>
-    : <%= raw company.crm_actions.map { |p| link_to p.name, crm_action_path(p) if p.project.visible?(User.current) }.join(',') %></p>
-
-  <fieldset class='collapsible collapsed'>
-    <legend onclick='toggleFieldset(this);'><%= company.clients.count %>&nbsp;<%= t('activerecord.models.client.other') %></legend>
-    <div style="display: none;">
-      <% if company.clients.empty? %>
-          <p><%= t(:lable_no_contacts) %></p>
-      <% else %>
-
-          <table class='customertable'>
-            <%= render 'clients/header' %>
-            <%= render company.clients %>
-          </table>
-      <% end %>
-    </div>
-  </fieldset>
-  <fieldset class='collapsible collapsed'>
-    <legend onclick='toggleFieldset(this);'><%= t(:lable_last_comment) %>
-      (<%= company.crmcomments.count %>  <%= t(:total) %>)
-    </legend>
-    <div style="display: none;">
-      <% last_comment = company.last_comment %>
-      <% if last_comment %>
-          <%= render 'crmcomments/comment', :c => last_comment, :parent => company %>
-      <% else %>
-          <%= t(:lable_no_comments) %>
-      <% end %>
-      <a class='icon icon-add' onclick='$("#new_comment_<%=company.id%>").toggle()'><%= t(:new) %></a>
-
-      <div id='new_comment_<%= company.id %>' style='display: none;'>
-        <%= render 'crmcomments/form', {:parent => company, :comment => Crmcomment.new} %>
-      </div>
-    </div>
-  </fieldset>
+  <div class="company_quick_detail">
+    <%= company.branch %>
+  </div>
+  <div class="company_quick_detail">
+    <%= link_to company.url %>
+  </div>
+  <div class="company_quick_detail">
+    <%= mail_to company.mail %>
+  </div>
+  <div class="company_quick_detail">
+    <%= company.primary_contact %>
+  </div>
+  <div class="company_quick_detail">
+    <%= company.zip_code %>
+  </div>
+  <div class="company_quick_detail">
+    <%= company.province %>
+  </div>
+  <div class="company_quick_detail">
+    <%= company.street %>
+  </div>
 
 </div>
