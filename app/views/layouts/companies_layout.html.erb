@@ -1,9 +1,21 @@
 <% content_for :header_tags do %>
+  <!-- Angular JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-resource.js"></script>
+
+
+  <!-- PURE CSS http://purecss.io/start/ -->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Awesome Fonts icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
   <%= javascript_include_tag 'angular/crm_app',
                              'angular/companies/companies_service',
                              'angular/companies/companies_controller',
+                             'angular/crm_actions/crm_actions_controller',
+                             'angular/crm_actions/crm_actions_service',
                              :plugin => 'redmine_crm' %>
 <% end %>
 

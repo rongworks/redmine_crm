@@ -7,6 +7,25 @@ tr.contactheader, th.contactheader{
     font-weight: bold;
 }
 
+#add-company-to-actions{
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    height: 50%;
+    width: 50%;
+    z-index: 10;
+    background-color: rgba(50,150,200,0.5);
+    border: groove 2px rgba(0,0,0,1);
+}
+
+#add-company-to-actions ul{
+    list-style:none;
+}
+
+#add-company-to-actions li{
+    float:left;
+    margin:0.3em;
+}
 #comment-container{
 
     border: 1px lightgray groove;
@@ -82,16 +101,20 @@ tr.contactheader, th.contactheader{
     padding: 5px;
 }
 
-.company_item_header{
-    display: table-cell;
-    width: 10%;
-    font-weight: bold;
+.align-right{
+  text-align: right;
+  padding: 0.3em;
 }
+
 .company_quick_detail{
     display: table-cell;
     width: 10%;
 }
 
+.company_header{
+    font-weight: bold;
+    border-bottom: 1px solid darkslategray;
+}
 .company_name{
     color: black;
     font-weight: bold;
@@ -99,14 +122,18 @@ tr.contactheader, th.contactheader{
 }
 
 .company_item{
-    border: 1px solid darkslategray;
-    display: table;
-    width:90%;
+    border-bottom: 1px solid darkslategray;
+    #display: table;
+    #width:70%;
     padding: 0.4em;
     margin-top: 0.4em;
 }
 .company_item:hover{
     background-color: azure;
+}
+.company_item_cell{
+    #display: table-cell;
+    #width: 10%;
 }
 .dragdropbox{
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -148,4 +175,19 @@ tr.contactheader, th.contactheader{
 
 .clear-fix{
     clear:both;
+}
+
+.button-symbolic{
+    #color: white;
+    border-radius: 5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin: 0.2em;
+    padding: 2px;
+}
+
+input{
+    margin: 0.3em;
+    border-style: groove;
+    border-radius: 5px;
+    padding: 2px;
 }

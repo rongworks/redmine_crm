@@ -20,11 +20,11 @@ module SharedModule
     root_project = Setting.plugin_redmine_crm['root_project']
     if params[:project_id]
       @project = Project.find(params[:project_id])
-    elsif  root_project.present?
-      @project = Project.find(root_project)
-    else
-      flash[:error] = t(:message_no_root_project)
-      redirect_to :home
+    #elsif  root_project.present?
+    #  @project = Project.find(root_project)
+    #else
+    #  flash[:error] = t(:message_no_root_project)
+    #  redirect_to :home
     end
   end
 

@@ -1,4 +1,3 @@
-
 class CompaniesController < ApplicationController
   include SharedModule
   include CrmHelper
@@ -9,6 +8,27 @@ class CompaniesController < ApplicationController
   require 'zip/zipfilesystem'
 
   def index
+    if @project
+      @companies = @project.companies
+    else
+      @companies = Company.scoped
+    end
+    if params[:search]
+      search = params[:search]
+      search.delete_if { |k, v| v.empty? }
+      @companies = @companies.where(search)
+    end
+    if params[:tag].present?
+      @companies = @companies.tagged_with(params[:tag], :on => :tags)
+    end
+    if params[:branch].present?
+      @companies = @companies.tagged_with(params[:branch], :on => :branches)
+    end
+
+
+    @companies_no_paging = @companies
+    @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
+    @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
 
     respond_to do |format|
       format.html
@@ -16,26 +36,10 @@ class CompaniesController < ApplicationController
         #send_data Company.to_csv(@companies).encode(Setting.plugin_redmine_crm['csv_encoding'])
         get_csv_with_clients(@companies_no_paging)
       }
-      format.json{
+      format.json {
         #@companies = Company.from_project(@project.id)
-        @companies = @project.companies
-        if params[:search]
-          search = params[:search]
-          search.delete_if { |k, v| v.empty? }
-          @companies = @companies.where(search)
-        end
-        if params[:tag].present?
-          @companies = @companies.tagged_with(params[:tag], :on => :tags)
-        end
-        if params[:branch].present?
-          @companies = @companies.tagged_with(params[:branch], :on => :branches)
-        end
-
-
-        @companies_no_paging = @companies
-        @limit = params['per_page'].blank? ? (25) : (params['per_page'].to_i)
-        @companies = @companies.limit(@limit).offset(@offset).paginate(:page => params['page'], :per_page => @limit).order(:name)
-        render json: @companies_no_paging, :root => false
+        # TODO: find another solution for to_json ?
+        render json: @companies_no_paging, :root => false, :include => {:tags => {}, :primary_contact => {}, :crmcomments => {}, :crm_actions => {}}
       }
     end
   end
@@ -62,17 +66,24 @@ class CompaniesController < ApplicationController
 
   def update
     params[:company][:project_ids] ||= []
-    @company = Company.find(params[:id])
-    if @company.update_attributes(params[:company])
-      if(params[:crmcomment])
-        @company.crmcomments.build(params[:crmcomment])
+    respond_to do |format|
+      @company = Company.find(params[:id])
+      if @company.update_attributes(params[:company])
+        if (params[:crmcomment])
+          @company.crmcomments.build(params[:crmcomment])
+        end
+        @company.save!
+        format.html { redirect_to @company }
+        format.json { render json: @company }
+      else
+        flash[:failure] = "Company could not be saved: "+@company.errors.to_s
+        format.html { render :edit }
+        format.json { render json: @company.errors, :status => :unprocessable_entity }
       end
-      @company.save!
-      redirect_to @company
-    else
-      flash[:failure] = "Company could not be saved: "+@company.errors.to_s
-      render :edit
+
+
     end
+
   end
 
   def destroy
@@ -155,6 +166,7 @@ class CompaniesController < ApplicationController
     t.close
 
   end
+
   def company_params
     params.required(:company).permit(:name, :extra_information, :zip_code, :state, :province, :street, :url, :mail, :branch, :organisation)
   end

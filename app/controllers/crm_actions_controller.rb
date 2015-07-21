@@ -7,11 +7,15 @@ class CrmActionsController < ApplicationController
 
 
   def index
-    @crm_actions = @project.crm_actions
-
+    if @project
+      @crm_actions = @project.crm_actions
+    else
+      @crm_actions = CrmAction.all
+    end
     respond_to do |format|
       format.html
       format.csv {send_data CrmAction.to_csv(@crm_actions).encode(Setting.plugin_redmine_crm['csv_encoding']) }
+      format.json {render json: @crm_actions, :root => false}
     end
   end
 
